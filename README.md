@@ -42,8 +42,6 @@ A modern, responsive portfolio website showcasing my work as a Full Stack Engine
 
 - `npm run dev` - Start the development server
 - `npm run build` - Build the project for production
-- `npm run preview` - Preview the production build locally
-- `npm run lint` - Run ESLint for code linting
 
 ## 🎨 Customization
 
