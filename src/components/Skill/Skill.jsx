@@ -2,9 +2,8 @@ import React from 'react'
 
 function Skill() {
 return (
-    <section id="skills" className=" text-[#1a1a1a] py-25 md:py-35">
+    <section id="skills" className=" text-[#1a1a1a] bg-slate-950 py-25 md:py-35">
       <div className="max-w-300 mx-auto px-5">
-        <h2 className="text-[clamp(2.5rem,5vw,3rem)] text-white text-center mb-15 font-['Anton'] uppercase tracking-wider leading-[0.9]">TECHNICAL ARSENAL</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             
             {/* Card 1 */}
