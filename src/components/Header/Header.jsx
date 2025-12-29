@@ -73,7 +73,7 @@ function Header() {
 
         {/* CTA Button & Socials */}
         <div className="flex items-center gap-4">
-          <a href="https://drive.google.com/file/d/1JrfkpwbUz0Tlx4LqvbxS1zOXuNDf-Ges/preview" target="_blank" rel="noreferrer"
+          <a href="https://drive.google.com/file/d/1XQUy886tqAbG2ttQnP7HvIbN_inoXmCZ/preview" target="_blank" rel="noreferrer"
             className="group relative px-5 py-2 rounded-full bg-slate-800 text-slate-200 text-xs font-bold uppercase tracking-wider overflow-hidden hover:text-white transition-colors border border-white/5 hover:border-emerald-500/50"
           >
             <span className="relative z-10 flex items-center gap-2">

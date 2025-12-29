@@ -11,8 +11,8 @@ function Project() {
       tag: "AI / Machine Learning",
       desc: "A smart culinary engine leveraging Scikit-Learn and FAISS to deliver sub-second recipe recommendations based on user inventory and preferences.",
       tech: ['Python', 'Django', 'DRF', 'JavaScript', 'Tailwind', 'AI & ML'],
-      links: { code: "https://github.com/pranavkavade20/Recipy", demo: "https://drive.google.com/file/d/1V2SJyqkgycLODRvdd4tYYzgDNGcB7tHx/preview" },
-      image: "https://drive.google.com/file/d/1V2SJyqkgycLODRvdd4tYYzgDNGcB7tHx/preview",
+      links: { code: "https://github.com/pranavkavade20/Recipy", demo: "https://drive.google.com/file/d/11ir8zZiosqaJmlcg60Uft2iT2djzGUlA/preview" },
+      image: "#",
       isVideo: true
     },
     {
@@ -116,7 +116,7 @@ function Project() {
             {/* Media Area */}
             <div className="aspect-video w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group mb-8 md:mb-10">
               {activeProject.isVideo ? (
-                <iframe src={activeProject.image} className="w-full h-full object-cover" allow="autoplay"></iframe>
+                <iframe src={activeProject.links.demo} className="w-full h-full object-cover" allow="autoplay"></iframe>
               ) : (
                 <>
                   <div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
