@@ -80,7 +80,7 @@ function Header() {
         {/* 3. Right Side: Resume Button & Hamburger */}
         <div className="flex items-center gap-4">
           {/* Resume Button - Hidden on very small screens if needed, currently kept visible */}
-          <a href="https://drive.google.com/file/d/13xtWORuoK8Q-y3k1tnytNAB26FNt4fAq/preview" target="_blank" rel="noreferrer"
+          <a href="https://drive.google.com/file/d/1f9dAZXWXxUbsgenM_Uy6APyI81xdkYfZ/preview" target="_blank" rel="noreferrer"
             className="hidden sm:flex group relative px-5 py-2 rounded-full bg-slate-800 text-slate-200 text-xs font-bold uppercase tracking-wider overflow-hidden hover:text-white transition-colors border border-white/5 hover:border-emerald-500/50"
           >
             <span className="relative z-10 flex items-center gap-2">
