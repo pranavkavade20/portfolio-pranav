@@ -1,43 +1,64 @@
 import React, { useState } from 'react';
 import productifyImg from '../../assets/productify.png';
-import farmketImg from '../../assets/farmket.png';
+
 function Project() {
   const [activeTab, setActiveTab] = useState(0);
+  const [activeDemoIndex, setActiveDemoIndex] = useState(0); // New state for video switching
 
   const projects = [
     {
       id: 0,
-      title: "AI Recipe Assistant",
-      tag: "AI / Machine Learning",
+      title: "Farmket",
+      tag: "Farmer and Buyer Marketplace",
+      desc: "Farmket connects farmers and consumers through a Django-based platform for buying, selling, chatting, and tracking fresh farm products.",
+      tech: ['HTML', 'CSS', 'Tailwind CSS', 'Javascript', 'Django', 'SQL', 'PostgreSQL'],
+      links: { code: "https://github.com/pranavkavade20/Farmket", demo: "https://drive.google.com/file/d/1ZhMAcBu2UXOkAbW_r-0gKWyNWtCKDgNh/preview" },
+      image: "#",
+      isVideo: true,
+      // Example with only one video (will hide the playlist UI automatically)
+      demos: [
+        { label: "Login as Buyer", url: "https://drive.google.com/file/d/1ZhMAcBu2UXOkAbW_r-0gKWyNWtCKDgNh/preview" },
+        { label: "Login as Farmer", url: "https://drive.google.com/file/d/1-KoSFK6bPw7gCFEi1vPwHly59D-k6X5I/preview" }
+      ]
+    },
+    {
+      id: 1,
+      title: "Recipy",
+      tag: "AI powered Recipe Assistant",
       desc: "A smart culinary engine leveraging Scikit-Learn and FAISS to deliver sub-second recipe recommendations based on user inventory and preferences.",
       tech: ['Python', 'Django', 'DRF', 'JavaScript', 'Tailwind', 'AI & ML'],
       links: { code: "https://github.com/pranavkavade20/Recipy", demo: "https://drive.google.com/file/d/11ir8zZiosqaJmlcg60Uft2iT2djzGUlA/preview" },
       image: "#",
-      isVideo: true
+      isVideo: true,
+      demos: [
+        { label: "Main Demo", url: "https://drive.google.com/file/d/11ir8zZiosqaJmlcg60Uft2iT2djzGUlA/preview" }
+      ]
     },
+
     {
-      id: 1,
+      id: 2,
       title: "Product Manager",
       tag: "Full Stack Web App",
       desc: "Responsive dashboard for inventory management. Focuses on React Hooks, complex state management, and seamless FastAPI integration for local data persistence.",
       tech: ['React', 'FastAPI', 'PostgreSQL', 'HTML', 'CSS', 'Javascript'],
       links: { code: "https://github.com/pranavkavade20/productify", demo: "#" },
       image: productifyImg,
-      isVideo: false
+      isVideo: false,
+      demos: [] // No videos
     },
-    {
-      id: 2,
-      title: "Farmket",
-      tag: "Real-Time Systems",
-      desc: "B2B agricultural marketplace featuring real-time chat and optimized SQL queries for handling high-concurrency transactions between farmers and buyers.",
-      tech: ['PHP', 'MySQL', 'HTML', 'CSS'],
-      links: { code: "#", demo: "#" },
-      image: farmketImg,
-      isVideo: false
-    }
   ];
 
   const activeProject = projects[activeTab];
+
+  // Helper to handle project switching and reset video index
+  const handleProjectChange = (index) => {
+    setActiveTab(index);
+    setActiveDemoIndex(0);
+  };
+
+  const currentVideoUrl = (activeProject.demos && activeProject.demos.length > 0)
+    ? activeProject.demos[activeDemoIndex].url
+    : activeProject.links.demo;
 
   return (
     <section id="projects" className="py-20 md:py-24 bg-slate-950 relative">
@@ -47,7 +68,6 @@ function Project() {
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-start">
 
           {/* --- Navigation Bar --- */}
-          {/* Mobile: Horizontal Scroll | Desktop: Vertical Sticky Sidebar */}
           <div className="flex flex-col gap-4 lg:sticky lg:top-32 w-full z-10">
             <h2 className="text-2xl md:text-3xl font-['Anton'] text-slate-200 uppercase tracking-widest px-2 lg:px-4">
               Selected Works
@@ -58,7 +78,7 @@ function Project() {
               {projects.map((project, index) => (
                 <button
                   key={project.id}
-                  onClick={() => setActiveTab(index)}
+                  onClick={() => handleProjectChange(index)}
                   className={`
                     relative shrink-0 text-left px-6 py-4 rounded-xl transition-all duration-300 border-l-0 lg:border-l-4 whitespace-nowrap group snap-start
                     ${activeTab === index
@@ -114,19 +134,51 @@ function Project() {
             </div>
 
             {/* Media Area */}
-            <div className="aspect-video w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group mb-8 md:mb-10">
-              {activeProject.isVideo ? (
-                <iframe src={activeProject.links.demo} className="w-full h-full object-cover" allow="autoplay"></iframe>
-              ) : (
-                <>
-                  <div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
-                  <img src={activeProject.image} alt={activeProject.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                </>
+            <div className="w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group mb-8 md:mb-10">
+
+              {/* Main Player */}
+              <div className="aspect-video w-full">
+                {activeProject.isVideo ? (
+                  <iframe
+                    key={currentVideoUrl} // Key forces reload on URL change
+                    src={currentVideoUrl}
+                    className="w-full h-full object-cover"
+                    allow="autoplay"
+                    title="Project Demo"
+                  ></iframe>
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
+                    <img src={activeProject.image} alt={activeProject.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                  </>
+                )}
+              </div>
+
+              {/* NEW: Playlist / Video Switcher */}
+              {/* Only show if multiple demos exist */}
+              {activeProject.demos && activeProject.demos.length > 1 && (
+                <div className="bg-slate-900/90 border-t border-slate-800 p-3 flex gap-2 overflow-x-auto scrollbar-hide">
+                  {activeProject.demos.map((demo, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveDemoIndex(idx)}
+                      className={`
+                        px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all
+                        ${activeDemoIndex === idx
+                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
+                          : 'bg-slate-800 text-slate-400 border border-transparent hover:bg-slate-800/80 hover:text-slate-300'
+                        }
+                      `}
+                    >
+                      <span className="mr-2 opacity-50">0{idx + 1}</span>
+                      {demo.label}
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
 
             {/* Details Grid */}
-            {/* Stacks on mobile, 2/3 + 1/3 split on desktop */}
             <div className="grid md:grid-cols-3 gap-8">
               <div className="md:col-span-2">
                 <h4 className="text-emerald-400 font-bold tracking-widest text-xs md:text-sm uppercase mb-3 md:mb-4">Project Overview</h4>
@@ -154,4 +206,5 @@ function Project() {
     </section>
   );
 }
+
 export default Project;
