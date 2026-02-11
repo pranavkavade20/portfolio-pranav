@@ -9,18 +9,20 @@ import Skill from './components/Skill/Skill.jsx'
 import Project from './components/Project/Project.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import Experience from './components/Experience/Experience.jsx'
+import About from './components/About/About.jsx'
+
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<App/>}>
-      <Route path='' element={<Home/>}/>
-      <Route path='skills' element={<Skill/>}/>
+    <Route path='/' element={<App />}>
+      <Route path='' element={<Home />} />
+      <Route path='skills' element={<Skill />} />
       <Route path='projects' element={<Project />} />
       <Route path='contact' element={<Contact />} />
-      <Route path='Experience' element={<Experience />} />
+      <Route path='experience' element={<Experience />} />
+      <Route path='about' element={<About />} />
     </Route>
   )
 )
-
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
