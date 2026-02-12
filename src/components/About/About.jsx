@@ -45,7 +45,7 @@ function About() {
                 <span className="font-['Anton'] text-2xl text-slate-900 tracking-wider">
                   PRANAV KAVADE
                 </span>
-                <p className="text-slate-500 text-xs font-bold font-mono mt-1">EST. PUNE / MH</p>
+                <p className="text-slate-500 text-xs font-bold font-mono mt-1">Ichalkaranji,Maharastra</p>
               </div>
             </div>
 
@@ -94,7 +94,7 @@ function About() {
                 🚀 Clean Architecture
               </div>
               <div className="bg-slate-100 border-2 border-slate-900 px-5 py-2.5 rounded-xl font-bold text-slate-900 text-sm shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
-                ⚡ Rapid Prototyping
+                ⚡ Software Development
               </div>
               <div className="bg-slate-100 border-2 border-slate-900 px-5 py-2.5 rounded-xl font-bold text-slate-900 text-sm shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
                 🧠 Continuous Learner
