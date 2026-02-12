@@ -18,41 +18,41 @@ function Header() {
   // Add shadow on scroll
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-      // Optional: Close menu on scroll
-      if (window.scrollY > 50) setIsMenuOpen(false);
+      setScrolled(window.scrollY > 20);
+      // Close menu on scroll to keep view clean
+      if (window.scrollY > 20) setIsMenuOpen(false);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 flex flex-col items-center transition-all duration-300 ${scrolled ? 'pt-4' : 'pt-6'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 flex flex-col items-center transition-all duration-300 ${scrolled ? 'pt-2 md:pt-4' : 'pt-4 md:pt-6'}`}>
 
-      {/* Glass Container (The Pill) - Updated for Light Mode */}
+      {/* Glass Container (The Pill) */}
       <div className={`
         relative flex items-center justify-between 
-        bg-white/70 backdrop-blur-xl border border-slate-200/50 
-        px-6 py-3 rounded-full transition-all duration-300
-        shadow-[0_8px_30px_rgb(0,0,0,0.04)]
-        ${scrolled ? 'w-[90%] md:w-[60%] py-2' : 'w-[95%] md:w-[70%]'}
+        bg-white/80 backdrop-blur-md border border-slate-200/60 
+        rounded-full transition-all duration-300 z-50
+        shadow-[0_4px_20px_rgb(0,0,0,0.03)]
+        ${scrolled ? 'w-[95%] md:w-[70%] py-2 px-4 md:px-6' : 'w-[92%] md:w-[75%] px-5 py-3'}
       `}>
 
         {/* 1. Logo Section */}
-        <Link to="/" className="group flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
-          <span className="font-['Anton'] text-xl tracking-wide text-slate-900 group-hover:text-emerald-600 transition-colors">
+        <Link to="/" className="group flex items-center gap-2 select-none" onClick={() => setIsMenuOpen(false)}>
+          <span className="font-['Anton'] text-xl md:text-2xl tracking-wide text-slate-900 group-hover:text-emerald-600 transition-colors">
             PK.py
           </span>
         </Link>
 
-        {/* 2. Desktop Links (Hidden on Mobile) - Updated for Light Mode */}
-        <div className="hidden md:flex items-center gap-8 bg-slate-100/50 px-6 py-2 rounded-full border border-slate-200/50">
+        {/* 2. Desktop Links (Hidden on Mobile) */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8 bg-slate-50/50 px-6 py-2 rounded-full border border-slate-200/50">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
               className={({ isActive }) => `
-                text-sm font-medium transition-colors relative group
+                text-xs lg:text-sm font-medium transition-colors relative group
                 ${isActive ? 'text-emerald-600 font-semibold' : 'text-slate-600 hover:text-emerald-600'}
               `}
             >
@@ -68,10 +68,10 @@ function Header() {
           ))}
         </div>
 
-        {/* 3. Right Side: Resume Button & Hamburger - Updated to Neo-Brutalist */}
-        <div className="flex items-center gap-4">
+        {/* 3. Right Side: Resume Button & Hamburger */}
+        <div className="flex items-center gap-3">
           <a href="https://drive.google.com/file/d/1K20rqHpu2FzyHIUqyrFIwdzACNQsUcYt/view" target="_blank" rel="noreferrer"
-            className="hidden sm:flex group relative px-5 py-2 rounded-full bg-white text-slate-900 border-2 border-slate-900 text-xs font-bold uppercase tracking-wider overflow-hidden hover:bg-slate-50 transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-1 hover:translate-y-1"
+            className="hidden sm:flex group relative px-4 py-2 md:px-5 md:py-2 rounded-full bg-white text-slate-900 border-2 border-slate-900 text-[10px] md:text-xs font-bold uppercase tracking-wider overflow-hidden hover:bg-slate-50 transition-all duration-300 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
           >
             <span className="relative z-10 flex items-center gap-2">
               Resume <i className="fas fa-download group-hover:translate-y-0.5 transition-transform"></i>
@@ -79,9 +79,11 @@ function Header() {
           </a>
 
           {/* Hamburger Menu Button */}
+          {/* Increased touch target size for mobile */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 text-slate-900 hover:text-emerald-600 transition-colors focus:outline-none"
+            aria-label="Toggle Menu"
           >
             {isMenuOpen ? (
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -96,34 +98,39 @@ function Header() {
         </div>
       </div>
 
-      {/* 4. Mobile Menu Dropdown - Updated for Light Mode */}
+      {/* 4. Mobile Menu Dropdown */}
+      {/* Positioned relative to the nav container to align width better */}
       <div className={`
         md:hidden 
-        absolute top-full left-0 right-0 mt-4 mx-4
+        absolute top-full mt-2 w-[95%]
         bg-white/95 backdrop-blur-xl border border-slate-200 
-        rounded-2xl overflow-hidden transition-all duration-300 origin-top
-        shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)]
-        ${isMenuOpen ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-4'}
+        rounded-2xl overflow-hidden transition-all duration-300 origin-top z-40
+        shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)]
+        ${isMenuOpen ? 'max-h-[500px] opacity-100 scale-100 translate-y-0' : 'max-h-0 opacity-0 scale-95 -translate-y-4'}
       `}>
-        <div className="flex flex-col p-4 gap-2">
+        <div className="flex flex-col p-3 gap-1">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
               onClick={() => setIsMenuOpen(false)}
               className={({ isActive }) => `
-                px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
+                px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-between group
                 ${isActive
-                  ? 'bg-emerald-50 text-emerald-600 pl-6 border border-emerald-100'
-                  : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50 hover:pl-6'}
+                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-100'
+                  : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50'}
               `}
             >
               {item.name}
+              {/* Subtle arrow for active/hover state */}
+              <i className="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
             </NavLink>
           ))}
 
+          <div className="h-px bg-slate-100 my-2"></div>
+
           <a href="https://drive.google.com/file/d/1XQUy886tqAbG2ttQnP7HvIbN_inoXmCZ/preview" target="_blank" rel="noreferrer"
-            className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white border-2 border-slate-900 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-all sm:hidden shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] active:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] active:translate-x-1 active:translate-y-1"
+            className="flex items-center justify-center gap-2 px-4 py-3 mx-1 mb-1 rounded-xl bg-white border-2 border-slate-900 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-all sm:hidden shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
           >
             Download Resume <i className="fas fa-download"></i>
           </a>

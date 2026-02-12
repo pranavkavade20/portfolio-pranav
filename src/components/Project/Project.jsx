@@ -66,8 +66,8 @@ function Project() {
 
           {/* --- Navigation Bar --- */}
           <div className="flex flex-col gap-4 lg:sticky lg:top-32 w-full z-10">
-            <h2 className="text-3xl md:text-5xl font-['Anton'] text-slate-900 uppercase tracking-widest px-2 lg:px-4 mb-2">
-              Selected <br className="hidden lg:block" />Works
+            <h2 className="text-3xl md:text-5xl font-['Anton'] text-slate-900 uppercase tracking-widest px-2 lg:px-4 my-2">
+              Project<br className="hidden lg:block" />Work
             </h2>
 
             {/* Scroll Container */}
