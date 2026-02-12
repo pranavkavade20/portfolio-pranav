@@ -2,7 +2,7 @@ import pythonImg from '../../assets/python.png';
 import djangoImg from '../../assets/django.png';
 import reactImg from '../../assets/react.png';
 import jsImg from '../../assets/javascript.png';
-import software from '../../assets/software.jpg'
+import bun from '../../assets/bun.png'
 
 function Home() {
   return (
@@ -68,7 +68,7 @@ function Home() {
 
           {/* Profile Image Badge Pinned to the Card */}
           <div className="absolute -top-10 md:-top-14 -right-4 md:-right-8 w-24 h-24 md:w-32 md:h-32 bg-slate-200 rounded-full border-[4px] border-slate-900 overflow-hidden shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] z-50 transform rotate-6 hover:rotate-0 transition-transform duration-300">
-            <img src={software} alt="Pranav Kavade" className="w-full h-full object-cover" />
+            <img src={bun} alt="Pranav Kavade" className="w-full h-full object-cover" />
           </div>
 
           <div className="bg-white border-[3px] border-slate-900 rounded-[2rem] p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] text-center space-y-8 transition-transform hover:-translate-y-1">
