@@ -5,7 +5,7 @@ import pythonImg from '../../assets/python.png';
 import djangoImg from '../../assets/django.png';
 import reactImg from '../../assets/react.png';
 import jsImg from '../../assets/javascript.png';
-import bun from '../../assets/bun.png';
+import boy from '../../assets/boy.jfif';
 import postgresqlImg from '../../assets/postgresql.png'
 
 function About() {
@@ -89,7 +89,7 @@ function About() {
         {/* --- SECTION 4: Bottom Brutalist CTA Card --- */}
         <div className="relative z-40 w-full max-w-[90%] md:max-w-4xl mx-auto mt-8">
           <div className="absolute -top-10 right-0 md:-top-16 md:-right-10 w-24 h-24 md:w-36 md:h-36 bg-slate-200 rounded-full border-[3px] md:border-[4px] border-slate-900 overflow-hidden shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] z-50 transform rotate-6 hover:rotate-0 transition-transform duration-300">
-            <img src={bun} alt="Pranav" className="w-full h-full object-cover" />
+            <img src={boy} alt="Pranav" className="w-full h-full object-cover" />
           </div>
 
           <div className="bg-white border-[3px] border-slate-900 rounded-3xl md:rounded-[2rem] p-8 md:p-14 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] md:shadow-[12px_12px_0px_0px_rgba(15,23,42,1)] text-center space-y-8 md:space-y-10 transition-transform hover:-translate-y-1">
