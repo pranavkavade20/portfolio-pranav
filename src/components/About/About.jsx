@@ -1,10 +1,12 @@
 import React from 'react';
+import profileImg from '../../assets/profile.jpg';
+
 import pythonImg from '../../assets/python.png';
 import djangoImg from '../../assets/django.png';
 import reactImg from '../../assets/react.png';
 import jsImg from '../../assets/javascript.png';
 import bun from '../../assets/bun.png';
-import profileImg from '../../assets/profile.jpg';
+import postgresqlImg from '../../assets/postgresql.png'
 
 function About() {
   return (
@@ -41,11 +43,14 @@ function About() {
 
         {/* --- SECTION 2: Tech Stack "Stickers" --- */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-10 mb-20 md:mb-32 z-30 relative px-2">
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-2 md:p-3 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all duration-300 transform -translate-y-1 md:-translate-y-2">
+            <img src={postgresqlImg} alt="JS" className="w-full h-full object-contain" />
+          </div>
           <div className="w-14 h-14 md:w-20 md:h-20 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-3 md:p-4 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] -rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all duration-300">
-            <img src={pythonImg} alt="Python" className="w-full h-full object-contain" />
+            <img src={djangoImg} alt="Python" className="w-full h-full object-contain" />
           </div>
           <div className="w-16 h-16 md:w-24 md:h-24 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-3 md:p-5 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] rotate-3 hover:rotate-0 hover:-translate-y-2 transition-all duration-300 transform translate-y-1 md:translate-y-2">
-            <img src={djangoImg} alt="Django" className="w-full h-full object-contain" />
+            <img src={pythonImg} alt="Django" className="w-full h-full object-contain" />
           </div>
           <div className="w-14 h-14 md:w-20 md:h-20 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-3 md:p-4 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all duration-300">
             <img src={reactImg} alt="React" className="w-full h-full object-contain" />
