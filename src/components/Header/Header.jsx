@@ -39,7 +39,7 @@ function Header() {
 
         {/* 1. Logo Section */}
         <Link to="/" className="group flex items-center gap-2 select-none" onClick={() => setIsMenuOpen(false)}>
-          <span className="font-['Anton'] text-xl md:text-2xl tracking-wide text-slate-900 group-hover:text-emerald-600 transition-colors">
+          <span className="font-['Anton'] text-xl md:text-2xl tracking-wide text-slate-900 group-hover:text-amber-600 transition-colors">
             PK.py
           </span>
         </Link>
@@ -52,13 +52,13 @@ function Header() {
               to={item.path}
               className={({ isActive }) => `
                 text-xs lg:text-sm font-medium transition-colors relative group
-                ${isActive ? 'text-emerald-600 font-semibold' : 'text-slate-600 hover:text-emerald-600'}
+                ${isActive ? 'text-amber-600 font-semibold' : 'text-slate-600 hover:text-amber-600'}
               `}
             >
               {({ isActive }) => (
                 <>
                   {item.name}
-                  <span className={`absolute -bottom-1 left-1/2 h-0.5 bg-emerald-500 transition-all duration-300
+                  <span className={`absolute -bottom-1 left-1/2 h-0.5 bg-amber-500 transition-all duration-300
                     ${isActive ? 'w-1/2 left-1/4' : 'w-0 group-hover:w-1/2 group-hover:left-1/4'}
                   `}></span>
                 </>
@@ -81,7 +81,7 @@ function Header() {
           {/* Increased touch target size for mobile */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-slate-900 hover:text-emerald-600 transition-colors focus:outline-none"
+            className="md:hidden p-2 text-slate-900 hover:text-amber-600 transition-colors focus:outline-none"
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? (
@@ -116,8 +116,8 @@ function Header() {
               className={({ isActive }) => `
                 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-between group
                 ${isActive
-                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-100'
-                  : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50'}
+                  ? 'bg-amber-50 text-amber-700 border border-amber-100'
+                  : 'text-slate-600 hover:text-amber-600 hover:bg-slate-50'}
               `}
             >
               {item.name}

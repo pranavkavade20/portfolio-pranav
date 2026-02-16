@@ -116,7 +116,7 @@ function Project() {
                   className="flex-1 xl:flex-none text-center px-6 py-3 rounded-full border-2 border-slate-900 bg-white text-slate-900 font-bold tracking-wider uppercase text-xs hover:bg-slate-50 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[3px] hover:translate-y-[3px]">
                   <i className="fab fa-github mr-2 text-lg"></i> Code
                 </a>
-                <a href={activeProject.links.demo} className="flex-1 xl:flex-none text-center px-6 py-3 rounded-full border-2 border-slate-900 bg-emerald-400 text-slate-900 font-bold tracking-wider uppercase text-xs hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[3px] hover:translate-y-[3px]">
+                <a href={activeProject.links.demo} className="flex-1 xl:flex-none text-center px-6 py-3 rounded-full border-2 border-slate-900 bg-amber-400 text-slate-900 font-bold tracking-wider uppercase text-xs hover:bg-amber-300 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[3px] hover:translate-y-[3px]">
                   Live Demo
                 </a>
               </div>

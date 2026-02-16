@@ -11,7 +11,7 @@ function Contact() {
 
         {/* Outer offset container for a massive drop-shadow effect */}
         {/* Further Reduced padding/margin on mobile to maximize content area */}
-        <div className="bg-emerald-200 border-[3px] border-slate-900 p-2 md:p-4 rounded-[1.5rem] md:rounded-[4rem] shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] md:shadow-[12px_12px_0px_0px_rgba(15,23,42,1)] transform transition-transform duration-500 hover:-translate-y-1 md:hover:-translate-y-2">
+        <div className="bg-amber-200 border-[3px] border-slate-900 p-2 md:p-4 rounded-[1.5rem] md:rounded-[4rem] shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] md:shadow-[12px_12px_0px_0px_rgba(15,23,42,1)] transform transition-transform duration-500 hover:-translate-y-1 md:hover:-translate-y-2">
 
           {/* Inner Card */}
           <div className="bg-white border-[3px] border-slate-900 rounded-[1.2rem] md:rounded-[3.5rem] px-4 py-10 md:p-24 text-center relative overflow-hidden">
@@ -34,7 +34,7 @@ function Contact() {
 
               {/* Main CTA - Full width on mobile for better touch target */}
               <a href="mailto:pranavkavade9@gmail.com"
-                className="w-full sm:w-auto px-8 py-4 md:py-5 bg-emerald-400 border-[3px] border-slate-900 rounded-full text-slate-900 font-bold tracking-widest uppercase transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-y-[3px] hover:translate-x-[3px] hover:bg-emerald-300 flex items-center justify-center gap-3 text-sm md:text-base">
+                className="w-full sm:w-auto px-8 py-4 md:py-5 bg-amber-400 border-[3px] border-slate-900 rounded-full text-slate-900 font-bold tracking-widest uppercase transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-y-[3px] hover:translate-x-[3px] hover:bg-amber-300 flex items-center justify-center gap-3 text-sm md:text-base">
                 <i className="fa-regular fa-envelope text-lg md:text-xl"></i> Say Hello
               </a>
 

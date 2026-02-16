@@ -22,7 +22,7 @@ const Footer = () => {
     <footer className="bg-slate-50 pt-12 pb-8 md:pt-20 md:pb-10 relative overflow-hidden border-t border-slate-200">
 
       {/* Top Gradient Line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
 
       <div className="container mx-auto max-w-6xl px-6">
         
@@ -31,7 +31,7 @@ const Footer = () => {
 
           {/* Brand Column */}
           <div className="md:col-span-2 space-y-4 md:space-y-6">
-            <Link to="/" className="font-['Anton'] text-2xl md:text-3xl text-slate-900 tracking-wide hover:text-emerald-500 transition-colors inline-block">
+            <Link to="/" className="font-['Anton'] text-2xl md:text-3xl text-slate-900 tracking-wide hover:text-amber-500 transition-colors inline-block">
               PK.py
             </Link>
             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-sm">
@@ -45,7 +45,7 @@ const Footer = () => {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-10 h-10 rounded-full bg-white border-2 border-slate-900 flex items-center justify-center text-slate-900 hover:bg-emerald-400 hover:text-slate-900 transition-all duration-300 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-0.5 hover:translate-y-0.5"
+                  className="w-10 h-10 rounded-full bg-white border-2 border-slate-900 flex items-center justify-center text-slate-900 hover:bg-amber-400 hover:text-slate-900 transition-all duration-300 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-0.5 hover:translate-y-0.5"
                 >
                   <i className={`fab ${item.icon} text-lg`}></i>
                 </a>
@@ -61,8 +61,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-slate-600 hover:text-emerald-600 transition-colors text-sm font-medium flex items-center gap-2 group">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  <Link to={link.path} className="text-slate-600 hover:text-amber-600 transition-colors text-sm font-medium flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -77,21 +77,21 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm text-slate-600 font-medium">
               <li className="flex items-start gap-3">
-                <i className="far fa-envelope text-emerald-500 text-base mt-0.5"></i>
-                <a href="mailto:pranavkavade9@gmail.com" className="hover:text-emerald-600 transition-colors break-all">
+                <i className="far fa-envelope text-amber-500 text-base mt-0.5"></i>
+                <a href="mailto:pranavkavade9@gmail.com" className="hover:text-amber-600 transition-colors break-all">
                   pranavkavade9@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <i className="fas fa-map-marker-alt text-emerald-500 text-base mt-0.5"></i>
+                <i className="fas fa-map-marker-alt text-amber-500 text-base mt-0.5"></i>
                 <span>Ichalkaranji, Maharashtra, India</span>
               </li>
               <li className="flex items-center gap-3 pt-2">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
                 </span>
-                <span className="text-emerald-700 font-bold text-xs uppercase tracking-wide">Open to opportunities</span>
+                <span className="text-amber-700 font-bold text-xs uppercase tracking-wide">Open to opportunities</span>
               </li>
             </ul>
           </div>

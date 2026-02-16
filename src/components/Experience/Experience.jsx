@@ -10,7 +10,7 @@ function Experience() {
       period: 'Jul 2025 - Oct 2025',
       description: 'As a Python Developer Intern, I engineered robust web solutions using Python, Django, and MySQL. My work focused on designing secure backend architectures, optimizing database performance with advanced Django ORM queries, and utilizing tools like Celery to create fast, scalable, and efficient applications.',
       techStack: ['Python', 'Django', 'MySQL', 'Celery', 'Tailwind CSS', 'JavaScript'],
-      themeColor: 'bg-emerald-500' // Nod to Django green
+      themeColor: 'bg-amber-500'
     }, 
     {
       company: 'ScaleFull Technologies',
@@ -18,12 +18,12 @@ function Experience() {
       period: 'Jan 2025 - Apr 2025',
       description: 'As a Full Stack Developer Intern, I built dynamic, responsive web applications using the MERN stack. I specialized in crafting intuitive user interfaces with Tailwind CSS and Redux, while also managing database connections and media integration to deliver seamless, optimized user experiences.',
       techStack: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Tailwind', 'Redux', 'Cloudinary'],
-      themeColor: 'bg-green-400' // Nod to MongoDB/Node greens
+      themeColor: 'bg-amber-500' 
     }
   ];
 
   return (
-    <section id="experience" className="py-24 bg-slate-50 relative border-t-2 border-slate-200 overflow-hidden">
+    <section id="experience" className="pF-24 bg-slate-50 relative border-t-2 border-slate-200 overflow-hidden">
       {/* Blueprint Grid Background */}
       <div
         className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
