@@ -5,7 +5,7 @@ import pythonImg from '../../assets/python.png';
 import djangoImg from '../../assets/django.png';
 import reactImg from '../../assets/react.png';
 import jsImg from '../../assets/javascript.png';
-import boy from '../../assets/boy.jfif';
+import boy from '../../assets/boy.png';
 import postgresqlImg from '../../assets/postgresql.png'
 
 function About() {
@@ -24,8 +24,7 @@ function About() {
           
           {/* Left Column: Polaroid */}
           <div className="relative flex justify-center lg:justify-end order-1 mt-8 lg:mt-0">
-            <div className="absolute -top-4 md:-top-6 left-1/2 -translate-x-1/2 w-24 md:w-32 h-6 md:h-8 bg-yellow-200/80 backdrop-blur-sm border-2 border-slate-900 -rotate-3 z-30 shadow-sm"></div>
-            
+        
             <div className="absolute -left-0 sm:-left-8 md:-left-12 top-0 md:top-12 bg-amber-400 border-[3px] border-slate-900 px-3 py-2 md:px-6 md:py-3 rounded-full shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] z-30 -rotate-6 md:-rotate-12 animate-float">
               <span className="font-bold text-slate-900 text-[10px] md:text-sm tracking-widest uppercase flex items-center gap-2">
                 <span className="w-2 h-2 md:w-2.5 md:h-2.5 bg-white rounded-full animate-pulse"></span>

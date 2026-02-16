@@ -23,7 +23,7 @@ function Experience() {
   ];
 
   return (
-    <section id="experience" className="pF-24 bg-slate-50 relative border-t-2 border-slate-200 overflow-hidden">
+    <section id="experience" className="py-24 bg-slate-50 relative border-t-2 border-slate-200 overflow-hidden">
       {/* Blueprint Grid Background */}
       <div
         className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
