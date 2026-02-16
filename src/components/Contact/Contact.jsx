@@ -25,7 +25,7 @@ function Contact() {
             </h2>
 
             <p className="text-sm sm:text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-8 md:mb-12 font-medium leading-relaxed z-10 relative px-2">
-              I'm currently looking for new opportunities as a Python Engineer.
+              I'm currently looking for new opportunities as a Full Stack Python Developer.
               Whether you have a question or just want to say hi, my inbox is always open!
             </p>
 
