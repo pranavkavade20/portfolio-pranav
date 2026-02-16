@@ -24,10 +24,10 @@ function Skill() {
             <h3 className="font-['Anton'] text-4xl uppercase tracking-wider leading-[1.1] mb-5 z-10 relative">BACKEND <br /> ENGINEERING</h3>
             <ul className="text-lg leading-relaxed z-10 font-bold space-y-2">
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Python</li>
-              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Django & DRF</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> SQL</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Django</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Django REST Framework</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> FastAPI (Basics)</li>
-              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> MySQL</li>
-              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> MongoDB</li>
             </ul>
           </div>
 
@@ -38,7 +38,7 @@ function Skill() {
             <ul className="text-lg leading-relaxed z-10 font-bold space-y-2">
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> HTML</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> CSS</li>
-              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> JavaScript (ES6+)</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> JavaScript</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> React.js</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Responsive UI/UX</li>
             </ul>
@@ -47,13 +47,13 @@ function Skill() {
           {/* Card 3 */}
           <div className="p-10 rounded-3xl relative overflow-hidden transition-all duration-300 min-h-[22rem] flex flex-col justify-between bg-[#00dc82] border-[3px] border-slate-900 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-2 hover:translate-y-2 text-slate-900 group">
             <span className="font-['Anton'] text-[5rem] opacity-20 absolute -top-4 right-4 group-hover:scale-110 transition-transform duration-500">03</span>
-            <h3 className="font-['Anton'] text-4xl uppercase tracking-wider leading-[1.1] mb-5 z-10 relative">DEVOPS &<br /> TOOLING</h3>
+            <h3 className="font-['Anton'] text-4xl uppercase tracking-wider leading-[1.1] mb-5 z-10 relative">DATABASE &<br /> TOOLS</h3>
             <ul className="text-lg leading-relaxed z-10 font-bold space-y-2">
-              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Cloud Basics</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Git & GitHub</li>
-              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> API handling</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> MySQL </li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> MongoDB</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Postgresql </li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> API Testing (Postman)</li>
-              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Agile Methodologies</li>
             </ul>
           </div>
 

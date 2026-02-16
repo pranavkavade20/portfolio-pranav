@@ -4,7 +4,6 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 
 import './index.css'
 import App from './App.jsx'
-import Home from './components/Home/Home.jsx'
 import Skill from './components/Skill/Skill.jsx'
 import Project from './components/Project/Project.jsx'
 import Contact from './components/Contact/Contact.jsx'
@@ -14,12 +13,11 @@ import About from './components/About/About.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route path='' element={<Home />} />
+      <Route path='' element={<About />} />
       <Route path='skills' element={<Skill />} />
       <Route path='projects' element={<Project />} />
       <Route path='contact' element={<Contact />} />
       <Route path='experience' element={<Experience />} />
-      <Route path='about' element={<About />} />
     </Route>
   )
 )

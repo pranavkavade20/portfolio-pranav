@@ -7,12 +7,11 @@ function Header() {
 
   // Define nav items in an array to map over them for both Desktop and Mobile
   const navItems = [
-    { name: 'Home', path: '' },
+    { name: 'About', path: '' },
     { name: 'Skills', path: '/skills' },
     { name: 'Projects', path: '/projects' },
     { name: 'Experience', path: '/experience' },
     { name: 'Contact', path: '/contact' },
-    { name: 'About', path: '/about' }
   ];
 
   // Add shadow on scroll
