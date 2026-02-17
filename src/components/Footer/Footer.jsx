@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,10 +13,10 @@ const Footer = () => {
     { name: 'Contact', path: '/contact' }
   ];
 
-  // External Links (Use <a>)
+  // External Links (Use <a>) - Updated with Lucide icons
   const social = [
-    { icon: 'fa-github', href: 'https://github.com/pranavkavade20' },
-    { icon: 'fa-linkedin-in', href: 'https://www.linkedin.com/in/pranavkavade20' },
+    { icon: <Github size={20} />, href: 'https://github.com/pranavkavade20' },
+    { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/pranavkavade20' },
   ];
 
   return (
@@ -47,7 +48,7 @@ const Footer = () => {
                   rel="noreferrer"
                   className="w-10 h-10 rounded-full bg-white border-2 border-slate-900 flex items-center justify-center text-slate-900 hover:bg-amber-400 hover:text-slate-900 transition-all duration-300 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-0.5 hover:translate-y-0.5"
                 >
-                  <i className={`fab ${item.icon} text-lg`}></i>
+                  {item.icon}
                 </a>
               ))}
             </div>
@@ -77,13 +78,13 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm text-slate-600 font-medium">
               <li className="flex items-start gap-3">
-                <i className="far fa-envelope text-amber-500 text-base mt-0.5"></i>
+                <Mail className="text-amber-500 mt-0.5" size={16} />
                 <a href="mailto:pranavkavade9@gmail.com" className="hover:text-amber-600 transition-colors break-all">
                   pranavkavade9@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <i className="fas fa-map-marker-alt text-amber-500 text-base mt-0.5"></i>
+                <MapPin className="text-amber-500 mt-0.5" size={16} />
                 <span>Ichalkaranji, Maharashtra, India</span>
               </li>
               <li className="flex items-center gap-3 pt-2">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Github, ExternalLink, PlayCircle } from 'lucide-react';
 import productifyImg from '../../assets/productify.png';
 
 function Project() {
@@ -58,7 +59,7 @@ function Project() {
     : activeProject.links.demo;
 
   return (
-    <section id="projects" className="py-20 md:py-24 bg-slate-50 relative border-t-2 border-slate-200">
+    <section id="projects" className="py-20 md:py-24 relative border-t-2 border-slate-200">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
 
         {/* Layout: Stacks on mobile, Side-by-Side on Desktop (lg) */}
@@ -113,11 +114,11 @@ function Project() {
 
               <div className="flex flex-wrap gap-4 w-full xl:w-auto">
                 <a href={activeProject.links.code} target="_blank" rel="noreferrer"
-                  className="flex-1 xl:flex-none text-center px-6 py-3 rounded-full border-2 border-slate-900 bg-white text-slate-900 font-bold tracking-wider uppercase text-xs hover:bg-slate-50 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[3px] hover:translate-y-[3px]">
-                  <i className="fab fa-github mr-2 text-lg"></i> Code
+                  className="flex-1 xl:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-slate-900 bg-white text-slate-900 font-bold tracking-wider uppercase text-xs hover:bg-slate-50 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[3px] hover:translate-y-[3px]">
+                  <Github size={18} /> Code
                 </a>
-                <a href={activeProject.links.demo} className="flex-1 xl:flex-none text-center px-6 py-3 rounded-full border-2 border-slate-900 bg-amber-400 text-slate-900 font-bold tracking-wider uppercase text-xs hover:bg-amber-300 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[3px] hover:translate-y-[3px]">
-                  Live Demo
+                <a href={activeProject.links.demo} className="flex-1 xl:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-slate-900 bg-amber-400 text-slate-900 font-bold tracking-wider uppercase text-xs hover:bg-amber-300 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-[0px_0px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[3px] hover:translate-y-[3px]">
+                  <ExternalLink size={18} /> Live Demo
                 </a>
               </div>
             </div>
@@ -148,14 +149,14 @@ function Project() {
                       key={idx}
                       onClick={() => setActiveDemoIndex(idx)}
                       className={`
-                        px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all border-2
+                        flex items-center px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all border-2
                         ${activeDemoIndex === idx
                           ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
                           : 'bg-white text-slate-600 border-slate-200 hover:border-slate-900 hover:text-slate-900'
                         }
                       `}
                     >
-                      <span className="mr-2 opacity-50 font-mono">0{idx + 1}</span>
+                      <PlayCircle size={14} className="mr-2 opacity-75" />
                       {demo.label}
                     </button>
                   ))}

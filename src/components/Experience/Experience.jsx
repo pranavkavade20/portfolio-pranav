@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Terminal, Calendar, Code2 } from 'lucide-react';
 
 function Experience() {
   const [activeJob, setActiveJob] = useState(0);
@@ -23,13 +24,8 @@ function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-slate-50 relative border-t-2 border-slate-200 overflow-hidden">
-      {/* Blueprint Grid Background */}
-      <div
-        className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(#0f172a 2px, transparent 2px)', backgroundSize: '32px 32px' }}
-      ></div>
-
+    <section id="experience" className="py-24 relative border-t-2 border-slate-200 overflow-hidden">
+ 
       <div className="container mx-auto max-w-5xl px-6 relative z-10">
         <h2 className="text-4xl md:text-6xl font-black text-center mb-16 text-slate-900 uppercase tracking-tight">
           Where I've Built
@@ -51,8 +47,8 @@ function Experience() {
                 <h3 className={`text-xl font-bold uppercase tracking-wide ${activeJob === index ? 'text-slate-900' : 'text-slate-800'}`}>
                   {job.company}
                 </h3>
-                <p className={`text-sm font-semibold mt-1 ${activeJob === index ? 'text-slate-900/80' : 'text-slate-500'}`}>
-                  {job.period}
+                <p className={`text-sm font-semibold mt-1 flex items-center gap-1.5 ${activeJob === index ? 'text-slate-900/80' : 'text-slate-500'}`}>
+                  <Calendar size={14} /> {job.period}
                 </p>
               </button>
             ))}
@@ -68,8 +64,8 @@ function Experience() {
                 <div className="w-3.5 h-3.5 rounded-full bg-yellow-400 border-2 border-slate-900"></div>
                 <div className="w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-slate-900"></div>
               </div>
-              <span className="text-slate-300 text-xs font-mono tracking-widest uppercase">
-                ~/experience/{jobs[activeJob].company.toLowerCase().replace(' ', '-')}
+              <span className="text-slate-300 text-xs font-mono tracking-widest uppercase flex items-center gap-2">
+                <Terminal size={14} /> ~/experience/{jobs[activeJob].company.toLowerCase().replace(' ', '-')}
               </span>
             </div>
 
@@ -85,8 +81,8 @@ function Experience() {
 
               {/* Tech Stack Pills */}
               <div>
-                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
-                  Tech Stack
+                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Code2 size={16} /> Tech Stack
                 </h4>
                 <div className="flex flex-wrap gap-3">
                   {jobs[activeJob].techStack.map((tech, i) => (

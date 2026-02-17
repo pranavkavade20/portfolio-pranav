@@ -1,19 +1,19 @@
 import React from 'react';
-import profileImg from '../../assets/profile.jpg';
+import { Rocket, MapPin, Fingerprint, Route, Github, Mail } from 'lucide-react'; // Added Lucide Imports
 
+import profileImg from '../../assets/profile.jpg';
 import pythonImg from '../../assets/python.png';
 import djangoImg from '../../assets/django.png';
 import reactImg from '../../assets/react.png';
 import jsImg from '../../assets/javascript.png';
 import boy from '../../assets/boy.png';
-import postgresqlImg from '../../assets/postgresql.png'
+import postgresqlImg from '../../assets/postgresql.png';
 
 function About() {
   return (
-    <main className="min-h-screen bg-slate-50 relative overflow-hidden flex flex-col items-center pt-24 pb-20 md:pt-32 md:pb-32">
+    <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-24 pb-20 md:pt-32 md:pb-32">
 
-      {/* --- Global Background: Blueprint Grid & Pastel Blobs --- */}
-      <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 2px, transparent 2px)', backgroundSize: '32px 32px' }}></div>
+      {/* --- Global Background--- */}
       <div className="absolute top-[-5%] left-[-10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-amber-200/60 rounded-full blur-[80px] md:blur-[100px] z-0 animate-pulse"></div>
       <div className="absolute bottom-[20%] right-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-blue-200/60 rounded-full blur-[80px] md:blur-[120px] z-0 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
@@ -29,6 +29,7 @@ function About() {
               <span className="font-bold text-slate-900 text-[10px] md:text-sm tracking-widest uppercase flex items-center gap-2">
                 <span className="w-2 h-2 md:w-2.5 md:h-2.5 bg-white rounded-full animate-pulse"></span>
                 Ready to Build
+                <Rocket size={16} className="ml-1" /> {/* Added Icon */}
               </span>
             </div>
 
@@ -38,7 +39,10 @@ function About() {
               </div>
               <div className="absolute bottom-2 md:bottom-4 left-0 w-full text-center">
                 <span className="font-['Anton'] text-xl md:text-2xl text-slate-900 tracking-wider block">PRANAV KAVADE</span>
-                <p className="text-slate-500 text-[10px] md:text-xs font-bold font-mono mt-0 md:mt-1">Ichalkaranji, Maharashtra</p>
+                <p className="text-slate-500 text-[10px] md:text-xs font-bold font-mono mt-0 md:mt-1 flex items-center justify-center gap-1">
+                  <MapPin size={12} /> {/* Added Icon */}
+                  Ichalkaranji, Maharashtra
+                </p>
               </div>
             </div>
           </div>
@@ -49,7 +53,8 @@ function About() {
             <div className="space-y-6 md:space-y-8 text-left">
               <div className="bg-white border-[3px] border-slate-900 p-6 md:p-8 rounded-2xl md:rounded-[2rem] shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:-translate-y-1 transition-transform">
                 <h3 className="text-slate-900 font-bold tracking-widest text-xs md:text-sm uppercase mb-3 md:mb-4 border-b-2 border-slate-100 pb-2 inline-flex items-center gap-2">
-                  <span className="w-3 h-3 bg-amber-500 rounded-full inline-block"></span> Identity
+                  <Fingerprint className="text-amber-500" size={18} /> {/* Replaced dot with Icon */}
+                  Identity
                 </h3>
                 <p className="text-slate-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                   I am a high-energy, detail-oriented <strong className="text-slate-900 font-black border-b-2 border-blue-400">Full Stack Python Developer</strong>. As a fresher, I don't just write code; I obsess over architecture, scalability, and user experience. I thrive in the space where robust backend logic meets seamless frontend design.
@@ -58,7 +63,8 @@ function About() {
 
               <div className="bg-white border-[3px] border-slate-900 p-6 md:p-8 rounded-2xl md:rounded-[2rem] shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:-translate-y-1 transition-transform">
                 <h3 className="text-slate-900 font-bold tracking-widest text-xs md:text-sm uppercase mb-3 md:mb-4 border-b-2 border-slate-100 pb-2 inline-flex items-center gap-2">
-                  <span className="w-3 h-3 bg-blue-500 rounded-full inline-block"></span> The Journey
+                  <Route className="text-blue-500" size={18} /> {/* Replaced dot with Icon */}
+                  The Journey
                 </h3>
                 <p className="text-slate-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                   My path has been heavily focused on hands-on building. From designing complex RESTful APIs and optimizing databases to currently pouring my energy into robust platforms like Farmket, I've spent my time solving real-world data flow problems. I have built AI-powered tools, e-commerce engines, and secure authentication systems using <strong className="text-slate-900">Python, Django, and React</strong>.
@@ -67,24 +73,26 @@ function About() {
             </div>
           </div>
         </div>
+
         {/* --- SECTION 3: Tech Stack "Stickers" --- */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-10 mb-20 md:mb-32 z-30 relative px-2">
           <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-2 md:p-3 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all duration-300 transform -translate-y-1 md:-translate-y-2">
-            <img src={postgresqlImg} alt="JS" className="w-full h-full object-contain" />
+            <img src={postgresqlImg} alt="PostgreSQL" className="w-full h-full object-contain" />
           </div>
           <div className="w-14 h-14 md:w-20 md:h-20 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-3 md:p-4 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] -rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all duration-300">
-            <img src={djangoImg} alt="Python" className="w-full h-full object-contain" />
+            <img src={djangoImg} alt="Django" className="w-full h-full object-contain" />
           </div>
           <div className="w-16 h-16 md:w-24 md:h-24 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-3 md:p-5 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] rotate-3 hover:rotate-0 hover:-translate-y-2 transition-all duration-300 transform translate-y-1 md:translate-y-2">
-            <img src={pythonImg} alt="Django" className="w-full h-full object-contain" />
+            <img src={pythonImg} alt="Python" className="w-full h-full object-contain" />
           </div>
           <div className="w-14 h-14 md:w-20 md:h-20 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-3 md:p-4 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all duration-300">
             <img src={reactImg} alt="React" className="w-full h-full object-contain" />
           </div>
           <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl md:rounded-2xl border-[3px] border-slate-900 p-2 md:p-3 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] -rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all duration-300 transform -translate-y-1 md:-translate-y-2">
-            <img src={jsImg} alt="JS" className="w-full h-full object-contain" />
+            <img src={jsImg} alt="JavaScript" className="w-full h-full object-contain" />
           </div>
         </div>
+
         {/* --- SECTION 4: Bottom Brutalist CTA Card --- */}
         <div className="relative z-40 w-full max-w-[90%] md:max-w-4xl mx-auto mt-8">
           <div className="absolute -top-10 right-0 md:-top-16 md:-right-10 w-24 h-24 md:w-36 md:h-36 bg-slate-200 rounded-full border-[3px] md:border-[4px] border-slate-900 overflow-hidden shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] z-50 transform rotate-6 hover:rotate-0 transition-transform duration-300">
@@ -98,11 +106,13 @@ function About() {
 
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center w-full">
               <a href="https://github.com/pranavkavade20"
-                className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 rounded-full border-[3px] border-slate-900 bg-white text-slate-900 font-bold text-sm md:text-base tracking-widest uppercase hover:bg-slate-100 transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 rounded-full border-[3px] border-slate-900 bg-white text-slate-900 font-bold text-sm md:text-base tracking-widest uppercase hover:bg-slate-100 transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] flex items-center justify-center gap-2">
+                <Github size={20} /> {/* Added Icon */}
                 View Work
               </a>
               <a href="mailto:pranavkavade9@gmail.com"
-                className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 rounded-full border-[3px] border-slate-900 bg-blue-400 text-slate-900 font-bold text-sm md:text-base tracking-widest uppercase transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-blue-300">
+                className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 rounded-full border-[3px] border-slate-900 bg-blue-400 text-slate-900 font-bold text-sm md:text-base tracking-widest uppercase transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-blue-300 flex items-center justify-center gap-2">
+                <Mail size={20} /> {/* Added Icon */}
                 Hire Me
               </a>
             </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { Download, Menu as MenuIcon, X, ChevronRight } from 'lucide-react';
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -73,7 +74,7 @@ function Header() {
             className="hidden sm:flex group relative px-4 py-2 md:px-5 md:py-2 rounded-full bg-white text-slate-900 border-2 border-slate-900 text-[10px] md:text-xs font-bold uppercase tracking-wider overflow-hidden hover:bg-slate-50 transition-all duration-300 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Resume <i className="fas fa-download group-hover:translate-y-0.5 transition-transform"></i>
+              Resume <Download size={14} className="group-hover:translate-y-0.5 transition-transform" />
             </span>
           </a>
 
@@ -85,13 +86,9 @@ function Header() {
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X size={24} />
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
+              <MenuIcon size={24} />
             )}
           </button>
         </div>
@@ -122,7 +119,7 @@ function Header() {
             >
               {item.name}
               {/* Subtle arrow for active/hover state */}
-              <i className="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+              <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
             </NavLink>
           ))}
 
@@ -131,7 +128,7 @@ function Header() {
           <a href="https://drive.google.com/file/d/1XQUy886tqAbG2ttQnP7HvIbN_inoXmCZ/preview" target="_blank" rel="noreferrer"
             className="flex items-center justify-center gap-2 px-4 py-3 mx-1 mb-1 rounded-xl bg-white border-2 border-slate-900 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-all sm:hidden shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
           >
-            Download Resume <i className="fas fa-download"></i>
+            Download Resume <Download size={14} />
           </a>
         </div>
       </div>

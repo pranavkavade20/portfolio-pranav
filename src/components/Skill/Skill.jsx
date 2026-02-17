@@ -2,13 +2,7 @@ import React from 'react'
 
 function Skill() {
   return (
-    <section id="skills" className="bg-slate-50 py-20 md:py-32 relative overflow-hidden">
-
-      {/* Background Blueprint Grid to match Home */}
-      <div
-        className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(#000 2px, transparent 2px)', backgroundSize: '32px 32px' }}
-      ></div>
+    <section id="skills" className="py-20 md:py-32 relative overflow-hidden">
 
       <div className="max-w-[1200px] mx-auto px-5 relative z-10">
 

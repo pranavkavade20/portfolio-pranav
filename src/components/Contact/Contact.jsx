@@ -1,8 +1,9 @@
 import React from 'react';
+import { Mail, Github, Linkedin } from 'lucide-react';
 
 function Contact() {
   return (
-    <section id="contact" className="py-12 md:py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
+    <section id="contact" className="py-12 md:py-24 relative overflow-hidden my-10">
 
       {/* Decorative Background Blob - Resized for mobile */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[800px] md:h-[800px] bg-blue-100/50 rounded-full blur-[50px] md:blur-[100px] z-0 pointer-events-none"></div>
@@ -35,16 +36,16 @@ function Contact() {
               {/* Main CTA - Full width on mobile for better touch target */}
               <a href="mailto:pranavkavade9@gmail.com"
                 className="w-full sm:w-auto px-8 py-4 md:py-5 bg-amber-400 border-[3px] border-slate-900 rounded-full text-slate-900 font-bold tracking-widest uppercase transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-y-[3px] hover:translate-x-[3px] hover:bg-amber-300 flex items-center justify-center gap-3 text-sm md:text-base">
-                <i className="fa-regular fa-envelope text-lg md:text-xl"></i> Say Hello
+                <Mail className="w-5 h-5 md:w-6 md:h-6" /> Say Hello
               </a>
 
               {/* Socials - Row on all screens */}
               <div className="flex gap-4 w-full sm:w-auto justify-center">
                 <a href="https://github.com/pranavkavade20" className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-white border-[3px] border-slate-900 text-slate-900 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-y-[3px] hover:translate-x-[3px] hover:bg-slate-100">
-                  <i className="fab fa-github text-xl md:text-2xl"></i>
+                  <Github className="w-6 h-6 md:w-7 md:h-7" />
                 </a>
                 <a href="https://www.linkedin.com/in/pranavkavade20" className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-white border-[3px] border-slate-900 text-slate-900 transition-all shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-y-[3px] hover:translate-x-[3px] hover:bg-[#0077b5] hover:text-white">
-                  <i className="fab fa-linkedin-in text-xl md:text-2xl"></i>
+                  <Linkedin className="w-6 h-6 md:w-7 md:h-7" />
                 </a>
               </div>
 
