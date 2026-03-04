@@ -70,7 +70,7 @@ function Header() {
 
         {/* 3. Right Side: Resume Button & Hamburger */}
         <div className="flex items-center gap-3">
-          <a href="https://drive.google.com/file/d/1K20rqHpu2FzyHIUqyrFIwdzACNQsUcYt/view" target="_blank" rel="noreferrer"
+          <a href="https://drive.google.com/file/d/1C2Udb7npTZ_x0fYTn2QJ9QnO32AWgPpl/view" target="_blank" rel="noreferrer"
             className="hidden sm:flex group relative px-4 py-2 md:px-5 md:py-2 rounded-full bg-white text-slate-900 border-2 border-slate-900 text-[10px] md:text-xs font-bold uppercase tracking-wider overflow-hidden hover:bg-slate-50 transition-all duration-300 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
           >
             <span className="relative z-10 flex items-center gap-2">
@@ -125,10 +125,10 @@ function Header() {
 
           <div className="h-px bg-slate-100 my-2"></div>
 
-          <a href="https://drive.google.com/file/d/1XQUy886tqAbG2ttQnP7HvIbN_inoXmCZ/preview" target="_blank" rel="noreferrer"
+          <a href="https://drive.google.com/file/d/1C2Udb7npTZ_x0fYTn2QJ9QnO32AWgPpl/view" target="_blank" rel="noreferrer"
             className="flex items-center justify-center gap-2 px-4 py-3 mx-1 mb-1 rounded-xl bg-white border-2 border-slate-900 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-all sm:hidden shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
           >
-            Download Resume <Download size={14} />
+            Resume <Download size={14} />
           </a>
         </div>
       </div>

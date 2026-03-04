@@ -9,16 +9,16 @@ function Experience() {
       company: 'Perpex',
       role: 'Python Developer Intern',
       period: 'Jul 2025 - Oct 2025',
-      description: 'As a Python Developer Intern, I engineered robust web solutions using Python, Django, and MySQL. My work focused on designing secure backend architectures, optimizing database performance with advanced Django ORM queries, and utilizing tools like Celery to create fast, scalable, and efficient applications.',
-      techStack: ['Python', 'Django', 'MySQL', 'Celery', 'Tailwind CSS', 'JavaScript'],
+      description: 'I worked across the stack to build and deploy secure web applications with responsive layouts. My core focus was on the backend, where I designed data models, implemented user authentication, and optimized application speed through efficient database queries and background task management.',
+      techStack: ['Python', 'Django','Django REST Framework', 'MySQL', 'HTML','CSS','JavaScript','Jinja Templates', 'Tailwind CSS'],
       themeColor: 'bg-amber-500'
     }, 
     {
       company: 'ScaleFull Technologies',
       role: 'Full Stack Developer Intern',
       period: 'Jan 2025 - Apr 2025',
-      description: 'As a Full Stack Developer Intern, I built dynamic, responsive web applications using the MERN stack. I specialized in crafting intuitive user interfaces with Tailwind CSS and Redux, while also managing database connections and media integration to deliver seamless, optimized user experiences.',
-      techStack: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Tailwind', 'Redux', 'Cloudinary'],
+      description: 'I mostly focused on building dynamic, responsive user interfaces and managing the flow of application data. On the backend, I gained hands-on experience designing database schemas, handling API integrations, and organizing the project codebase to follow industry best practices.',
+      techStack: ['Javascript','MongoDB', 'Express.js', 'React.js', 'Node.js', 'Tailwind CSS', 'Redux', 'Cloudinary'],
       themeColor: 'bg-amber-500' 
     }
   ];
