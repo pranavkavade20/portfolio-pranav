@@ -27,11 +27,11 @@ function Project() {
       tag: "AI powered Recipe Assistant",
       desc: "A smart culinary engine leveraging Scikit-Learn and FAISS to deliver sub-second recipe recommendations based on user inventory and preferences.",
       tech: ['Python', 'Django', 'DRF', 'JavaScript', 'Tailwind', 'AI & ML'],
-      links: { code: "https://github.com/pranavkavade20/Recipy", demo: "https://drive.google.com/file/d/11ir8zZiosqaJmlcg60Uft2iT2djzGUlA/preview" },
+      links: { code: "https://github.com/pranavkavade20/Recipy", demo: "https://drive.google.com/file/d/1rlf-xgKbEMMMWZFg2BYI3VVFOyMeRH9b/preview" },
       image: "#",
       isVideo: true,
       demos: [
-        { label: "Main Demo", url: "https://drive.google.com/file/d/11ir8zZiosqaJmlcg60Uft2iT2djzGUlA/preview" }
+        { label: "Main Demo", url: "https://drive.google.com/file/d/1rlf-xgKbEMMMWZFg2BYI3VVFOyMeRH9b/preview" }
       ]
     },
     {
