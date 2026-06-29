@@ -6,14 +6,6 @@ function Experience() {
 
   const jobs = [
     {
-      company: 'Perpex',
-      role: 'Python Developer Intern',
-      period: 'Jul 2025 - Oct 2025',
-      description: 'I worked across the stack to build and deploy secure web applications with responsive layouts. My core focus was on the backend, where I designed data models, implemented user authentication, and optimized application speed through efficient database queries and background task management.',
-      techStack: ['Python', 'Django','Django REST Framework', 'MySQL', 'HTML','CSS','JavaScript','Jinja Templates', 'Tailwind CSS'],
-      themeColor: 'bg-amber-500'
-    }, 
-    {
       company: 'ScaleFull Technologies',
       role: 'Full Stack Developer Intern',
       period: 'Jan 2025 - Apr 2025',
