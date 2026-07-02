@@ -19,6 +19,17 @@ function About() {
 
       <div className="container mx-auto max-w-7xl px-4 md:px-6 relative z-10 flex flex-col w-full">
 
+        {/* --- SECTION HEADING --- */}
+        <div className="text-center mb-16 md:mb-24">
+          <p className="text-sm md:text-base font-black tracking-[0.35em] uppercase text-slate-500 mb-4">About Me</p>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-slate-900 mb-4">
+            Who I Am
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            A passionate full-stack developer obsessed with building scalable platforms and solving real-world problems through code.
+          </p>
+        </div>
+
         {/* --- SECTION 1: The Editorial Grid (Identity & Journey) --- */}
         <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20 items-center mb-24 md:mb-32">
           

@@ -6,9 +6,16 @@ function Skill() {
 
       <div className="max-w-[1200px] mx-auto px-5 relative z-10">
 
-        <h2 className="text-4xl md:text-6xl font-['Anton'] text-slate-900 uppercase tracking-widest mb-12 text-center">
-          Technical Arsenal
-        </h2>
+        {/* --- SECTION HEADING --- */}
+        <div className="text-center mb-16">
+          <p className="text-sm md:text-base font-black tracking-[0.35em] uppercase text-slate-500 mb-4">Core Competencies</p>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-slate-900 mb-4">
+            Technical Arsenal
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            Full stack capabilities spanning backend engineering, frontend development, and modern database solutions.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -34,6 +41,7 @@ function Skill() {
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> CSS</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> JavaScript</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> React.js</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> TypeScript</li>
               <li className="flex items-center gap-2"><span className="w-2 h-2 bg-slate-900 rounded-full"></span> Responsive UI/UX</li>
             </ul>
           </div>

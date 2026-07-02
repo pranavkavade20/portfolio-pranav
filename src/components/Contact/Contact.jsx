@@ -10,6 +10,17 @@ function Contact() {
 
       <div className="container mx-auto max-w-5xl px-4 md:px-6 relative z-10">
 
+        {/* --- SECTION HEADING --- */}
+        <div className="text-center mb-16">
+          <p className="text-sm md:text-base font-black tracking-[0.35em] uppercase text-slate-500 mb-4">Get In Touch</p>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-slate-900 mb-4">
+            Let's Connect
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            I'm always open to discussing new ideas, projects, and opportunities in full-stack development.
+          </p>
+        </div>
+
         {/* Outer offset container for a massive drop-shadow effect */}
         {/* Further Reduced padding/margin on mobile to maximize content area */}
         <div className="bg-amber-200 border-[3px] border-slate-900 p-2 md:p-4 rounded-[1.5rem] md:rounded-[4rem] shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] md:shadow-[12px_12px_0px_0px_rgba(15,23,42,1)] transform transition-transform duration-500 hover:-translate-y-1 md:hover:-translate-y-2">
@@ -17,15 +28,7 @@ function Contact() {
           {/* Inner Card */}
           <div className="bg-white border-[3px] border-slate-900 rounded-[1.2rem] md:rounded-[3.5rem] px-4 py-10 md:p-24 text-center relative overflow-hidden">
 
-            <h2 className="text-3xl sm:text-5xl md:text-7xl font-['Anton'] text-slate-900 uppercase leading-[1.0] md:leading-[1.1] mb-6 md:mb-8 z-10 relative">
-              Let's Build Something <br />
-              {/* Highlight Tag Effect */}
-              <span className="inline-block bg-blue-500 text-white px-3 py-1 md:px-6 md:py-2 border-[3px] border-slate-900 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] -rotate-2 mt-2 md:mt-6 text-xl sm:text-3xl md:text-5xl">
-                Extraordinary.
-              </span>
-            </h2>
-
-            <p className="text-sm sm:text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-8 md:mb-12 font-medium leading-relaxed z-10 relative px-2">
+            <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto mb-8 md:mb-12 font-medium leading-relaxed z-10 relative px-2">
               I'm currently looking for new opportunities as a Full Stack Python Developer.
               Whether you have a question or just want to say hi, my inbox is always open!
             </p>

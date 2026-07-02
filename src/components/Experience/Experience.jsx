@@ -19,9 +19,16 @@ function Experience() {
     <section id="experience" className="py-24 relative border-t-2 border-slate-200 overflow-hidden">
  
       <div className="container mx-auto max-w-5xl px-6 relative z-10">
-        <h2 className="text-4xl md:text-6xl font-black text-center mb-16 text-slate-900 uppercase tracking-tight">
-          Where I've Built
-        </h2>
+        {/* --- SECTION HEADING --- */}
+        <div className="text-center mb-16">
+          <p className="text-sm md:text-base font-black tracking-[0.35em] uppercase text-slate-500 mb-4">Professional Experience</p>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-slate-900 mb-4">
+            Where I've Built
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            Hands-on experience building full-stack applications and mastering modern development practices.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
