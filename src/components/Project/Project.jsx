@@ -204,61 +204,63 @@ const Lightbox = ({ image, onClose }) => {
 
 const BentoHero = ({ project, onImageClick }) => {
   return (
-    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="w-full max-w-6xl mx-auto pt-10 pb-16">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
-        <div className="max-w-2xl">
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tech.map((t, i) => (
-              <span key={i} className="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-xs font-semibold tracking-wide">
-                {t}
-              </span>
-            ))}
+    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="w-full max-w-6xl mx-auto pb-16">
+      <div className="bg-gradient-to-br from-white via-slate-50 to-amber-50 border-[3px] border-slate-900 rounded-[2rem] p-6 md:p-8 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10">
+          <div className="max-w-2xl">
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.tech.map((t, i) => (
+                <span key={i} className="px-3 py-1.5 rounded-full bg-slate-100 border-2 border-slate-900 text-slate-800 text-xs font-bold tracking-wide shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
+                  {t}
+                </span>
+              ))}
+            </div>
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-4 uppercase">
+              {project.title}
+            </h1>
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+              {project.desc}
+            </p>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-4 text-balance">
-            {project.title}
-          </h1>
-          <p className="text-lg md:text-xl text-slate-500 text-balance leading-relaxed">
-            {project.desc}
-          </p>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            {project.links.code && project.links.code !== "#" && (
+              <a href={project.links.code} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-white to-amber-50 text-slate-900 border-[3px] border-slate-900 rounded-full font-bold uppercase tracking-wide transition-all hover:-translate-y-1 hover:from-amber-50 hover:to-white shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
+                <Github size={18} />
+                <span>Source</span>
+              </a>
+            )}
+            {project.links.demo && project.links.demo !== "#" && (
+              <a href={project.links.demo} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-300 to-blue-400 text-slate-900 border-[3px] border-slate-900 rounded-full font-bold uppercase tracking-wide transition-all hover:-translate-y-1 hover:from-blue-400 hover:to-blue-300 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
+                <MonitorPlay size={18} />
+                <span>Live Demo</span>
+              </a>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-3 shrink-0">
-          {project.links.code && project.links.code !== "#" && (
-            <a href={project.links.code} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-slate-700 border border-slate-200 rounded-lg font-medium transition-all hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900">
-              <Github size={18} />
-              <span>Source</span>
-            </a>
-          )}
-          {project.links.demo && project.links.demo !== "#" && (
-            <a href={project.links.demo} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-lg font-medium transition-all hover:bg-slate-800 shadow-md shadow-slate-900/10">
-              <MonitorPlay size={18} />
-              <span>Live Demo</span>
-            </a>
-          )}
-        </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[400px] md:h-[500px] group">
-        <div
-          onClick={() => onImageClick(project.bentoImages[0])}
-          className="relative col-span-1 md:col-span-3 row-span-2 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 cursor-zoom-in transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
-        >
-          <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/5 transition-colors z-10 pointer-events-none" />
-          <img src={project.bentoImages[0]} alt={`${project.title} hero`} className="w-full h-full object-cover object-top" />
-          <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-20">
-            <Maximize2 size={14} /> Enlarge
+        <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[400px] md:h-[500px] group">
+          <div
+            onClick={() => onImageClick(project.bentoImages[0])}
+            className="relative col-span-1 md:col-span-3 row-span-2 rounded-[1.5rem] overflow-hidden bg-slate-100 border-[3px] border-slate-900 cursor-zoom-in transition-all duration-500 hover:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:-translate-y-1"
+          >
+            <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/5 transition-colors z-10 pointer-events-none" />
+            <img src={project.bentoImages[0]} alt={`${project.title} hero`} className="w-full h-full object-cover object-top" />
+            <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-20 border border-slate-900">
+              <Maximize2 size={14} /> Enlarge
+            </div>
           </div>
-        </div>
-        <div
-          onClick={() => onImageClick(project.bentoImages[1])}
-          className="hidden md:block relative col-span-1 row-span-1 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 cursor-zoom-in transition-all duration-500 hover:shadow-lg hover:-translate-y-1 hover:z-10"
-        >
-          <img src={project.bentoImages[1]} alt="Detail 1" className="w-full h-full object-cover object-left" />
-        </div>
-        <div
-          onClick={() => onImageClick(project.bentoImages[2])}
-          className="hidden md:block relative col-span-1 row-span-1 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 cursor-zoom-in transition-all duration-500 hover:shadow-lg hover:-translate-y-1 hover:z-10"
-        >
-          <img src={project.bentoImages[2]} alt="Detail 2" className="w-full h-full object-cover object-top" />
+          <div
+            onClick={() => onImageClick(project.bentoImages[1])}
+            className="hidden md:block relative col-span-1 row-span-1 rounded-[1.5rem] overflow-hidden bg-slate-100 border-[3px] border-slate-900 cursor-zoom-in transition-all duration-500 hover:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:-translate-y-1 hover:z-10"
+          >
+            <img src={project.bentoImages[1]} alt="Detail 1" className="w-full h-full object-cover object-left" />
+          </div>
+          <div
+            onClick={() => onImageClick(project.bentoImages[2])}
+            className="hidden md:block relative col-span-1 row-span-1 rounded-[1.5rem] overflow-hidden bg-slate-100 border-[3px] border-slate-900 cursor-zoom-in transition-all duration-500 hover:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:-translate-y-1 hover:z-10"
+          >
+            <img src={project.bentoImages[2]} alt="Detail 2" className="w-full h-full object-cover object-top" />
+          </div>
         </div>
       </div>
     </motion.div>
@@ -270,9 +272,9 @@ const ImpactMetrics = ({ project }) => {
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-24 max-w-6xl mx-auto">
       {project.impact.map((stat, idx) => (
-        <motion.div key={idx} variants={fadeUp} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-center">
-          <div className="text-3xl font-bold text-slate-900 tracking-tight mb-1">{stat.value}</div>
-          <div className="text-sm font-medium text-slate-500">{stat.label}</div>
+        <motion.div key={idx} variants={fadeUp} className="bg-gradient-to-br from-white via-slate-50 to-blue-50 border-[3px] border-slate-900 p-6 rounded-[1.5rem] flex flex-col justify-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+          <div className="text-3xl font-black text-slate-900 tracking-tight mb-1">{stat.value}</div>
+          <div className="text-sm font-semibold uppercase tracking-wider text-slate-500">{stat.label}</div>
         </motion.div>
       ))}
     </motion.div>
@@ -283,13 +285,13 @@ const ProblemSolution = ({ project }) => {
   if (!project.problem || !project.solution) return null;
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      <motion.div variants={fadeUp} className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm">
-        <h3 className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-4">The Challenge</h3>
-        <p className="text-lg md:text-xl text-slate-700 leading-relaxed text-balance">{project.problem}</p>
+      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-gradient-to-br from-white to-amber-50 border-[3px] border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+        <h3 className="text-xs font-black tracking-[0.25em] uppercase text-slate-500 mb-4">The Challenge</h3>
+        <p className="text-lg md:text-xl text-slate-700 leading-relaxed">{project.problem}</p>
       </motion.div>
-      <motion.div variants={fadeUp} className="p-8 rounded-3xl bg-slate-900 text-white shadow-xl shadow-slate-900/10">
-        <h3 className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-4">The Solution</h3>
-        <p className="text-lg md:text-xl font-medium leading-relaxed text-balance">{project.solution}</p>
+      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-gradient-to-br from-blue-300 to-blue-400 border-[3px] border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+        <h3 className="text-xs font-black tracking-[0.25em] uppercase text-slate-800 mb-4">The Solution</h3>
+        <p className="text-lg md:text-xl font-semibold leading-relaxed text-slate-900">{project.solution}</p>
       </motion.div>
     </motion.div>
   );
@@ -309,20 +311,19 @@ const TabbedGallery = ({ project, onImageClick }) => {
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-24 max-w-6xl mx-auto">
       <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <h3 className="text-3xl font-bold tracking-tight text-slate-900">Application Screens</h3>
+          <h3 className="text-3xl font-black tracking-tight text-slate-900 uppercase">Application Screens</h3>
           <p className="text-slate-500 mt-2">Explore the user interface and platform capabilities.</p>
         </div>
         {categories.length > 2 && (
-          <div className="flex flex-wrap gap-2 p-1 bg-slate-100 rounded-xl border border-slate-200 self-start">
+          <div className="flex flex-wrap gap-2 p-1 bg-gradient-to-r from-slate-100 to-amber-50 rounded-full border-[3px] border-slate-900 self-start shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeCategory === cat ? 'text-slate-900' : 'text-slate-500 hover:text-slate-700'
-                  }`}
+                className={`relative px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeCategory === cat ? 'text-slate-900' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 {activeCategory === cat && (
-                  <motion.div layoutId="activeGalleryTab" className="absolute inset-0 bg-white rounded-lg shadow-sm" style={{ zIndex: -1 }} transition={{ type: "spring", duration: 0.5 }} />
+                  <motion.div layoutId="activeGalleryTab" className="absolute inset-0 bg-white rounded-full border border-slate-900" style={{ zIndex: -1 }} transition={{ type: "spring", duration: 0.5 }} />
                 )}
                 {cat}
               </button>
@@ -344,13 +345,13 @@ const TabbedGallery = ({ project, onImageClick }) => {
               className="group cursor-zoom-in flex flex-col gap-3"
               onClick={() => onImageClick(item.url)}
             >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
+              <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden bg-gradient-to-br from-slate-100 to-blue-50 border-[3px] border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
                 <img src={item.url} alt={item.label} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors" />
               </div>
               <div>
-                <h4 className="font-semibold text-slate-900">{item.label}</h4>
-                {item.category && <p className="text-xs font-medium text-slate-500 mt-1">{item.category}</p>}
+                <h4 className="font-bold text-slate-900">{item.label}</h4>
+                {item.category && <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mt-1">{item.category}</p>}
               </div>
             </motion.div>
           ))}
@@ -364,7 +365,6 @@ const TabbedGallery = ({ project, onImageClick }) => {
 const FeaturesSection = ({ project }) => {
   const [activeRole, setActiveRole] = useState('farmer');
 
-  // 1. If it's a role-based project (like Farmket)
   if (project.roleFeatures) {
     const currentFeatures = project.roleFeatures[activeRole];
 
@@ -372,28 +372,27 @@ const FeaturesSection = ({ project }) => {
       <div className="py-20 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <h3 className="text-3xl font-bold tracking-tight text-slate-900">Platform Features</h3>
+            <h3 className="text-3xl font-black tracking-tight text-slate-900 uppercase">Platform Features</h3>
             <p className="text-slate-500 mt-2">Tailored experiences for both sides of the marketplace.</p>
           </div>
-          
-          {/* Role Toggle */}
-          <div className="flex gap-2 p-1 bg-slate-100 rounded-xl border border-slate-200 self-start">
+
+          <div className="flex gap-2 p-1 bg-slate-100 rounded-full border-[3px] border-slate-900 self-start shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
             <button
               onClick={() => setActiveRole('farmer')}
-              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors ${activeRole === 'farmer' ? 'text-emerald-900' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'farmer' ? 'text-emerald-900' : 'text-slate-500 hover:text-slate-700'}`}
             >
               {activeRole === 'farmer' && (
-                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-lg shadow-sm border border-emerald-100" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
+                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-full border border-emerald-200" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
               )}
               <Tractor size={16} className={activeRole === 'farmer' ? 'text-emerald-600' : ''} />
               Farmer
             </button>
             <button
               onClick={() => setActiveRole('buyer')}
-              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors ${activeRole === 'buyer' ? 'text-blue-900' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'buyer' ? 'text-blue-900' : 'text-slate-500 hover:text-slate-700'}`}
             >
               {activeRole === 'buyer' && (
-                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-lg shadow-sm border border-blue-100" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
+                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-full border border-blue-200" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
               )}
               <ShoppingBag size={16} className={activeRole === 'buyer' ? 'text-blue-600' : ''}/>
               Buyer
@@ -401,7 +400,6 @@ const FeaturesSection = ({ project }) => {
           </div>
         </div>
 
-        {/* Feature Grid with enter/exit animations based on Role */}
         <AnimatePresence mode="wait">
           <motion.div 
             key={activeRole}
@@ -416,7 +414,7 @@ const FeaturesSection = ({ project }) => {
                 key={idx}
                 variants={fadeUp}
                 whileHover={{ scale: 1.02 }}
-                className="group bg-white border border-slate-200 p-6 rounded-[1.5rem] shadow-sm transition-all hover:shadow-md hover:border-slate-300 flex flex-col"
+                className="group bg-gradient-to-br from-white via-slate-50 to-amber-50 border-[3px] border-slate-900 p-6 rounded-[1.5rem] shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition-all hover:-translate-y-1 flex flex-col"
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-colors ${activeRole === 'farmer' ? 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-100' : 'bg-blue-50 text-blue-600 group-hover:bg-blue-100'}`}>
                   <CheckCircle2 size={20} />
@@ -431,19 +429,18 @@ const FeaturesSection = ({ project }) => {
     );
   }
 
-  // 2. Fallback for normal projects (like Recipy or Product Manager)
   if (!project.features || project.features.length === 0) return null;
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-20 max-w-6xl mx-auto">
-      <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-10">Key Features</h3>
+      <h3 className="text-3xl font-black tracking-tight text-slate-900 mb-10 uppercase">Key Features</h3>
       <div className="grid md:grid-cols-3 gap-6">
         {project.features.map((feat, idx) => (
           <motion.div
             key={idx} variants={fadeUp}
             whileHover={{ scale: 1.02 }}
-            className={`group bg-white border border-slate-200 p-8 rounded-[2rem] shadow-sm transition-all hover:shadow-lg hover:border-slate-300 ${idx === 0 ? 'md:col-span-2' : 'md:col-span-1'}`}
+            className={`group bg-gradient-to-br from-white via-slate-50 to-blue-50 border-[3px] border-slate-900 p-8 rounded-[2rem] shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition-all hover:-translate-y-1 ${idx === 0 ? 'md:col-span-2' : 'md:col-span-1'}`}
           >
-            <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center mb-6 text-slate-700">
+            <div className="w-12 h-12 bg-slate-50 border-2 border-slate-900 rounded-xl flex items-center justify-center mb-6 text-slate-700">
               <CheckCircle2 size={24} className="group-hover:text-slate-900 transition-colors" />
             </div>
             <h4 className="text-xl font-bold text-slate-900 mb-2">{feat.title}</h4>
@@ -460,20 +457,20 @@ const Challenges = ({ project }) => {
   if (!project.challenges || project.challenges.length === 0) return null;
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-20 max-w-3xl mx-auto">
-      <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-10 text-center">Technical Hurdles</h3>
+      <h3 className="text-3xl font-black tracking-tight text-slate-900 mb-10 text-center uppercase">Technical Hurdles</h3>
       <div className="space-y-4">
         {project.challenges.map((challenge, idx) => (
-          <motion.div key={idx} variants={fadeUp} className="border border-slate-200 rounded-2xl overflow-hidden bg-white hover:border-slate-300 transition-colors">
+          <motion.div key={idx} variants={fadeUp} className="border-[3px] border-slate-900 rounded-[1.5rem] overflow-hidden bg-gradient-to-br from-white to-amber-50 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition-colors">
             <button onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)} className="w-full flex items-center justify-between p-6 text-left">
               <span className="text-lg font-semibold text-slate-900">{challenge.title}</span>
-              <span className={`w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-transform duration-300 ${openIdx === idx ? 'rotate-180 bg-slate-200' : ''}`}>
+              <span className={`w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 border-2 border-slate-900 text-slate-500 transition-transform duration-300 ${openIdx === idx ? 'rotate-180 bg-slate-200' : ''}`}>
                 <ChevronDown size={18} />
               </span>
             </button>
             <AnimatePresence>
               {openIdx === idx && (
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                  <div className="p-6 pt-0 text-slate-600 border-t border-slate-100 mt-2">{challenge.desc}</div>
+                  <div className="p-6 pt-0 text-slate-600 border-t-2 border-slate-900 mt-2">{challenge.desc}</div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -505,21 +502,31 @@ function Project() {
   };
 
   return (
-    <section id="projects" className="py-24 relative bg-slate-50/50 border-t border-slate-100 min-h-screen">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="projects" className="py-24 relative overflow-hidden border-t-2 border-slate-200 min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(96,165,250,0.2),transparent_40%)]">
+      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 rounded-full blur-[90px] z-0"></div>
+      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-blue-200/50 rounded-full blur-[90px] z-0"></div>
 
-        {/* Top Navigation */}
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="text-center mb-12">
+          <p className="text-sm md:text-base font-black tracking-[0.35em] uppercase text-slate-500 mb-4">Selected Work</p>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-slate-900 mb-4">
+            Projects I Built
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            A mix of full-stack platforms, AI-driven experiences, and practical product tools.
+          </p>
+        </div>
+
         <div className="flex flex-col items-center mb-10">
-          <div className="flex items-center gap-2 p-1.5 bg-white/80 backdrop-blur-md rounded-full border border-slate-200 shadow-sm overflow-x-auto max-w-full">
+          <div className="flex items-center gap-2 p-1.5 bg-white rounded-full border-[3px] border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] overflow-x-auto max-w-full">
             {projects.map((project, index) => (
               <button
                 key={project.id}
                 onClick={() => handleProjectChange(index)}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === index ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900'
-                  }`}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === index ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900'}`}
               >
                 {activeTab === index && (
-                  <motion.div layoutId="activeMainTab" className="absolute inset-0 bg-slate-100 rounded-full" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
+                  <motion.div layoutId="activeMainTab" className="absolute inset-0 bg-slate-100 rounded-full border border-slate-900" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
                 )}
                 {project.title}
               </button>
@@ -527,7 +534,6 @@ function Project() {
           </div>
         </div>
 
-        {/* Dynamic Project Content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
