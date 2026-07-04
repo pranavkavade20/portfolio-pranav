@@ -6,13 +6,17 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 
+// tech icons 
 import profileImg from '../assets/profile.jpg';
-import pythonImg from '../assets/python.png';
-import djangoImg from '../assets/django.png';
-import reactImg from '../assets/react.png';
-import jsImg from '../assets/javascript.png';
+import pythonImg from '../assets/tech/python.png';
+import djangoImg from '../assets/tech/django.png';
+import reactImg from '../assets/tech/react.png';
+import jsImg from '../assets/tech/javascript.png';
+import fastapiImg from '../assets/tech/fastapi.png';
+import postgresqlImg from '../assets/tech/postgresql.png';
+
+// logo
 import boy from '../assets/boy.png';
-import postgresqlImg from '../assets/postgresql.png';
 
 function About() {
   return (
@@ -110,7 +114,8 @@ function About() {
             { img: djangoImg, name: "Django", delay: 0.1 },
             { img: reactImg, name: "React", delay: 0.2 },
             { img: postgresqlImg, name: "PostgreSQL", delay: 0.3 },
-            { img: jsImg, name: "JavaScript", delay: 0.4 }
+            { img: jsImg, name: "JavaScript", delay: 0.4 },
+            { img: fastapiImg, name: "FastAPI", delay: 0.5 }
           ].map((tech, idx) => (
             <motion.div 
               key={idx}
