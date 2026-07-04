@@ -4,11 +4,11 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 
 import './index.css'
 import App from './App.jsx'
-import Skill from './components/Skill/Skill.jsx'
-import Project from './components/Project/Project.jsx'
-import Contact from './components/Contact/Contact.jsx'
-import Experience from './components/Experience/Experience.jsx'
-import About from './components/About/About.jsx'
+import Skill from './pages/Skill.jsx'
+import Project from './pages/Project.jsx'
+import Contact from './pages/Contact.jsx'
+import Experience from './pages/Experience.jsx'
+import About from './pages/About.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
