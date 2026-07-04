@@ -126,7 +126,7 @@ function Header() {
                 whileHover={{ y: 2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                <Download size={16} strokeWidth={2.5} />
+                <Download size={16} strokeWidth={2.5} className='animate-bounce'  />
               </motion.span>
             </motion.a>
 
@@ -213,7 +213,7 @@ function Header() {
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary dark:bg-brand-secondary dark:text-slate-100 hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 text-white text-base font-medium rounded-xl transition-colors shadow-md"
                 >
-                  Download Resume <Download size={18} strokeWidth={2} />
+                 Resume <Download size={18} strokeWidth={2} className='animate-bounce' />
                 </a>
               </motion.div>
             </div>

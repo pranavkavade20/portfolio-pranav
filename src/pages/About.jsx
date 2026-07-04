@@ -69,7 +69,7 @@ function About() {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              className="absolute -top-6 -right-6 bg-white dark:bg-zinc-900 px-5 py-3 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-zinc-800"
+              className="absolute -top-6 -right-6 bg-white dark:bg-zinc-900 px-5 py-3 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-zinc-800 "
             >
               <span className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                 <Rocket size={16} className="text-brand-primary dark:text-brand-secondary" />
@@ -147,15 +147,6 @@ function About() {
             <p className="text-xl md:text-3xl text-slate-700 dark:text-zinc-300 font-medium leading-relaxed max-w-2xl mx-auto">
               Creating secure, scalable <strong  className="text-blue-600 dark:text-blue-400">Python</strong> & <strong className="text-blue-600 dark:text-blue-400">React</strong> Web Applications. Let's build something great.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
-              <Button as="a" href="https://github.com/pranavkavade20" variant="secondary" icon={Github} size="lg">
-                View Work
-              </Button>
-              <Button as="a" href="mailto:pranavkavade9@gmail.com" variant="primary" icon={Mail} size="lg">
-                Get in Touch
-              </Button>
-            </div>
           </Card>
         </motion.div>
 
