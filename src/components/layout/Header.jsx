@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Download, ChevronRight } from 'lucide-react';
+import { Download, ChevronRight, Contrast } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -49,7 +49,7 @@ function Header() {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-[400ms] ease-in-out ${
         scrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:bg-[#121212]/90 dark:border-b dark:border-zinc-800' 
+          ? 'bg-white/90 backdrop-blur-md dark:bg-brand-bg-dark/90' 
           : 'bg-transparent'
       }`}
     >
@@ -65,8 +65,8 @@ function Header() {
               whileTap={{ scale: 0.95 }}
               className="text-2xl font-black tracking-tighter"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600">
-                PK.py
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-secondary dark:to-brand-secondary/80">
+                Pranav.py
               </span>
             </motion.div>
           </Link>
@@ -79,12 +79,12 @@ function Header() {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`relative py-2 text-[15px] font-medium group transition-colors ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400'}`}
+                  className={`relative py-2 text-[15px] font-medium group transition-colors ${isActive ? 'text-brand-primary dark:text-brand-secondary' : 'text-gray-700 hover:text-brand-primary dark:text-zinc-300 dark:hover:text-brand-secondary'}`}
                 >
                   <span>{item.name}</span>
                   {/* Link Hover Effect: underline that scales from center out over 0.3s ease-in-out */}
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-600 origin-center"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-primary dark:bg-brand-secondary origin-center"
                     initial={{ scaleX: isActive ? 1 : 0 }}
                     animate={{ scaleX: isActive ? 1 : 0 }}
                     whileHover={{ scaleX: 1 }}
@@ -99,33 +99,18 @@ function Header() {
           <div className="flex items-center gap-4 z-50">
             <button 
               onClick={toggleTheme}
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-300 h-9 w-9"
+              className="relative inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-300 h-10 w-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 overflow-hidden"
+              title="Toggle Theme"
+              aria-label="Toggle Theme"
             >
-              <svg 
-                width="15" 
-                height="15" 
-                viewBox="0 0 15 15" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+              <motion.div
+                initial={false}
+                animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+                transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+                className="flex items-center justify-center"
               >
-                {theme === 'dark' ? (
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M7.5 1.5C4.18629 1.5 1.5 4.18629 1.5 7.5C1.5 10.8137 4.18629 13.5 7.5 13.5C10.8137 13.5 13.5 10.8137 13.5 7.5C13.5 4.18629 10.8137 1.5 7.5 1.5ZM0 7.5C0 3.35786 3.35786 0 7.5 0C11.6421 0 15 3.35786 15 7.5C15 11.6421 11.6421 15 7.5 15C3.35786 15 0 11.6421 0 7.5ZM10 7.5C10 8.88071 8.88071 10 7.5 10C6.11929 10 5 8.88071 5 7.5C5 6.11929 6.11929 5 7.5 5C8.88071 5 10 6.11929 10 7.5Z"
-                    fill="currentColor"
-                  />
-                ) : (
-                  <path 
-                    fillRule="evenodd" 
-                    clipRule="evenodd" 
-                    d="M7.5 0C3.35786 0 0 3.35786 0 7.5C0 11.6421 3.35786 15 7.5 15C11.6421 15 15 11.6421 15 7.5C15 3.35786 11.6421 0 7.5 0ZM7.5 1.5C10.8137 1.5 13.5 4.18629 13.5 7.5C13.5 10.8137 10.8137 13.5 7.5 13.5V1.5Z" 
-                    fill="currentColor"
-                  />
-                )}
-              </svg>
-              <span className="sr-only">Toggle theme</span>
+                <Contrast size={20} strokeWidth={2} />
+              </motion.div>
             </button>
             <motion.a 
               whileHover={{ scale: 1.02 }}
@@ -133,7 +118,7 @@ function Header() {
               href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view" 
               target="_blank" 
               rel="noreferrer"
-              className="hidden md:flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-[15px] font-medium rounded-xl shadow-lg hover:shadow-blue-600/30 transition-all duration-300"
+              className="hidden md:flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 dark:bg-brand-secondary dark:hover:bg-brand-secondary/90 dark:text-brand-primary text-white text-[15px] font-medium rounded-xl shadow-lg transition-all duration-300"
             >
               Resume 
               <motion.span
@@ -148,7 +133,7 @@ function Header() {
             {/* Mobile Menu Toggle: Hamburger icon animating to X */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-gray-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none"
+              className="md:hidden p-2 text-gray-700 dark:text-zinc-300 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors focus:outline-none"
               aria-label="Toggle Menu"
             >
               <div className="relative w-6 h-6 flex items-center justify-center">
@@ -189,7 +174,7 @@ function Header() {
             animate={{ opacity: 1, y: 0, height: 'auto' }}
             exit={{ opacity: 0, y: -20, height: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-white dark:bg-[#121212] shadow-xl absolute top-full left-0 w-full dark:border-b dark:border-zinc-800"
+            className="md:hidden overflow-hidden bg-white dark:bg-brand-bg-dark absolute top-full left-0 w-full"
           >
             <div className="px-[20px] py-6 flex flex-col gap-2">
               {navItems.map((item, i) => {
@@ -206,7 +191,7 @@ function Header() {
                       onClick={() => setIsMenuOpen(false)}
                       className={`
                         flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all
-                        ${isActive ? 'bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400' : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50 dark:text-zinc-400 dark:hover:text-blue-400 dark:hover:bg-zinc-800/50'}
+                        ${isActive ? 'bg-brand-primary/10 text-brand-primary dark:bg-brand-secondary/10 dark:text-brand-secondary' : 'text-gray-600 hover:text-brand-primary hover:bg-gray-50 dark:text-zinc-400 dark:hover:text-brand-secondary dark:hover:bg-zinc-800/50'}
                       `}
                     >
                       {item.name}
@@ -226,7 +211,7 @@ function Header() {
                   href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view" 
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-blue-600 text-white text-base font-medium rounded-xl hover:bg-blue-700 transition-colors shadow-md"
+                  className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary dark:bg-brand-secondary dark:text-brand-primary hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 text-white text-base font-medium rounded-xl transition-colors shadow-md"
                 >
                   Download Resume <Download size={18} strokeWidth={2} />
                 </a>

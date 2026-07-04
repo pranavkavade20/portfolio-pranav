@@ -3,16 +3,15 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
+  --color-brand-primary: #E67E22;    /* Primary Orange */
+  --color-brand-secondary: #F6B26B;  /* Soft Orange */
+  --color-brand-bg-light: #F6F1EB;   /* Warm Off White */
+  --color-brand-bg-dark: #1E140A;    /* Dark Brown */
 }
 
 /* Base Styles */
 body {
-  @apply bg-slate-50 text-slate-900 dark:bg-[#121212] dark:text-zinc-50 transition-colors duration-300;
+  @apply bg-brand-bg-light text-slate-900 dark:bg-brand-bg-dark dark:text-zinc-50 transition-colors duration-300;
   font-family: "Google Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

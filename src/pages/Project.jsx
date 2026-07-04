@@ -246,11 +246,11 @@ const ProblemSolution = ({ project }) => {
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
       <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-soft transition-colors">
-        <h3 className="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-4">The Challenge</h3>
+        <h3 className="text-xs font-bold tracking-wider uppercase text-brand-primary dark:text-brand-secondary mb-4">The Challenge</h3>
         <p className="text-lg md:text-xl text-slate-700 dark:text-zinc-300 leading-relaxed">{project.problem}</p>
       </motion.div>
-      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/30 shadow-soft transition-colors">
-        <h3 className="text-xs font-bold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-4">The Solution</h3>
+      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-brand-primary/10 dark:bg-brand-secondary/10 border border-brand-primary/20 dark:border-brand-secondary/30 shadow-soft transition-colors">
+        <h3 className="text-xs font-bold tracking-wider uppercase text-brand-primary dark:text-brand-secondary mb-4">The Solution</h3>
         <p className="text-lg md:text-xl text-slate-800 dark:text-zinc-200 leading-relaxed">{project.solution}</p>
       </motion.div>
     </motion.div>
@@ -280,12 +280,12 @@ const FeaturesSection = ({ project, onImageClick }) => {
 
   const getAccentColor = () => {
     if (!hasRoleFeatures) return 'from-white via-slate-50 to-amber-50';
-    return activeRole === 'farmer' ? 'from-white via-slate-50 to-emerald-50' : 'from-white via-slate-50 to-blue-50';
+    return activeRole === 'farmer' ? 'from-white via-slate-50 to-emerald-50' : 'from-white via-slate-50 to-brand-primary/10';
   };
 
   const getIconColor = () => {
     if (!hasRoleFeatures) return 'text-slate-900';
-    return activeRole === 'farmer' ? 'text-emerald-600' : 'text-blue-600';
+    return activeRole === 'farmer' ? 'text-emerald-600' : 'text-brand-primary';
   };
 
   return (
@@ -312,12 +312,12 @@ const FeaturesSection = ({ project, onImageClick }) => {
             </button>
             <button
               onClick={() => setActiveRole('buyer')}
-              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'buyer' ? 'text-blue-900' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'buyer' ? 'text-brand-primary' : 'text-slate-500 hover:text-slate-700'}`}
             >
               {activeRole === 'buyer' && (
-                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-full border border-blue-200" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
+                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-full border border-brand-primary/30" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
               )}
-              <ShoppingBag size={16} className={activeRole === 'buyer' ? 'text-blue-600' : ''} />
+              <ShoppingBag size={16} className={activeRole === 'buyer' ? 'text-brand-primary' : ''} />
               Buyer
             </button>
           </div>
@@ -376,7 +376,7 @@ const FeaturesSection = ({ project, onImageClick }) => {
 
               <div className="mt-6 px-2 pb-2">
                 <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 shrink-0 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center ${getIconColor()}`}>
+                  <div className={`w-12 h-12 shrink-0 bg-brand-primary/10 border border-brand-primary/20 rounded-xl flex items-center justify-center ${getIconColor()}`}>
                     <CheckCircle2 size={24} />
                   </div>
                   <h4 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">{activeFeature.title}</h4>
@@ -440,9 +440,9 @@ function Project() {
   };
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden min-h-screen bg-slate-50/50 dark:bg-[#121212] transition-colors duration-300">
-      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0"></div>
-      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-blue-200/50 dark:bg-blue-900/20 rounded-full blur-[90px] z-0"></div>
+    <section id="projects" className="py-24 relative overflow-hidden min-h-screen bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
+      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
+      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <SectionHeading 

@@ -16,12 +16,12 @@ function Experience() {
       period: 'Jan 2025 - Apr 2025',
       description: 'I mostly focused on building dynamic, responsive user interfaces and managing the flow of application data. On the backend, I gained hands-on experience designing database schemas, handling API integrations, and organizing the project codebase to follow industry best practices.',
       techStack: ['Javascript','MongoDB', 'Express.js', 'React.js', 'Node.js', 'Tailwind CSS', 'Redux', 'Cloudinary'],
-      themeColor: 'bg-blue-50 text-blue-700 border-blue-200' 
+      themeColor: 'bg-brand-primary/10 text-brand-primary border-brand-primary/20 dark:bg-brand-secondary/10 dark:text-brand-secondary dark:border-brand-secondary/30' 
     }
   ];
 
   return (
-    <section className="py-24 md:py-32 relative bg-white dark:bg-[#121212] overflow-hidden transition-colors duration-300">
+    <section className="py-24 md:py-32 relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden transition-colors duration-300">
  
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-slate-50 dark:from-black/40 to-transparent rounded-bl-full pointer-events-none opacity-60"></div>
@@ -41,17 +41,17 @@ function Experience() {
                 key={job.company}
                 onClick={() => setActiveJob(index)}
                 className={`group relative text-left p-5 rounded-2xl border transition-all duration-300 ${activeJob === index
-                    ? 'bg-blue-50/50 dark:bg-blue-500/10 border-blue-200 dark:border-blue-500/30 shadow-sm'
+                    ? 'bg-brand-primary/5 dark:bg-brand-secondary/10 border-brand-primary/20 dark:border-brand-secondary/30 shadow-sm'
                     : 'bg-white dark:bg-zinc-900 border-transparent hover:border-slate-200 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800'
                   }`}
               >
                 {activeJob === index && (
-                  <motion.div layoutId="activeJobIndicator" className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-blue-500 rounded-r-full" />
+                  <motion.div layoutId="activeJobIndicator" className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-brand-primary dark:bg-brand-secondary rounded-r-full" />
                 )}
-                <h3 className={`text-lg font-bold tracking-wide transition-colors ${activeJob === index ? 'text-blue-900 dark:text-blue-400' : 'text-slate-700 dark:text-zinc-300 group-hover:text-slate-900 dark:group-hover:text-white'}`}>
+                <h3 className={`text-lg font-bold tracking-wide transition-colors ${activeJob === index ? 'text-brand-primary dark:text-brand-secondary' : 'text-slate-700 dark:text-zinc-300 group-hover:text-slate-900 dark:group-hover:text-white'}`}>
                   {job.company}
                 </h3>
-                <p className={`text-sm font-medium mt-1 flex items-center gap-1.5 transition-colors ${activeJob === index ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-zinc-500'}`}>
+                <p className={`text-sm font-medium mt-1 flex items-center gap-1.5 transition-colors ${activeJob === index ? 'text-brand-primary/80 dark:text-brand-secondary/80' : 'text-slate-500 dark:text-zinc-500'}`}>
                   <Calendar size={14} /> {job.period}
                 </p>
               </button>
@@ -95,7 +95,7 @@ function Experience() {
                     {/* Tech Stack Pills */}
                     <div>
                       <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-                        <Code2 size={16} className="text-blue-500" /> Tech Stack
+                        <Code2 size={16} className="text-brand-primary dark:text-brand-secondary" /> Tech Stack
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {jobs[activeJob].techStack.map((tech, i) => (

@@ -1,11 +1,12 @@
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
-import { Outlet } from 'react-router-dom'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
 import './index.css'
 
 function App() {
   return (
     <>
+      <ScrollRestoration />
       <Header />
       <Outlet />
       <Footer />

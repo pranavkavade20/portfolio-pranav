@@ -18,8 +18,8 @@ function About() {
   return (
     <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-24 pb-20 md:pt-32 md:pb-32">
       {/* Soft Animated Background Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-[100px] z-0 animate-pulse"></div>
-      <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] bg-indigo-50/50 dark:bg-indigo-900/20 rounded-full blur-[120px] z-0 animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-secondary/40 dark:bg-brand-secondary/20 rounded-full blur-[100px] z-0 animate-pulse"></div>
+      <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-[120px] z-0 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10 flex flex-col w-full">
         
@@ -32,7 +32,7 @@ function About() {
         >
           <Badge variant="primary" className="mb-6">About Me</Badge>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
-            Who<span className="text-blue-600 dark:text-blue-400"> AM I</span>
+            Who<span className="text-brand-primary dark:text-brand-secondary"> AM I</span>
           </h1>
           <p className="text-slate-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             A passionate full-stack developer obsessed with building scalable platforms and solving real-world problems through clean architecture.
@@ -49,7 +49,7 @@ function About() {
             viewport={{ once: true }}
             className="lg:col-span-5 relative flex justify-center order-1 mt-8 lg:mt-0"
           >
-            <div className="relative w-full max-w-[320px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-slate-100/50 dark:border-zinc-800">
+            <div className="relative w-full max-w-[320px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-brand-primary/10 border border-slate-100/50 dark:border-zinc-800">
               <img src={profileImg} alt="Pranav Kavade" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 dark:from-black/80 to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
@@ -68,7 +68,7 @@ function About() {
               className="absolute -top-6 -right-6 bg-white dark:bg-zinc-900 px-5 py-3 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-zinc-800"
             >
               <span className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-                <Rocket size={16} className="text-blue-600 dark:text-blue-400" />
+                <Rocket size={16} className="text-brand-primary dark:text-brand-secondary" />
                 Ready to Build
               </span>
             </motion.div>
@@ -83,7 +83,7 @@ function About() {
           >
             <Card className="p-8 md:p-10">
               <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-4 flex items-center gap-3">
-                <Code2 className="text-blue-500" size={24} />
+                <Code2 className="text-brand-primary dark:text-brand-secondary" size={24} />
                 The Identity
               </h3>
               <p className="text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed">
@@ -93,7 +93,7 @@ function About() {
 
             <Card className="p-8 md:p-10">
               <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-4 flex items-center gap-3">
-                <Server className="text-blue-500" size={24} />
+                <Server className="text-brand-primary dark:text-brand-secondary" size={24} />
                 The Journey
               </h3>
               <p className="text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed">
@@ -133,15 +133,15 @@ function About() {
           viewport={{ once: true }}
           className="relative w-full max-w-4xl mx-auto"
         >
-          <div className="absolute -top-12 right-4 md:-top-16 md:-right-8 w-24 h-24 md:w-32 md:h-32 bg-blue-50 dark:bg-zinc-800 rounded-full border-4 border-white dark:border-zinc-900 shadow-xl overflow-hidden z-20">
+          <div className="absolute -top-12 right-4 md:-top-16 md:-right-8 w-24 h-24 md:w-32 md:h-32 bg-brand-primary/5 dark:bg-zinc-800 rounded-full border-4 border-white dark:border-zinc-900 shadow-xl overflow-hidden z-20">
             <img src={boy} alt="Pranav" className="w-full h-full object-cover" />
           </div>
 
           <Card className="p-10 md:p-16 text-center space-y-10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-indigo-500"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-secondary to-brand-primary"></div>
             
             <p className="text-xl md:text-3xl text-slate-700 dark:text-zinc-300 font-medium leading-relaxed max-w-2xl mx-auto">
-              Creating secure, scalable <strong className="text-blue-600 dark:text-blue-400">Python</strong> & <strong className="text-indigo-600 dark:text-indigo-400">React</strong> Web Applications. Let's build something great.
+              Creating secure, scalable <strong className="text-brand-primary dark:text-brand-secondary">Python</strong> & <strong className="text-indigo-600 dark:text-indigo-400">React</strong> Web Applications. Let's build something great.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">

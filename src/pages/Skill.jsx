@@ -9,9 +9,9 @@ function Skill() {
   const skillCategories = [
     {
       title: "Backend Engineering",
-      icon: <Server size={32} className="text-blue-600 dark:text-blue-400" />,
+      icon: <Server size={32} className="text-brand-primary dark:text-brand-secondary" />,
       skills: ["Python", "SQL", "Django", "Django REST Framework", "FastAPI (Basics)"],
-      color: "bg-blue-50 dark:bg-blue-500/10"
+      color: "bg-brand-primary/10 dark:bg-brand-secondary/10"
     },
     {
       title: "Frontend Development",
@@ -41,7 +41,7 @@ function Skill() {
   };
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-white dark:bg-[#121212] transition-colors duration-300">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
       
       {/* Soft Background Accent */}
       <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-slate-50 dark:from-black/40 to-transparent"></div>

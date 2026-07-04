@@ -22,7 +22,7 @@ const SectionHeading = ({
       className={`mb-16 md:mb-24 ${aligns[align]} max-w-2xl ${className}`}
     >
       {subtitle && (
-        <p className="text-sm md:text-base font-bold tracking-widest uppercase text-blue-600 mb-4">
+        <p className="text-sm md:text-base font-bold tracking-widest uppercase text-brand-primary dark:text-brand-secondary mb-4">
           {subtitle}
         </p>
       )}

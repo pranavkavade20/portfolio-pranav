@@ -19,12 +19,12 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white dark:bg-[#121212] border-t border-slate-100 dark:border-zinc-800 pt-16 pb-8 transition-colors duration-300">
+    <footer className="bg-brand-bg-light dark:bg-brand-bg-dark border-t border-slate-200 dark:border-zinc-800 pt-16 pb-8 transition-colors duration-300">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
           
           <div className="md:col-span-5 space-y-6">
-            <Link to="/" className="font-extrabold text-2xl text-blue-600 dark:text-blue-400 tracking-tight inline-block">
+            <Link to="/" className="font-extrabold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-secondary dark:to-brand-secondary/80 tracking-tight inline-block">
               PK.py
             </Link>
             <p className="text-slate-600 dark:text-zinc-400 text-sm leading-relaxed max-w-sm">
@@ -41,7 +41,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={item.label}
-                  className="w-10 h-10 rounded-full bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-500/30 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors"
+                  className="w-10 h-10 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-brand-primary dark:hover:text-brand-secondary hover:border-brand-primary/30 dark:hover:border-brand-secondary/30 hover:bg-brand-primary/10 dark:hover:bg-brand-secondary/10 transition-colors"
                 >
                   {item.icon}
                 </motion.a>
@@ -54,7 +54,7 @@ const Footer = () => {
             <ul className="space-y-4">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-slate-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-medium transition-colors">
+                  <Link to={link.path} className="text-slate-500 dark:text-zinc-400 hover:text-brand-primary dark:hover:text-brand-secondary text-sm font-medium transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -66,15 +66,15 @@ const Footer = () => {
             <h4 className="text-slate-900 dark:text-white font-bold text-sm tracking-wide mb-6">Contact</h4>
             <ul className="space-y-4 text-sm text-slate-500 dark:text-zinc-400 font-medium">
               <li className="flex items-center gap-3 group">
-                <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-blue-50 dark:group-hover:bg-blue-500/10 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <div className="w-8 h-8 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center group-hover:bg-brand-primary/10 dark:group-hover:bg-brand-secondary/10 group-hover:text-brand-primary dark:group-hover:text-brand-secondary transition-colors">
                   <Mail size={14} />
                 </div>
-                <a href="mailto:pranavkavade9@gmail.com" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <a href="mailto:pranavkavade9@gmail.com" className="hover:text-brand-primary dark:hover:text-brand-secondary transition-colors">
                   pranavkavade9@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-zinc-900 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center">
                   <MapPin size={14} />
                 </div>
                 <span>Ichalkaranji, Maharashtra, India</span>
