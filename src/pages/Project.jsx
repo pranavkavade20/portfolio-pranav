@@ -192,13 +192,13 @@ const Lightbox = ({ image, onClose }) => {
 const BentoHero = ({ project, onImageClick }) => {
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="visible" className="w-full max-w-6xl mx-auto pb-16">
-      <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-soft border border-slate-100">
+      <div className="bg-white dark:bg-zinc-900 rounded-[2rem] p-6 md:p-8 shadow-soft border border-slate-100 dark:border-zinc-800 transition-colors duration-300">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors">
               {project.title}
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-zinc-400 leading-relaxed transition-colors">
               {project.desc}
             </p>
           </div>
@@ -219,11 +219,11 @@ const BentoHero = ({ project, onImageClick }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[400px] md:h-[500px] group">
           <div
             onClick={() => onImageClick(project.bentoImages[0])}
-            className="relative col-span-1 md:col-span-3 row-span-2 rounded-[1.5rem] overflow-hidden bg-slate-100 border border-slate-200 cursor-zoom-in transition-all duration-500 shadow-sm hover:shadow-soft-hover hover:-translate-y-1"
+            className="relative col-span-1 md:col-span-3 row-span-2 rounded-[1.5rem] overflow-hidden bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 cursor-zoom-in transition-all duration-500 shadow-sm hover:shadow-soft-hover hover:-translate-y-1"
           >
-            <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/5 transition-colors z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/5 dark:group-hover:bg-white/5 transition-colors z-10 pointer-events-none" />
             <img src={project.bentoImages[0]} alt={`${project.title} hero`} className="w-full h-full object-cover object-top" />
-            <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 shadow flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+            <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-zinc-900/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-300 shadow flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-20">
               <Maximize2 size={14} /> Enlarge
             </div>
           </div>
@@ -245,13 +245,13 @@ const ProblemSolution = ({ project }) => {
   if (!project.problem || !project.solution) return null;
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-white border border-slate-100 shadow-soft">
-        <h3 className="text-xs font-bold tracking-wider uppercase text-blue-600 mb-4">The Challenge</h3>
-        <p className="text-lg md:text-xl text-slate-700 leading-relaxed">{project.problem}</p>
+      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-soft transition-colors">
+        <h3 className="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400 mb-4">The Challenge</h3>
+        <p className="text-lg md:text-xl text-slate-700 dark:text-zinc-300 leading-relaxed">{project.problem}</p>
       </motion.div>
-      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-blue-50 border border-blue-100 shadow-soft">
-        <h3 className="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-4">The Solution</h3>
-        <p className="text-lg md:text-xl text-slate-800 leading-relaxed">{project.solution}</p>
+      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/30 shadow-soft transition-colors">
+        <h3 className="text-xs font-bold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-4">The Solution</h3>
+        <p className="text-lg md:text-xl text-slate-800 dark:text-zinc-200 leading-relaxed">{project.solution}</p>
       </motion.div>
     </motion.div>
   );
@@ -292,8 +292,8 @@ const FeaturesSection = ({ project, onImageClick }) => {
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-24 max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
-          <h3 className="text-3xl font-bold tracking-tight text-slate-900">Platform Features & Screens</h3>
-          <p className="text-slate-500 mt-2">
+          <h3 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors">Platform Features & Screens</h3>
+          <p className="text-slate-500 dark:text-zinc-400 mt-2 transition-colors">
             {hasRoleFeatures ? "Explore tailored experiences for both sides of the marketplace." : "Explore the core capabilities and screens of the application."}
           </p>
         </div>
@@ -332,8 +332,8 @@ const FeaturesSection = ({ project, onImageClick }) => {
               key={idx}
               onClick={() => setActiveFeatureIdx(idx)}
               className={`group flex items-start gap-4 text-left px-5 py-5 rounded-2xl font-medium transition-all ${activeFeatureIdx === idx
-                ? 'bg-white shadow-soft border border-slate-100 text-slate-900 translate-x-1 lg:translate-x-2'
-                : 'bg-transparent text-slate-600 hover:bg-white/50 border border-transparent hover:text-slate-900'
+                ? 'bg-white dark:bg-zinc-900 shadow-soft border border-slate-100 dark:border-zinc-800 text-slate-900 dark:text-white translate-x-1 lg:translate-x-2'
+                : 'bg-transparent text-slate-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 border border-transparent hover:text-slate-900 dark:hover:text-white'
                 }`}
             >
               <div className={`mt-0.5 transition-transform duration-300 ${activeFeatureIdx === idx ? 'scale-110 text-amber-300' : 'text-slate-400 group-hover:text-slate-900'}`}>
@@ -362,15 +362,15 @@ const FeaturesSection = ({ project, onImageClick }) => {
               animate={{ opacity: 1, scale: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.98, x: -20 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className={`relative group bg-white border border-slate-100 rounded-[2rem] p-4 md:p-6 shadow-soft flex flex-col h-full cursor-zoom-in`}
+              className={`relative group bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-[2rem] p-4 md:p-6 shadow-soft flex flex-col h-full cursor-zoom-in transition-colors`}
               onClick={() => onImageClick && onImageClick(getFeatureImage())}
             >
               {/* Enlarge Hint */}
-              <div className="absolute top-8 right-8 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 shadow flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none">
+              <div className="absolute top-8 right-8 bg-white/90 dark:bg-zinc-800/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-300 shadow flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none">
                 <Maximize2 size={14} /> Enlarge
               </div>
 
-              <div className="w-full aspect-[4/3] md:aspect-[16/10] rounded-[1.5rem] overflow-hidden bg-slate-100 shadow-sm border border-slate-200 transition-transform duration-500 group-hover:shadow-soft group-hover:scale-[1.01]">
+              <div className="w-full aspect-[4/3] md:aspect-[16/10] rounded-[1.5rem] overflow-hidden bg-slate-100 dark:bg-zinc-800 shadow-sm border border-slate-200 dark:border-zinc-700 transition-transform duration-500 group-hover:shadow-soft group-hover:scale-[1.01]">
                 <img src={getFeatureImage()} alt={activeFeature.title} className="w-full h-full object-cover object-top" />
               </div>
 
@@ -440,9 +440,9 @@ function Project() {
   };
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden min-h-screen bg-slate-50/50">
-      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 rounded-full blur-[90px] z-0"></div>
-      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-blue-200/50 rounded-full blur-[90px] z-0"></div>
+    <section id="projects" className="py-24 relative overflow-hidden min-h-screen bg-slate-50/50 dark:bg-[#121212] transition-colors duration-300">
+      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0"></div>
+      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-blue-200/50 dark:bg-blue-900/20 rounded-full blur-[90px] z-0"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <SectionHeading 
@@ -452,15 +452,15 @@ function Project() {
         />
 
         <div className="flex flex-col items-center mb-10">
-          <div className="flex items-center gap-2 p-1.5 bg-white rounded-full border border-slate-200 shadow-sm overflow-x-auto max-w-full">
+          <div className="flex items-center gap-2 p-1.5 bg-white dark:bg-zinc-900 rounded-full border border-slate-200 dark:border-zinc-800 shadow-sm overflow-x-auto max-w-full transition-colors">
             {projects.map((project, index) => (
               <button
                 key={project.id}
                 onClick={() => handleProjectChange(index)}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === index ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900'}`}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === index ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'}`}
               >
                 {activeTab === index && (
-                  <motion.div layoutId="activeMainTab" className="absolute inset-0 bg-slate-100 rounded-full border border-slate-900" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
+                  <motion.div layoutId="activeMainTab" className="absolute inset-0 bg-slate-100 dark:bg-zinc-800 rounded-full border border-slate-900 dark:border-white" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
                 )}
                 {project.title}
               </button>

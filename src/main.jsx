@@ -9,6 +9,7 @@ import Project from './pages/Project.jsx'
 import Contact from './pages/Contact.jsx'
 import Experience from './pages/Experience.jsx'
 import About from './pages/About.jsx'
+import { ThemeProvider } from './contexts/ThemeContext.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 )

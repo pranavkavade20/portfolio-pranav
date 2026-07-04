@@ -9,21 +9,21 @@ function Skill() {
   const skillCategories = [
     {
       title: "Backend Engineering",
-      icon: <Server size={32} className="text-blue-600" />,
+      icon: <Server size={32} className="text-blue-600 dark:text-blue-400" />,
       skills: ["Python", "SQL", "Django", "Django REST Framework", "FastAPI (Basics)"],
-      color: "bg-blue-50"
+      color: "bg-blue-50 dark:bg-blue-500/10"
     },
     {
       title: "Frontend Development",
-      icon: <Layout size={32} className="text-indigo-600" />,
+      icon: <Layout size={32} className="text-indigo-600 dark:text-indigo-400" />,
       skills: ["HTML", "CSS", "JavaScript", "React.js", "TypeScript", "Responsive UI/UX"],
-      color: "bg-indigo-50"
+      color: "bg-indigo-50 dark:bg-indigo-500/10"
     },
     {
       title: "Databases & Tools",
-      icon: <Database size={32} className="text-teal-600" />,
+      icon: <Database size={32} className="text-teal-600 dark:text-teal-400" />,
       skills: ["Git & GitHub", "MySQL", "MongoDB", "PostgreSQL", "API Testing (Postman)"],
-      color: "bg-teal-50"
+      color: "bg-teal-50 dark:bg-teal-500/10"
     }
   ];
 
@@ -41,10 +41,10 @@ function Skill() {
   };
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-white">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-white dark:bg-[#121212] transition-colors duration-300">
       
       {/* Soft Background Accent */}
-      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-slate-50 to-transparent"></div>
+      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-slate-50 dark:from-black/40 to-transparent"></div>
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10">
         <SectionHeading 
@@ -66,14 +66,14 @@ function Skill() {
                   {category.icon}
                 </div>
                 
-                <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                   {category.title}
                 </h3>
                 
                 <ul className="space-y-4 flex-grow">
                   {category.skills.map((skill, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-600 font-medium">
-                      <CheckCircle2 size={18} className="text-slate-400" />
+                    <li key={i} className="flex items-center gap-3 text-slate-600 dark:text-zinc-400 font-medium">
+                      <CheckCircle2 size={18} className="text-slate-400 dark:text-zinc-600" />
                       {skill}
                     </li>
                   ))}
