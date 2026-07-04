@@ -118,7 +118,7 @@ function Header() {
               href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view" 
               target="_blank" 
               rel="noreferrer"
-              className="hidden md:flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 dark:bg-brand-secondary dark:hover:bg-brand-secondary/90 dark:text-brand-primary text-white text-[15px] font-medium rounded-xl shadow-lg transition-all duration-300"
+              className="hidden md:flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 dark:bg-brand-secondary dark:hover:bg-brand-secondary/90 dark:text-slate-100  text-white text-[15px] font-medium rounded-xl shadow-lg transition-all duration-300"
             >
               Resume 
               <motion.span
@@ -211,7 +211,7 @@ function Header() {
                   href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view" 
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary dark:bg-brand-secondary dark:text-brand-primary hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 text-white text-base font-medium rounded-xl transition-colors shadow-md"
+                  className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary dark:bg-brand-secondary dark:text-slate-100 hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 text-white text-base font-medium rounded-xl transition-colors shadow-md"
                 >
                   Download Resume <Download size={18} strokeWidth={2} />
                 </a>

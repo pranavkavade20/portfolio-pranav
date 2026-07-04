@@ -126,7 +126,6 @@ function About() {
           ))}
         </div>
 
-        {/* CTA Section */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -141,7 +140,7 @@ function About() {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-secondary to-brand-primary"></div>
             
             <p className="text-xl md:text-3xl text-slate-700 dark:text-zinc-300 font-medium leading-relaxed max-w-2xl mx-auto">
-              Creating secure, scalable <strong className="text-brand-primary dark:text-brand-secondary">Python</strong> & <strong className="text-indigo-600 dark:text-indigo-400">React</strong> Web Applications. Let's build something great.
+              Creating secure, scalable <strong  className="text-blue-600 dark:text-blue-400">Python</strong> & <strong className="text-blue-600 dark:text-blue-400">React</strong> Web Applications. Let's build something great.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">

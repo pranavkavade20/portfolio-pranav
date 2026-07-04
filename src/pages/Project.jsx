@@ -284,8 +284,8 @@ const FeaturesSection = ({ project, onImageClick }) => {
   };
 
   const getIconColor = () => {
-    if (!hasRoleFeatures) return 'text-slate-900';
-    return activeRole === 'farmer' ? 'text-emerald-600' : 'text-brand-primary';
+    if (!hasRoleFeatures) return 'text-slate-900 dark:text-white';
+    return activeRole === 'farmer' ? 'text-emerald-600 dark:text-emerald-400' : 'text-brand-primary dark:text-brand-secondary';
   };
 
   return (
@@ -299,25 +299,25 @@ const FeaturesSection = ({ project, onImageClick }) => {
         </div>
 
         {hasRoleFeatures && (
-          <div className="flex gap-2 p-1 bg-slate-100 rounded-full self-start shadow-inner">
+          <div className="flex gap-2 p-1 bg-slate-100 dark:bg-zinc-800/50 rounded-full self-start shadow-inner">
             <button
               onClick={() => setActiveRole('farmer')}
-              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'farmer' ? 'text-emerald-900' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'farmer' ? 'text-emerald-900 dark:text-emerald-300' : 'text-slate-500 hover:text-slate-700 dark:text-zinc-400 dark:hover:text-zinc-200'}`}
             >
               {activeRole === 'farmer' && (
-                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-full border border-emerald-200" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
+                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white dark:bg-zinc-700 rounded-full border border-emerald-200 dark:border-emerald-700/50" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
               )}
-              <Tractor size={16} className={activeRole === 'farmer' ? 'text-emerald-600' : ''} />
+              <Tractor size={16} className={activeRole === 'farmer' ? 'text-emerald-600 dark:text-emerald-400' : ''} />
               Farmer
             </button>
             <button
               onClick={() => setActiveRole('buyer')}
-              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'buyer' ? 'text-brand-primary' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeRole === 'buyer' ? 'text-brand-primary dark:text-brand-secondary' : 'text-slate-500 hover:text-slate-700 dark:text-zinc-400 dark:hover:text-zinc-200'}`}
             >
               {activeRole === 'buyer' && (
-                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white rounded-full border border-brand-primary/30" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
+                <motion.div layoutId="activeRoleTab" className="absolute inset-0 bg-white dark:bg-zinc-700 rounded-full border border-brand-primary/30 dark:border-brand-secondary/30" style={{ zIndex: -1 }} transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
               )}
-              <ShoppingBag size={16} className={activeRole === 'buyer' ? 'text-brand-primary' : ''} />
+              <ShoppingBag size={16} className={activeRole === 'buyer' ? 'text-brand-primary dark:text-brand-secondary' : ''} />
               Buyer
             </button>
           </div>
@@ -336,14 +336,14 @@ const FeaturesSection = ({ project, onImageClick }) => {
                 : 'bg-transparent text-slate-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 border border-transparent hover:text-slate-900 dark:hover:text-white'
                 }`}
             >
-              <div className={`mt-0.5 transition-transform duration-300 ${activeFeatureIdx === idx ? 'scale-110 text-amber-300' : 'text-slate-400 group-hover:text-slate-900'}`}>
+              <div className={`mt-0.5 transition-transform duration-300 ${activeFeatureIdx === idx ? 'scale-110 text-amber-300' : 'text-slate-400 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white'}`}>
                 <CheckCircle2 size={20} />
               </div>
               <div className="flex flex-col gap-1 w-full">
                 <span className="text-lg leading-tight">{feat.title}</span>
                 {activeFeatureIdx === idx && (
                   <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="overflow-hidden">
-                    <p className="text-sm font-medium text-slate-300 mt-2 leading-relaxed">
+                    <p className="text-sm font-medium text-slate-500 dark:text-zinc-300 mt-2 leading-relaxed">
                       {feat.desc}
                     </p>
                   </motion.div>
@@ -379,7 +379,7 @@ const FeaturesSection = ({ project, onImageClick }) => {
                   <div className={`w-12 h-12 shrink-0 bg-brand-primary/10 border border-brand-primary/20 rounded-xl flex items-center justify-center ${getIconColor()}`}>
                     <CheckCircle2 size={24} />
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">{activeFeature.title}</h4>
+                  <h4 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight">{activeFeature.title}</h4>
                 </div>
               </div>
             </motion.div>
@@ -395,20 +395,20 @@ const Challenges = ({ project }) => {
   if (!project.challenges || project.challenges.length === 0) return null;
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-20 max-w-3xl mx-auto">
-      <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-10 text-center">Technical Hurdles</h3>
+      <h3 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-10 text-center">Technical Hurdles</h3>
       <div className="space-y-4">
         {project.challenges.map((challenge, idx) => (
-          <motion.div key={idx} variants={fadeUp} className="border border-slate-200 rounded-[1.5rem] overflow-hidden bg-white shadow-sm transition-colors">
+          <motion.div key={idx} variants={fadeUp} className="border border-slate-200 dark:border-zinc-700 rounded-[1.5rem] overflow-hidden bg-white dark:bg-zinc-900 shadow-sm transition-colors">
             <button onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)} className="w-full flex items-center justify-between p-6 text-left">
-              <span className="text-lg font-semibold text-slate-900">{challenge.title}</span>
-              <span className={`w-8 h-8 flex items-center justify-center rounded-full bg-slate-50 text-slate-500 transition-transform duration-300 ${openIdx === idx ? 'rotate-180 bg-slate-100' : ''}`}>
+              <span className="text-lg font-semibold text-slate-900 dark:text-white">{challenge.title}</span>
+              <span className={`w-8 h-8 flex items-center justify-center rounded-full bg-slate-50 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400 transition-transform duration-300 ${openIdx === idx ? 'rotate-180 bg-slate-100 dark:bg-zinc-700' : ''}`}>
                 <ChevronDown size={18} />
               </span>
             </button>
             <AnimatePresence>
               {openIdx === idx && (
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                  <div className="p-6 pt-0 text-slate-600 border-t border-slate-100 mt-2">{challenge.desc}</div>
+                  <div className="p-6 pt-0 text-slate-600 dark:text-zinc-400 border-t border-slate-100 dark:border-zinc-800 mt-2">{challenge.desc}</div>
                 </motion.div>
               )}
             </AnimatePresence>
