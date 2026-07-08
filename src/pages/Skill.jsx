@@ -52,7 +52,7 @@ function Skill() {
     },
 
     {
-      title: "Databases & Tools",
+      title: "Databases and Tools",
       folderColor: "#EA580C",
       skills: [
         { name: "Git", icon: gitIcon },
@@ -71,7 +71,7 @@ function Skill() {
       <div className="container mx-auto max-w-5xl px-6 relative z-10">
         <SectionHeading
           title="Technical Skills"
-          subtitle="SkillHub"
+          subtitle="Skillspace"
         />
 
         <div className="mt-32 md:mt-48 flex flex-col gap-16 md:gap-24 relative pb-32">
