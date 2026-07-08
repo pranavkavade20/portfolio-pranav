@@ -14,7 +14,7 @@ function Header() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    
+
     // Transparent at very top, solid white with shadow after 50px
     if (latest > 50) {
       setScrolled(true);
@@ -40,34 +40,51 @@ function Header() {
   ];
 
   return (
-    <motion.header 
+    <motion.header
       variants={{
         visible: { y: 0 },
         hidden: { y: "-100%" },
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-[400ms] ease-in-out ${
-        scrolled 
-          ? 'bg-white/90 backdrop-blur-md dark:bg-brand-bg-dark/90' 
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-[400ms] ease-in-out ${scrolled
+          ? 'bg-white/90 backdrop-blur-md dark:bg-brand-bg-dark/90'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       {/* 100% width, max-width of 1200px, 80px height */}
       <div className="w-full max-w-[1200px] h-[80px] mx-auto px-[20px]">
         {/* Flexbox container with 'justify-between' and 'items-center' */}
         <div className="flex justify-between items-center h-full relative">
-          
+
           {/* Logo Placement: Left-aligned */}
-          <Link to="/" className="flex items-center gap-2 group z-50" onClick={() => setIsMenuOpen(false)}>
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-2xl font-black tracking-tighter"
+          <Link to="/" className="flex items-center gap-2 group z-50 font-mono" onClick={() => setIsMenuOpen(false)}>
+            {/* Animated Terminal Prompt */}
+            <motion.span
+              initial={{ opacity: 0.7 }}
+              whileHover={{ opacity: 1, x: 2 }}
+              className="text-brand-primary dark:text-brand-secondary text-xl font-bold transition-all duration-200"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-secondary dark:to-brand-secondary/80">
-                Pranav.py
+              &gt;
+            </motion.span>
+
+            <motion.div
+              whileHover={{ x: 2 }}
+              className="text-xl font-semibold tracking-tight flex items-center transition-transform duration-200"
+            >
+              <span className="text-neutral-800 dark:text-neutral-200">
+                Pranav
               </span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-secondary dark:to-brand-secondary/80 ml-px">
+                .py
+              </span>
+
+              {/* Authentic Terminal Block Cursor */}
+              <motion.div
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                className="w-2.5 h-5 bg-brand-primary/80 dark:bg-brand-secondary/80 ml-1.5 rounded-[1px]"
+              />
             </motion.div>
           </Link>
 
@@ -97,7 +114,7 @@ function Header() {
 
           {/* Action Buttons: Right-aligned, primary brand color background */}
           <div className="flex items-center gap-4 z-50">
-            <button 
+            <button
               onClick={toggleTheme}
               className="relative inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-300 h-10 w-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 overflow-hidden"
               title="Toggle Theme"
@@ -112,21 +129,21 @@ function Header() {
                 <Contrast size={20} strokeWidth={2} />
               </motion.div>
             </button>
-            <motion.a 
+            <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view" 
-              target="_blank" 
+              href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view"
+              target="_blank"
               rel="noreferrer"
               className="hidden md:flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 dark:bg-brand-secondary dark:hover:bg-brand-secondary/90 dark:text-slate-100  text-white text-[15px] font-medium rounded-xl shadow-lg transition-all duration-300"
             >
-              Resume 
+              Resume
               <motion.span
                 initial={{ y: 0 }}
                 whileHover={{ y: 2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                <Download size={16} strokeWidth={2.5} className='animate-bounce'  />
+                <Download size={16} strokeWidth={2.5} className='animate-bounce' />
               </motion.span>
             </motion.a>
 
@@ -139,24 +156,24 @@ function Header() {
               <div className="relative w-6 h-6 flex items-center justify-center">
                 <motion.span
                   className="absolute h-[2px] w-6 bg-current rounded-full"
-                  animate={{ 
-                    rotate: isMenuOpen ? 45 : 0, 
-                    y: isMenuOpen ? 0 : -8 
+                  animate={{
+                    rotate: isMenuOpen ? 45 : 0,
+                    y: isMenuOpen ? 0 : -8
                   }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
                 <motion.span
                   className="absolute h-[2px] w-6 bg-current rounded-full"
-                  animate={{ 
-                    opacity: isMenuOpen ? 0 : 1 
+                  animate={{
+                    opacity: isMenuOpen ? 0 : 1
                   }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
                 <motion.span
                   className="absolute h-[2px] w-6 bg-current rounded-full"
-                  animate={{ 
-                    rotate: isMenuOpen ? -45 : 0, 
-                    y: isMenuOpen ? 0 : 8 
+                  animate={{
+                    rotate: isMenuOpen ? -45 : 0,
+                    y: isMenuOpen ? 0 : 8
                   }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
@@ -169,7 +186,7 @@ function Header() {
       {/* Mobile Menu: Slide down from top, staggered fade-in */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20, height: 0 }}
             animate={{ opacity: 1, y: 0, height: 'auto' }}
             exit={{ opacity: 0, y: -20, height: 0 }}
@@ -200,20 +217,20 @@ function Header() {
                   </motion.div>
                 );
               })}
-              
+
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navItems.length * 0.1, duration: 0.3, ease: "easeInOut" }}
                 className="mt-4 pt-4 border-t border-gray-100 dark:border-zinc-800"
               >
-                <a 
-                  href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view" 
-                  target="_blank" 
+                <a
+                  href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view"
+                  target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary dark:bg-brand-secondary dark:text-slate-100 hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 text-white text-base font-medium rounded-xl transition-colors shadow-md"
                 >
-                 Resume <Download size={18} strokeWidth={2} className='animate-bounce' />
+                  Resume <Download size={18} strokeWidth={2} className='animate-bounce' />
                 </a>
               </motion.div>
             </div>
