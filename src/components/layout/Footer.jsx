@@ -22,10 +22,36 @@ const Footer = () => {
     <footer className="bg-brand-bg-light dark:bg-brand-bg-dark border-t border-slate-200 dark:border-zinc-800 pt-16 pb-8 transition-colors duration-300">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
-          
+
           <div className="md:col-span-5 space-y-6">
-            <Link to="/" className="font-extrabold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-secondary dark:to-brand-secondary/80 tracking-tight inline-block">
-              PK.py
+            <Link to="/" className="flex items-center gap-2 group z-50 font-mono" onClick={() => setIsMenuOpen(false)}>
+              {/* Animated Terminal Prompt */}
+              <motion.span
+                initial={{ opacity: 0.7 }}
+                whileHover={{ opacity: 1, x: 2 }}
+                className="text-brand-primary dark:text-brand-secondary text-xl font-bold transition-all duration-200"
+              >
+                &gt;
+              </motion.span>
+
+              <motion.div
+                whileHover={{ x: 2 }}
+                className="text-xl font-semibold tracking-tight flex items-center transition-transform duration-200"
+              >
+                <span className="text-neutral-800 dark:text-neutral-200">
+                  Pranav
+                </span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-secondary dark:to-brand-secondary/80 ml-px">
+                  .py
+                </span>
+
+                {/* Authentic Terminal Block Cursor */}
+                <motion.div
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                  className="w-2.5 h-5 bg-brand-primary/80 dark:bg-brand-secondary/80 ml-1.5 rounded-[1px]"
+                />
+              </motion.div>
             </Link>
             <p className="text-slate-600 dark:text-zinc-400 text-sm leading-relaxed max-w-sm">
               Crafting scalable web applications with Python & React.

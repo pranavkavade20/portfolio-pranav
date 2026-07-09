@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Folder = ({ color = '#E67E22', size = 1, title = '', items = [], className = '' }) => {
+const Folder = ({ color = '#E67E22', title = '', items = [], className = '' }) => {
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const timeoutRef = useRef(null);
@@ -46,14 +46,11 @@ const Folder = ({ color = '#E67E22', size = 1, title = '', items = [], className
     };
   }, []);
 
-  const scaleStyle = { transform: `scale(${size})` };
-
   // Calculate arc positions
   const radius = 90; // Decreased radius since the folder will be scaled up larger
   
   return (
     <div 
-      style={scaleStyle} 
       className={`${className} relative ${open ? 'z-50' : 'z-10 hover:z-40'} transition-all duration-300`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

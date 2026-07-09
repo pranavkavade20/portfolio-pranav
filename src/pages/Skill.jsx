@@ -65,143 +65,143 @@ function Skill() {
   ];
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
+    <section className="py-20 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
       <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-slate-50 dark:from-black/40 to-transparent z-0"></div>
-
-      <div className="container mx-auto max-w-5xl px-6 relative z-10">
-        <SectionHeading
-          title="Technical Skills"
-          subtitle="Skillspace"
+      
+      <div className="container mx-auto max-w-5xl px-4 md:px-6 relative z-10">
+        <SectionHeading 
+          title="Technical Arsenal" 
+          subtitle="Folder Workspace" 
         />
-
-        <div className="mt-32 md:mt-48 flex flex-col gap-16 md:gap-24 relative pb-32">
+        
+        <div className="mt-40 sm:mt-48 md:mt-56 flex flex-col gap-20 md:gap-40 relative pb-24 md:pb-32">
           {skillCategories.map((category, index) => {
             const isEven = index % 2 === 0;
             return (
-              <motion.div
-                key={index}
-                className={`flex w-full relative ${isEven ? 'justify-start md:pl-20' : 'justify-end md:pr-20'} justify-center`}
+              <motion.div 
+                key={index} 
+                className={`flex w-full relative ${isEven ? 'justify-center md:justify-start md:pl-20' : 'justify-center md:justify-end md:pr-20'}`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                {/* Arrow pointing to the next folder */}
-                {index < skillCategories.length - 1 && (
-                  <>
-                    {/* Desktop Zig-Zag SVG Curve */}
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute top-[80%] left-0 w-full h-[120px] md:h-[160px] pointer-events-none z-0 hidden md:block">
-                      <defs>
-                        <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#E67E22" stopOpacity="0.8" />
-                          <stop offset="100%" stopColor="#f97316" stopOpacity="0.8" />
-                        </linearGradient>
-                      </defs>
-                      {/* Base Line */}
-                      <path
-                        d={isEven ? "M 20 0 C 20 50, 80 50, 80 100" : "M 80 0 C 80 50, 20 50, 20 100"}
-                        stroke="currentColor"
-                        className="text-slate-300 dark:text-slate-700"
-                        strokeWidth="2"
-                        fill="none"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                      {/* Flowing Orange Current Line */}
-                      <motion.path
-                        d={isEven ? "M 20 0 C 20 50, 80 50, 80 100" : "M 80 0 C 80 50, 20 50, 20 100"}
-                        stroke="url(#orangeGlow)"
-                        strokeWidth="2.5"
-                        fill="none"
-                        strokeDasharray="15 30"
-                        vectorEffect="non-scaling-stroke"
-                        initial={{ strokeDashoffset: 100 }}
-                        animate={{ strokeDashoffset: 0 }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                      />
-                      {/* Base Arrowhead */}
-                      <path
-                        d={isEven ? "M 78 95 L 80 100 L 82 95" : "M 18 95 L 20 100 L 22 95"}
-                        stroke="currentColor"
-                        className="text-slate-300 dark:text-slate-700"
-                        strokeWidth="2"
-                        fill="none"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                      {/* Glowing Arrowhead */}
-                      <path
-                        d={isEven ? "M 78 95 L 80 100 L 82 95" : "M 18 95 L 20 100 L 22 95"}
-                        stroke="url(#orangeGlow)"
-                        strokeWidth="2"
-                        fill="none"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                    </svg>
-
-                    {/* Mobile Straight SVG Line */}
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute top-[80%] left-0 w-full h-[120px] pointer-events-none z-0 md:hidden">
-                      <defs>
-                        <linearGradient id="orangeGlowMobile" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="#E67E22" stopOpacity="0.8" />
-                          <stop offset="100%" stopColor="#f97316" stopOpacity="0.8" />
-                        </linearGradient>
-                      </defs>
-                      {/* Base Line */}
-                      <path
-                        d="M 50 0 L 50 100"
-                        stroke="currentColor"
-                        className="text-slate-300 dark:text-slate-700"
-                        strokeWidth="2"
-                        fill="none"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                      {/* Flowing Orange Current Line */}
-                      <motion.path
-                        d="M 50 0 L 50 100"
-                        stroke="url(#orangeGlowMobile)"
-                        strokeWidth="2.5"
-                        fill="none"
-                        strokeDasharray="15 30"
-                        vectorEffect="non-scaling-stroke"
-                        initial={{ strokeDashoffset: 100 }}
-                        animate={{ strokeDashoffset: 0 }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                      />
-                      {/* Base Arrowhead */}
-                      <path
-                        d="M 46 95 L 50 100 L 54 95"
-                        stroke="currentColor"
-                        className="text-slate-300 dark:text-slate-700"
-                        strokeWidth="2"
-                        fill="none"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                      {/* Glowing Arrowhead */}
-                      <path
-                        d="M 46 95 L 50 100 L 54 95"
-                        stroke="url(#orangeGlowMobile)"
-                        strokeWidth="2"
-                        fill="none"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                    </svg>
-                  </>
-                )}
-
-                <div className="relative z-10 pt-[120px] -mt-[120px]">
-                  <Folder
-                    color={category.folderColor}
-                    size={2.2}
-                    title={category.title}
-                    items={category.skills.map((skill, idx) => (
-                      <div key={idx} className="flex flex-col items-center justify-center gap-1 w-full h-full select-none pointer-events-none">
-                        <img src={skill.icon} alt={skill.name} className="w-5 h-5 object-contain drop-shadow-sm" />
-                        <span className="text-[5px] font-bold text-slate-700 dark:text-slate-200 text-center leading-tight">
-                          {skill.name}
-                        </span>
-                      </div>
-                    ))}
-                  />
-                </div>
+                 {/* Arrow pointing to the next folder */}
+                 {index < skillCategories.length - 1 && (
+                   <>
+                     {/* Desktop Zig-Zag SVG Curve */}
+                     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute top-[80%] left-0 w-full h-[180px] md:h-[220px] pointer-events-none z-0 hidden md:block">
+                        <defs>
+                          <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#E67E22" stopOpacity="0.8" />
+                            <stop offset="100%" stopColor="#f97316" stopOpacity="0.8" />
+                          </linearGradient>
+                        </defs>
+                        {/* Base Line */}
+                        <path 
+                           d={isEven ? "M 20 0 C 20 50, 80 50, 80 100" : "M 80 0 C 80 50, 20 50, 20 100"}
+                           stroke="currentColor" 
+                           className="text-slate-300 dark:text-slate-700" 
+                           strokeWidth="2" 
+                           fill="none" 
+                           vectorEffect="non-scaling-stroke" 
+                        />
+                        {/* Flowing Orange Current Line */}
+                        <motion.path 
+                           d={isEven ? "M 20 0 C 20 50, 80 50, 80 100" : "M 80 0 C 80 50, 20 50, 20 100"}
+                           stroke="url(#orangeGlow)" 
+                           strokeWidth="2.5" 
+                           fill="none" 
+                           strokeDasharray="15 30" 
+                           vectorEffect="non-scaling-stroke"
+                           initial={{ strokeDashoffset: 100 }}
+                           animate={{ strokeDashoffset: 0 }}
+                           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        />
+                        {/* Base Arrowhead */}
+                        <path 
+                           d={isEven ? "M 78 95 L 80 100 L 82 95" : "M 18 95 L 20 100 L 22 95"}
+                           stroke="currentColor" 
+                           className="text-slate-300 dark:text-slate-700" 
+                           strokeWidth="2" 
+                           fill="none" 
+                           vectorEffect="non-scaling-stroke" 
+                        />
+                        {/* Glowing Arrowhead */}
+                        <path 
+                           d={isEven ? "M 78 95 L 80 100 L 82 95" : "M 18 95 L 20 100 L 22 95"}
+                           stroke="url(#orangeGlow)" 
+                           strokeWidth="2" 
+                           fill="none" 
+                           vectorEffect="non-scaling-stroke" 
+                        />
+                     </svg>
+                     
+                     {/* Mobile Straight SVG Line */}
+                     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute top-[80%] left-0 w-full h-[100px] sm:h-[120px] pointer-events-none z-0 md:hidden">
+                        <defs>
+                          <linearGradient id="orangeGlowMobile" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#E67E22" stopOpacity="0.8" />
+                            <stop offset="100%" stopColor="#f97316" stopOpacity="0.8" />
+                          </linearGradient>
+                        </defs>
+                        {/* Base Line */}
+                        <path 
+                           d="M 50 0 L 50 100" 
+                           stroke="currentColor" 
+                           className="text-slate-300 dark:text-slate-700" 
+                           strokeWidth="2" 
+                           fill="none" 
+                           vectorEffect="non-scaling-stroke" 
+                        />
+                        {/* Flowing Orange Current Line */}
+                        <motion.path 
+                           d="M 50 0 L 50 100" 
+                           stroke="url(#orangeGlowMobile)" 
+                           strokeWidth="2.5" 
+                           fill="none" 
+                           strokeDasharray="15 30" 
+                           vectorEffect="non-scaling-stroke"
+                           initial={{ strokeDashoffset: 100 }}
+                           animate={{ strokeDashoffset: 0 }}
+                           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                        />
+                        {/* Base Arrowhead */}
+                        <path 
+                           d="M 46 95 L 50 100 L 54 95" 
+                           stroke="currentColor" 
+                           className="text-slate-300 dark:text-slate-700" 
+                           strokeWidth="2" 
+                           fill="none" 
+                           vectorEffect="non-scaling-stroke" 
+                        />
+                        {/* Glowing Arrowhead */}
+                        <path 
+                           d="M 46 95 L 50 100 L 54 95" 
+                           stroke="url(#orangeGlowMobile)" 
+                           strokeWidth="2" 
+                           fill="none" 
+                           vectorEffect="non-scaling-stroke" 
+                        />
+                     </svg>
+                   </>
+                 )}
+                 
+                 <div className="relative z-10 pt-[80px] -mt-[80px] sm:pt-[100px] sm:-mt-[100px] md:pt-[120px] md:-mt-[120px]">
+                   <Folder 
+                     color={category.folderColor}
+                     className="scale-[1.5] sm:scale-[1.8] md:scale-[2.2]"
+                     title={category.title}
+                     items={category.skills.map((skill, idx) => (
+                       <div key={idx} className="flex flex-col items-center justify-center gap-1 w-full h-full select-none pointer-events-none">
+                         <img src={skill.icon} alt={skill.name} className="w-4 h-4 sm:w-5 sm:h-5 object-contain drop-shadow-sm" />
+                         <span className="text-[4px] sm:text-[5px] font-bold text-slate-700 dark:text-slate-200 text-center leading-tight">
+                           {skill.name}
+                         </span>
+                       </div>
+                     ))}
+                   />
+                 </div>
               </motion.div>
             );
           })}
