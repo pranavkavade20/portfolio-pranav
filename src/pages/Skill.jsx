@@ -194,7 +194,7 @@ function Skill() {
                      title={category.title}
                      items={category.skills.map((skill, idx) => (
                        <div key={idx} className="flex flex-col items-center justify-center gap-1 w-full h-full select-none pointer-events-none">
-                         <img src={skill.icon} alt={skill.name} className="w-4 h-4 sm:w-5 sm:h-5 object-contain drop-shadow-sm" />
+                         <img src={skill.icon} alt={skill.name} className="w-4 h-4 sm:w-5 sm:h-5 object-contain transition-all duration-300 dark:drop-shadow-[0_0_3px_rgba(255,255,255,0.7)]" />
                          <span className="text-[4px] sm:text-[5px] font-bold text-slate-700 dark:text-slate-200 text-center leading-tight">
                            {skill.name}
                          </span>

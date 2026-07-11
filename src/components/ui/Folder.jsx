@@ -93,10 +93,6 @@ const Folder = ({ color = '#E67E22', title = '', items = [], className = '' }) =
               const rad = angle * (Math.PI / 180);
               const x = radius * Math.cos(rad);
               const y = -radius * Math.sin(rad) - 5; // offset slightly higher
-
-              const bgClasses = ['bg-slate-200 dark:bg-zinc-700', 'bg-slate-100 dark:bg-zinc-600', 'bg-white dark:bg-zinc-500'];
-              const bgClass = bgClasses[i % bgClasses.length];
-
               // Peek math for hover state
               const offsetIndex = i - ((items.length - 1) / 2);
               const peekX = -25 + (offsetIndex * 8); // spread horizontally slightly
@@ -121,7 +117,7 @@ const Folder = ({ color = '#E67E22', title = '', items = [], className = '' }) =
                     mass: 0.8,
                     delay: open ? i * 0.05 : 0 // Stagger fan out
                   }}
-                  className={`absolute w-[50px] h-[40px] ${bgClass} rounded-[6px] flex flex-col items-center justify-center p-1 text-center shadow-md overflow-visible`}
+                  className={`absolute w-[50px] h-[40px] bg-transparent rounded-[6px] flex flex-col items-center justify-center p-1 text-center overflow-visible`}
                 >
                   <motion.div
                     animate={open ? { y: [0, -4, 0], rotate: [0, (i % 2 === 0 ? 2 : -2), 0] } : { y: 0, rotate: 0 }}
