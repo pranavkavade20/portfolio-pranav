@@ -125,7 +125,7 @@ function Header() {
               rel="noreferrer"
               className="hidden md:flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 dark:bg-brand-secondary dark:hover:bg-brand-secondary/90 dark:text-slate-100  text-white text-[15px] font-medium rounded-xl shadow-lg transition-all duration-300"
             >
-              Resume
+              My Resume
               <motion.span
                 initial={{ y: 0 }}
                 whileHover={{ y: 2 }}
@@ -218,7 +218,7 @@ function Header() {
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary dark:bg-brand-secondary dark:text-slate-100 hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 text-white text-base font-medium rounded-xl transition-colors shadow-md"
                 >
-                  Resume <Download size={18} strokeWidth={2} className='animate-bounce' />
+                  My Resume <Download size={18} strokeWidth={2} className='animate-bounce' />
                 </a>
               </motion.div>
             </div>

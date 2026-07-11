@@ -1,16 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import SectionHeading from '../components/ui/SectionHeading';
-import Folder from '../components/ui/Folder';
 
-// Import Backend SVGs
-import pythonIcon from '../assets/skills/backend/Python.svg';
-import sqlIcon from '../assets/skills/backend/SQL.svg';
-import djangoIcon from '../assets/skills/backend/Django.svg';
-import drfIcon from '../assets/skills/backend/Django REST.svg';
-import fastapiIcon from '../assets/skills/backend/FastAPI.svg';
-
-// Import Frontend SVGs
+// Frontend
 import htmlIcon from '../assets/skills/frontend/HTML5.svg';
 import cssIcon from '../assets/skills/frontend/CSS3.svg';
 import jsIcon from '../assets/skills/frontend/JavaScript.svg';
@@ -18,193 +10,168 @@ import reactIcon from '../assets/skills/frontend/React.svg';
 import tsIcon from '../assets/skills/frontend/TypeScript.svg';
 import tailwindIcon from '../assets/skills/frontend/Tailwind CSS.svg';
 
-// Import Database Tools SVGs
+// Backend
+import pythonIcon from '../assets/skills/backend/Python.svg';
+import sqlIcon from '../assets/skills/backend/SQL.svg';
+import djangoIcon from '../assets/skills/backend/Django.svg';
+import drfIcon from '../assets/skills/backend/Django REST.svg';
+import fastapiIcon from '../assets/skills/backend/FastAPI.svg';
+
+// Database & Tools
 import gitIcon from '../assets/skills/database_tools/Git.svg';
 import githubIcon from '../assets/skills/database_tools/GitHub.svg';
 import mongoIcon from '../assets/skills/database_tools/MongoDB.svg';
 import postgresIcon from '../assets/skills/database_tools/PostgresSQL.svg';
 import postmanIcon from '../assets/skills/database_tools/Postman.svg';
 
+// Each category is modeled as a file in an editor: a real, scannable
+// artifact from an engineer's world rather than a decorative shape.
+const skillCategories = [
+  {
+    fileName: 'frontend.tsx',
+    title: 'Frontend Engineering',
+    description: 'Building interactive interfaces and responsive UI',
+    accent: '#2563EB',
+    skills: [
+      { name: 'HTML5', icon: htmlIcon },
+      { name: 'CSS3', icon: cssIcon },
+      { name: 'JavaScript', icon: jsIcon },
+      { name: 'React', icon: reactIcon },
+      { name: 'TypeScript', icon: tsIcon },
+      { name: 'Tailwind', icon: tailwindIcon },
+    ],
+  },
+  {
+    fileName: 'backend.py',
+    title: 'Backend Engineering',
+    description: 'Designing APIs, data models and business logic',
+    accent: '#16A34A',
+    skills: [
+      { name: 'Python', icon: pythonIcon },
+      { name: 'SQL', icon: sqlIcon },
+      { name: 'Django', icon: djangoIcon },
+      { name: 'DRF', icon: drfIcon },
+      { name: 'FastAPI', icon: fastapiIcon },
+    ],
+  },
+  {
+    fileName: 'toolbox.yml',
+    title: 'Databases & Tooling',
+    description: 'Version control, data storage and dev workflow',
+    accent: '#EA580C',
+    skills: [
+      { name: 'Git', icon: gitIcon },
+      { name: 'GitHub', icon: githubIcon },
+      { name: 'MongoDB', icon: mongoIcon },
+      { name: 'PostgreSQL', icon: postgresIcon },
+      { name: 'Postman', icon: postmanIcon },
+    ],
+  },
+];
+
+const totalSkills = skillCategories.reduce((sum, c) => sum + c.skills.length, 0);
+
 function Skill() {
-  const skillCategories = [
-    {
-      title: "Frontend Engineering",
-      folderColor: "#2563EB",
-      skills: [
-        { name: "HTML5", icon: htmlIcon },
-        { name: "CSS3", icon: cssIcon },
-        { name: "JavaScript", icon: jsIcon },
-        { name: "React", icon: reactIcon },
-        { name: "TypeScript", icon: tsIcon },
-        { name: "Tailwind", icon: tailwindIcon },
-      ]
-    },
-    {
-      title: "Backend Engineering",
-      folderColor: "#16A34A",
-      skills: [
-        { name: "Python", icon: pythonIcon },
-        { name: "SQL", icon: sqlIcon },
-        { name: "Django", icon: djangoIcon },
-        { name: "DRF", icon: drfIcon },
-        { name: "FastAPI", icon: fastapiIcon },
-      ]
-    },
-
-    {
-      title: "Databases and Tools",
-      folderColor: "#EA580C",
-      skills: [
-        { name: "Git", icon: gitIcon },
-        { name: "GitHub", icon: githubIcon },
-        { name: "MongoDB", icon: mongoIcon },
-        { name: "PostgreSQL", icon: postgresIcon },
-        { name: "Postman", icon: postmanIcon },
-      ]
-    }
-  ];
-
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-slate-50 dark:from-black/40 to-transparent z-0"></div>
-      
-      <div className="container mx-auto max-w-5xl px-4 md:px-6 relative z-10">
-        <SectionHeading 
-          title="Technical Arsenal" 
-          subtitle="Folder Workspace" 
-        />
-        
-        <div className="mt-40 sm:mt-48 md:mt-56 flex flex-col gap-20 md:gap-40 relative pb-24 md:pb-32">
-          {skillCategories.map((category, index) => {
-            const isEven = index % 2 === 0;
-            return (
-              <motion.div 
-                key={index} 
-                className={`flex w-full relative ${isEven ? 'justify-center md:justify-start md:pl-20' : 'justify-center md:justify-end md:pr-20'}`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              >
-                 {/* Arrow pointing to the next folder */}
-                 {index < skillCategories.length - 1 && (
-                   <>
-                     {/* Desktop Zig-Zag SVG Curve */}
-                     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute top-[80%] left-0 w-full h-[180px] md:h-[220px] pointer-events-none z-0 hidden md:block">
-                        <defs>
-                          <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#E67E22" stopOpacity="0.8" />
-                            <stop offset="100%" stopColor="#f97316" stopOpacity="0.8" />
-                          </linearGradient>
-                        </defs>
-                        {/* Base Line */}
-                        <path 
-                           d={isEven ? "M 20 0 C 20 50, 80 50, 80 100" : "M 80 0 C 80 50, 20 50, 20 100"}
-                           stroke="currentColor" 
-                           className="text-slate-300 dark:text-slate-700" 
-                           strokeWidth="2" 
-                           fill="none" 
-                           vectorEffect="non-scaling-stroke" 
-                        />
-                        {/* Flowing Orange Current Line */}
-                        <motion.path 
-                           d={isEven ? "M 20 0 C 20 50, 80 50, 80 100" : "M 80 0 C 80 50, 20 50, 20 100"}
-                           stroke="url(#orangeGlow)" 
-                           strokeWidth="2.5" 
-                           fill="none" 
-                           strokeDasharray="15 30" 
-                           vectorEffect="non-scaling-stroke"
-                           initial={{ strokeDashoffset: 100 }}
-                           animate={{ strokeDashoffset: 0 }}
-                           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        />
-                        {/* Base Arrowhead */}
-                        <path 
-                           d={isEven ? "M 78 95 L 80 100 L 82 95" : "M 18 95 L 20 100 L 22 95"}
-                           stroke="currentColor" 
-                           className="text-slate-300 dark:text-slate-700" 
-                           strokeWidth="2" 
-                           fill="none" 
-                           vectorEffect="non-scaling-stroke" 
-                        />
-                        {/* Glowing Arrowhead */}
-                        <path 
-                           d={isEven ? "M 78 95 L 80 100 L 82 95" : "M 18 95 L 20 100 L 22 95"}
-                           stroke="url(#orangeGlow)" 
-                           strokeWidth="2" 
-                           fill="none" 
-                           vectorEffect="non-scaling-stroke" 
-                        />
-                     </svg>
-                     
-                     {/* Mobile Straight SVG Line */}
-                     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute top-[80%] left-0 w-full h-[100px] sm:h-[120px] pointer-events-none z-0 md:hidden">
-                        <defs>
-                          <linearGradient id="orangeGlowMobile" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#E67E22" stopOpacity="0.8" />
-                            <stop offset="100%" stopColor="#f97316" stopOpacity="0.8" />
-                          </linearGradient>
-                        </defs>
-                        {/* Base Line */}
-                        <path 
-                           d="M 50 0 L 50 100" 
-                           stroke="currentColor" 
-                           className="text-slate-300 dark:text-slate-700" 
-                           strokeWidth="2" 
-                           fill="none" 
-                           vectorEffect="non-scaling-stroke" 
-                        />
-                        {/* Flowing Orange Current Line */}
-                        <motion.path 
-                           d="M 50 0 L 50 100" 
-                           stroke="url(#orangeGlowMobile)" 
-                           strokeWidth="2.5" 
-                           fill="none" 
-                           strokeDasharray="15 30" 
-                           vectorEffect="non-scaling-stroke"
-                           initial={{ strokeDashoffset: 100 }}
-                           animate={{ strokeDashoffset: 0 }}
-                           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                        />
-                        {/* Base Arrowhead */}
-                        <path 
-                           d="M 46 95 L 50 100 L 54 95" 
-                           stroke="currentColor" 
-                           className="text-slate-300 dark:text-slate-700" 
-                           strokeWidth="2" 
-                           fill="none" 
-                           vectorEffect="non-scaling-stroke" 
-                        />
-                        {/* Glowing Arrowhead */}
-                        <path 
-                           d="M 46 95 L 50 100 L 54 95" 
-                           stroke="url(#orangeGlowMobile)" 
-                           strokeWidth="2" 
-                           fill="none" 
-                           vectorEffect="non-scaling-stroke" 
-                        />
-                     </svg>
-                   </>
-                 )}
-                 
-                 <div className="relative z-10 pt-[80px] -mt-[80px] sm:pt-[100px] sm:-mt-[100px] md:pt-[120px] md:-mt-[120px]">
-                   <Folder 
-                     color={category.folderColor}
-                     className="scale-[1.5] sm:scale-[1.8] md:scale-[2.2]"
-                     title={category.title}
-                     items={category.skills.map((skill, idx) => (
-                       <div key={idx} className="flex flex-col items-center justify-center gap-1 w-full h-full select-none pointer-events-none">
-                         <img src={skill.icon} alt={skill.name} className="w-4 h-4 sm:w-5 sm:h-5 object-contain transition-all duration-300 dark:drop-shadow-[0_0_3px_rgba(255,255,255,0.7)]" />
-                         <span className="text-[4px] sm:text-[5px] font-bold text-slate-700 dark:text-slate-200 text-center leading-tight">
-                           {skill.name}
-                         </span>
-                       </div>
-                     ))}
-                   />
-                 </div>
-              </motion.div>
-            );
-          })}
+    <section className="py-20 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-[#0A0A0A] transition-colors duration-300">
+      {/* Soft top wash for depth, kept minimal */}
+      <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-slate-100 dark:from-white/[0.03] to-transparent pointer-events-none" />
+
+      <div className="container mx-auto max-w-6xl px-4 md:px-6 relative z-10">
+        <div className="mb-12 md:mb-16">
+          <SectionHeading title="Technical Arsenal" subtitle="Engineering Workspace" />
+        </div>
+
+        {/* Terminal-style summary line — quantifiable, scannable in 2 seconds */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 md:mb-14 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-slate-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-[13px] leading-none"
+        >
+          <span className="text-emerald-600 dark:text-emerald-400">$</span>
+          <span className="text-slate-500 dark:text-slate-400">cat skills.summary</span>
+          <span
+            aria-hidden="true"
+            className="inline-block w-[7px] h-[14px] bg-slate-400 dark:bg-slate-500 animate-pulse"
+          />
+          <span className="text-slate-300 dark:text-slate-700">→</span>
+          <span className="text-slate-700 dark:text-slate-300">
+            {totalSkills} technologies · {skillCategories.length} domains · full-stack
+          </span>
+        </motion.div>
+
+        {/* Editor-window cards, one per domain — everything visible at a glance */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {skillCategories.map((category, index) => (
+            <motion.article
+              key={category.fileName}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.12 }}
+              className="group relative rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+            >
+              {/* Git-gutter accent, ties each card to its category color */}
+              <div
+                className="absolute left-0 top-0 bottom-0 w-[3px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ backgroundColor: category.accent }}
+              />
+
+              {/* Tab chrome */}
+              <div className="flex items-center gap-2 px-5 py-3 border-b border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-white/[0.03]">
+                <span
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: category.accent }}
+                  aria-hidden="true"
+                />
+                <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700" aria-hidden="true" />
+                <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700" aria-hidden="true" />
+                <span className="ml-2 font-mono text-xs text-slate-500 dark:text-slate-400 truncate">
+                  {category.fileName}
+                </span>
+                <span className="ml-auto font-mono text-[11px] text-slate-400 dark:text-slate-600">
+                  {String(category.skills.length).padStart(2, '0')}
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="p-5 md:p-6 pl-6 md:pl-7">
+                <h3 className="font-bold text-[17px] text-slate-900 dark:text-white mb-1">
+                  {category.title}
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                  {category.description}
+                </p>
+
+                <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
+                  {category.skills.map((skill) => (
+                    <motion.li
+                      key={skill.name}
+                      whileHover={{
+                        y: -3,
+                        borderColor: category.accent,
+                        backgroundColor: `${category.accent}0D`,
+                      }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      className="flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] pl-2 pr-3 py-1.5"
+                    >
+                      <img
+                        src={skill.icon}
+                        alt=""
+                        className="w-4 h-4 object-contain dark:drop-shadow-[0_0_3px_rgba(255,255,255,0.15)]"
+                        draggable="false"
+                      />
+                      <span className="text-[13px] font-medium text-slate-700 dark:text-slate-200">
+                        {skill.name}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>
