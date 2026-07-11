@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Download, ChevronRight, Contrast } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
-
+import GooeyNav from '../ui/GooeyNav';
 function Header() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
@@ -38,6 +38,10 @@ function Header() {
     { name: 'Experience', path: '/experience' },
     { name: 'Contact', path: '/contact' },
   ];
+
+  const gooeyItems = navItems.map(item => ({ label: item.name, href: item.path }));
+  const activeIndexRaw = navItems.findIndex(item => location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path)));
+  const initialActiveIndex = activeIndexRaw !== -1 ? activeIndexRaw : 0;
 
   return (
     <motion.header
@@ -88,29 +92,13 @@ function Header() {
             </motion.div>
           </Link>
 
-          {/* Nav Links Placement: Centered, horizontally aligned with a 32px gap */}
-          <nav className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-[32px]">
-            {navItems.map((item) => {
-              const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
-              return (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`relative py-2 text-[15px] font-medium group transition-colors ${isActive ? 'text-brand-primary dark:text-brand-secondary' : 'text-gray-700 hover:text-brand-primary dark:text-zinc-300 dark:hover:text-brand-secondary'}`}
-                >
-                  <span>{item.name}</span>
-                  {/* Link Hover Effect: underline that scales from center out over 0.3s ease-in-out */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-primary dark:bg-brand-secondary origin-center"
-                    initial={{ scaleX: isActive ? 1 : 0 }}
-                    animate={{ scaleX: isActive ? 1 : 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  />
-                </Link>
-              );
-            })}
-          </nav>
+          {/* Nav Links Placement: Centered, horizontally aligned */}
+          <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center">
+            <GooeyNav
+              items={gooeyItems}
+              initialActiveIndex={initialActiveIndex}
+            />
+          </div>
 
           {/* Action Buttons: Right-aligned, primary brand color background */}
           <div className="flex items-center gap-4 z-50">
