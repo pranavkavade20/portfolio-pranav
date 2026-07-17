@@ -40,14 +40,6 @@ function About() {
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
             Who<span className="text-brand-primary dark:text-brand-secondary"> AM I</span>
           </h1>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="flex justify-center mt-8"
-          >
-            <ResumeButton variant="primary" className="px-8 py-3 text-base md:text-lg rounded-2xl" />
-          </motion.div>
         </motion.div>
 
         {/* The Journey Section */}
