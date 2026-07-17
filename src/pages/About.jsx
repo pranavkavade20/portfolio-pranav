@@ -39,9 +39,7 @@ function About() {
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
             Who<span className="text-brand-primary dark:text-brand-secondary"> AM I</span>
           </h1>
-          <p className="text-slate-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            A passionate full-stack developer obsessed with building scalable platforms and solving real-world problems through clean architecture.
-          </p>
+
         </motion.div>
 
         {/* The Journey Section */}
@@ -84,26 +82,56 @@ function About() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-7 order-2 space-y-8"
+            className="lg:col-span-7 order-2 flex flex-col gap-8"
           >
-            <Card className="p-8 md:p-10">
-              <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-4 flex items-center gap-3">
-                <Code2 className="text-brand-primary dark:text-brand-secondary" size={24} />
-                The Identity
-              </h3>
-              <p className="text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed">
-                I am a high-energy, detail-oriented <strong className="text-slate-900 dark:text-white">Full Stack Python Developer</strong>. As a fresher, I don't just write code; I obsess over architecture, scalability, and user experience. I thrive in the space where robust backend logic meets seamless frontend design.
-              </p>
+            <Card className="p-8 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all duration-500 border border-slate-200/50 dark:border-zinc-800/50">
+              {/* Background watermark icon */}
+              <div className="absolute -bottom-6 -right-6 text-slate-100 dark:text-zinc-800/30 transform rotate-12 group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+                <Code2 size={160} strokeWidth={1} />
+              </div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-2xl text-brand-primary dark:text-brand-secondary ring-1 ring-brand-primary/20 shadow-inner">
+                    <Code2 size={26} strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-slate-900 dark:text-white font-bold text-2xl tracking-tight">
+                    The Identity
+                  </h3>
+                </div>
+                <p className="text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed md:leading-loose">
+                  I'm a <strong className="text-slate-900 dark:text-white font-semibold relative inline-block group-hover:text-brand-primary dark:group-hover:text-brand-secondary transition-colors duration-300">
+                    <span className="relative z-10">Full Stack Engineer</span>
+                    <span className="absolute bottom-1.5 left-0 w-full h-2 bg-brand-primary/20 dark:bg-brand-secondary/20 -z-10 rounded-sm transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                  </strong> passionate about building scalable web applications with clean architecture and exceptional user experience. I enjoy turning complex ideas into secure, high-performance products that solve real-world problems.
+                </p>
+              </div>
             </Card>
 
-            <Card className="p-8 md:p-10">
-              <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-4 flex items-center gap-3">
-                <Server className="text-brand-primary dark:text-brand-secondary" size={24} />
-                The Journey
-              </h3>
-              <p className="text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed">
-                My path has been heavily focused on hands-on building. From designing complex RESTful APIs and optimizing databases to currently pouring my energy into robust platforms like Farmket, I've spent my time solving real-world data flow problems using <strong className="text-slate-900 dark:text-white">Python, Django, and React</strong>.
-              </p>
+            <Card className="p-8 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all duration-500 border border-slate-200/50 dark:border-zinc-800/50">
+              {/* Background watermark icon */}
+              <div className="absolute -bottom-6 -right-6 text-slate-100 dark:text-zinc-800/30 transform -rotate-12 group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+                <Server size={160} strokeWidth={1} />
+              </div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-2xl text-brand-primary dark:text-brand-secondary ring-1 ring-brand-primary/20 shadow-inner">
+                    <Server size={26} strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-slate-900 dark:text-white font-bold text-2xl tracking-tight">
+                    The Journey
+                  </h3>
+                </div>
+                <div className="space-y-6 text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed md:leading-loose">
+                  <p>
+                    My software engineering journey began during my graduation with C, C++ where I learned the fundamentals of programming. Later, Java strengthened my understanding of object-oriented programming (OOP) and problem-solving. Although programming was challenging at first, consistent practice, guidance from my professors, and self-learning helped me build a strong foundation.
+                  </p>
+                  <p>
+                    Discovering <strong className="text-slate-900 dark:text-white font-semibold">JavaScript and Python</strong> inspired me to build real-world applications instead of just writing code. Through personal projects and my internship, I gained hands-on experience developing production-ready software. Today, I'm focused on building scalable, AI-powered web applications while continuously growing as a software engineer.
+                  </p>
+                </div>
+              </div>
             </Card>
           </motion.div>
         </div>
