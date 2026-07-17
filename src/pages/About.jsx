@@ -28,21 +28,8 @@ function About() {
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10 flex flex-col w-full">
 
-        {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-20 md:mb-28 mt-8"
-        >
-          <Badge variant="primary" className="mb-6">About Me</Badge>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
-            Who<span className="text-brand-primary dark:text-brand-secondary"> AM I</span>
-          </h1>
-        </motion.div>
-
         {/* The Journey Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center mb-24 md:mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24 md:mb-32 relative">
 
           {/* Left Column: Profile */}
           <motion.div
@@ -62,18 +49,6 @@ function About() {
                 </p>
               </div>
             </div>
-
-            {/* Floating Tag */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              className="absolute -top-6 -right-6 bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-sm px-5 py-3 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-brand-primary/10 dark:border-brand-primary/20"
-            >
-              <span className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-                <Rocket size={16} className="text-brand-primary dark:text-brand-secondary" />
-                Ready to Build
-              </span>
-            </motion.div>
           </motion.div>
 
           {/* Right Column: Text Content */}
@@ -124,7 +99,7 @@ function About() {
                 </div>
                 <div className="space-y-6 text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed md:leading-loose">
                   <p>
-                    My software engineering journey began during my graduation with C, C++ where I learned the fundamentals of programming. Later, Java strengthened my understanding of object-oriented programming (OOP) and problem-solving. Although programming was challenging at first, consistent practice, guidance from my professors, and self-learning helped me build a strong foundation.
+                    My software engineering journey began during my graduation with C where I learned the fundamentals of programming. Later, Java strengthened my understanding of object-oriented programming (OOP) and problem-solving. Although programming was challenging at first, consistent practice, guidance from my professors, and self-learning helped me build a strong foundation.
                   </p>
                   <p>
                     Discovering <strong className="text-slate-900 dark:text-white font-semibold">JavaScript and Python</strong> inspired me to build real-world applications instead of just writing code. Through personal projects and my internship, I gained hands-on experience developing production-ready software. Today, I'm focused on building scalable, AI-powered web applications while continuously growing as a software engineer.
