@@ -4,6 +4,7 @@ import { Download, ChevronRight, Contrast } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 import GooeyNav from '../ui/GooeyNav';
+import { ResumeButton } from '../common/ResumeButton';
 function Header() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
@@ -117,24 +118,7 @@ function Header() {
                 <Contrast size={20} strokeWidth={2} />
               </motion.div>
             </button>
-            <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden md:flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 dark:bg-brand-secondary dark:hover:bg-brand-secondary/90 dark:text-slate-100  text-white text-[15px] font-medium rounded-xl shadow-lg transition-all duration-300"
-            >
-              My Resume
-              <motion.span
-                initial={{ y: 0 }}
-                whileHover={{ y: 2 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <Download size={16} strokeWidth={2.5} className='animate-bounce' />
-              </motion.span>
-            </motion.a>
-
+            <ResumeButton className="hidden md:flex" />
             {/* Mobile Menu Toggle: Hamburger icon animating to X */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -212,14 +196,7 @@ function Header() {
                 transition={{ delay: navItems.length * 0.1, duration: 0.3, ease: "easeInOut" }}
                 className="mt-4 pt-4 border-t border-gray-100 dark:border-zinc-800"
               >
-                <a
-                  href="https://drive.google.com/file/d/1UJFtjrqLMRabcow8qf4pVWUT1ljf06fJ/view"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary dark:bg-brand-secondary dark:text-slate-100 hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 text-white text-base font-medium rounded-xl transition-colors shadow-md"
-                >
-                  My Resume <Download size={18} strokeWidth={2} className='animate-bounce' />
-                </a>
+                <ResumeButton className="w-full py-4 text-base" />
               </motion.div>
             </div>
           </motion.div>
