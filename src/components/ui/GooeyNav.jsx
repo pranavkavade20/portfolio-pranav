@@ -1,6 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
 const GooeyNav = ({
   items,
   animationTime = 600,
@@ -9,13 +7,13 @@ const GooeyNav = ({
   particleR = 100,
   timeVariance = 300,
   colors = [1, 2, 3, 1, 2, 3, 1, 4],
-  initialActiveIndex = 0
+  activeIndex = 0,
+  onActiveIndexChange
 }) => {
   const containerRef = useRef(null);
   const navRef = useRef(null);
   const filterRef = useRef(null);
   const textRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
   const getXY = (distance, pointIndex, totalPoints) => {
@@ -84,36 +82,43 @@ const GooeyNav = ({
     Object.assign(textRef.current.style, styles);
     textRef.current.innerText = element.innerText;
   };
+  const isFirstRender = useRef(true);
+
   const handleClick = (e, index) => {
-    const liEl = e.currentTarget.parentElement;
     if (activeIndex === index) return;
-    setActiveIndex(index);
-    updateEffectPosition(liEl);
-    if (filterRef.current) {
-      const particles = filterRef.current.querySelectorAll('.particle');
-      particles.forEach(p => filterRef.current.removeChild(p));
-    }
-    if (textRef.current) {
-      textRef.current.classList.remove('active');
-      void textRef.current.offsetWidth;
-      textRef.current.classList.add('active');
-    }
-    if (filterRef.current) {
-      makeParticles(filterRef.current);
-    }
+    if (onActiveIndexChange) onActiveIndexChange(index);
   };
+
   const handleKeyDown = (e, index) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleClick({ currentTarget: e.currentTarget }, index);
     }
   };
+
   useEffect(() => {
     if (!navRef.current || !containerRef.current) return;
     const activeLi = navRef.current.querySelectorAll('li')[activeIndex];
     if (activeLi) {
       updateEffectPosition(activeLi);
       textRef.current?.classList.add('active');
+
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+      } else {
+        if (filterRef.current) {
+          const particles = filterRef.current.querySelectorAll('.particle');
+          particles.forEach(p => filterRef.current.removeChild(p));
+        }
+        if (textRef.current) {
+          textRef.current.classList.remove('active');
+          void textRef.current.offsetWidth;
+          textRef.current.classList.add('active');
+        }
+        if (filterRef.current) {
+          makeParticles(filterRef.current);
+        }
+      }
     }
     const resizeObserver = new ResizeObserver(() => {
       const currentActiveLi = navRef.current?.querySelectorAll('li')[activeIndex];
@@ -287,9 +292,13 @@ const GooeyNav = ({
                   activeIndex === index ? 'active' : ''
                 }`}
               >
-                <Link
-                  onClick={e => handleClick(e, index)}
-                  to={item.href}
+                <a
+                  href={item.href}
+                  onClick={e => {
+                    e.preventDefault();
+                    document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                    handleClick(e, index);
+                  }}
                   onKeyDown={e => handleKeyDown(e, index)}
                   className={`outline-none py-2 px-4 inline-block transition-colors duration-300 ${
                     activeIndex === index 
@@ -298,7 +307,7 @@ const GooeyNav = ({
                   }`}
                 >
                   {item.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

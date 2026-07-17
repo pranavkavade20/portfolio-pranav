@@ -73,9 +73,10 @@ const totalSkills = skillCategories.reduce((sum, c) => sum + c.skills.length, 0)
 
 function Skill() {
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-[#0A0A0A] transition-colors duration-300">
-      {/* Soft top wash for depth, kept minimal */}
-      <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-slate-100 dark:from-white/[0.03] to-transparent pointer-events-none" />
+    <section className="py-20 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
+      {/* Consistent Animated Background Blobs */}
+      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
+      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
 
       <div className="container mx-auto max-w-6xl px-4 md:px-6 relative z-10">
         <div className="mb-12 md:mb-16">
@@ -88,7 +89,7 @@ function Skill() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5 }}
-          className="mb-10 md:mb-14 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-slate-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-[13px] leading-none"
+          className="mb-10 md:mb-14 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-sm px-4 py-2.5 font-mono text-[13px] leading-none"
         >
           <span className="text-emerald-600 dark:text-emerald-400">$</span>
           <span className="text-slate-500 dark:text-slate-400">cat skills.summary</span>
@@ -111,7 +112,7 @@ function Skill() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.12 }}
-              className="group relative rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              className="group relative rounded-2xl border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/5 backdrop-blur-md shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
               {/* Git-gutter accent, ties each card to its category color */}
               <div
@@ -120,7 +121,7 @@ function Skill() {
               />
 
               {/* Tab chrome */}
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-white/[0.03]">
+              <div className="flex items-center gap-2 px-5 py-3 border-b border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/10">
                 <span
                   className="w-2 h-2 rounded-full"
                   style={{ backgroundColor: category.accent }}
@@ -155,7 +156,7 @@ function Skill() {
                         backgroundColor: `${category.accent}0D`,
                       }}
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      className="flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] pl-2 pr-3 py-1.5"
+                      className="flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/10 pl-2 pr-3 py-1.5"
                     >
                       <img
                         src={skill.icon}

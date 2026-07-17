@@ -183,7 +183,7 @@ const Lightbox = ({ image, onClose }) => {
 const BentoHero = ({ project, onImageClick }) => {
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="visible" className="w-full max-w-6xl mx-auto pb-16">
-      <div className="bg-white dark:bg-zinc-900 rounded-[2rem] p-6 md:p-8 shadow-soft border border-slate-100 dark:border-zinc-800 transition-colors duration-300">
+      <div className="bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md rounded-[2rem] p-6 md:p-8 shadow-soft border border-brand-primary/10 dark:border-brand-primary/20 transition-colors duration-300">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors">
@@ -215,7 +215,7 @@ const BentoHero = ({ project, onImageClick }) => {
             <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/5 dark:group-hover:bg-white/5 transition-colors z-10 pointer-events-none" />
 
             {/* Browser Window Mockup */}
-            <div className="w-full flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-zinc-700/50 bg-white dark:bg-zinc-900 group-hover:-translate-y-1 transition-transform duration-500">
+            <div className="w-full flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-brand-primary/10 dark:border-brand-primary/20 bg-brand-bg-light/80 dark:bg-brand-bg-dark/80 backdrop-blur-md group-hover:-translate-y-1 transition-transform duration-500">
               {/* Window Header */}
               <div className="w-full h-10 bg-slate-50 dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 flex items-center px-4 gap-2 shrink-0">
                 <div className="w-3 h-3 rounded-full bg-rose-400/90 shadow-sm"></div>
@@ -251,7 +251,7 @@ const ProblemSolution = ({ project }) => {
   if (!project.problem || !project.solution) return null;
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-soft transition-colors">
+      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md border border-brand-primary/10 dark:border-brand-primary/20 shadow-soft transition-colors">
         <h3 className="text-xs font-bold tracking-wider uppercase text-brand-primary dark:text-brand-secondary mb-4">The Challenge</h3>
         <p className="text-lg md:text-xl text-slate-700 dark:text-zinc-300 leading-relaxed">{project.problem}</p>
       </motion.div>
@@ -338,7 +338,7 @@ const FeaturesSection = ({ project, onImageClick }) => {
               key={idx}
               onClick={() => setActiveFeatureIdx(idx)}
               className={`group flex items-start gap-4 text-left px-5 py-5 rounded-2xl font-medium transition-all ${activeFeatureIdx === idx
-                ? 'bg-white dark:bg-zinc-900 shadow-soft border border-slate-100 dark:border-zinc-800 text-slate-900 dark:text-white translate-x-1 lg:translate-x-2'
+                ? 'bg-brand-primary/5 dark:bg-brand-primary/10 shadow-soft border border-brand-primary/10 dark:border-brand-primary/20 text-slate-900 dark:text-white translate-x-1 lg:translate-x-2'
                 : 'bg-transparent text-slate-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 border border-transparent hover:text-slate-900 dark:hover:text-white'
                 }`}
             >
@@ -368,7 +368,7 @@ const FeaturesSection = ({ project, onImageClick }) => {
               animate={{ opacity: 1, scale: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.98, x: -20 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className={`relative group bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-[2rem] p-4 md:p-6 shadow-soft flex flex-col h-full cursor-zoom-in transition-colors`}
+              className={`relative group bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md border border-brand-primary/10 dark:border-brand-primary/20 rounded-[2rem] p-4 md:p-6 shadow-soft flex flex-col h-full cursor-zoom-in transition-colors`}
               onClick={() => onImageClick && onImageClick(getFeatureImage())}
             >
               {/* Enlarge Hint */}
@@ -442,7 +442,7 @@ function Project() {
         />
 
         <div className="flex flex-col items-center mb-10">
-          <div className="flex items-center gap-2 p-1.5 bg-white dark:bg-zinc-900 rounded-full border border-slate-200 dark:border-zinc-800 shadow-sm overflow-x-auto max-w-full transition-colors">
+          <div className="flex items-center gap-2 p-1.5 bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md rounded-full border border-brand-primary/10 dark:border-brand-primary/20 shadow-sm overflow-x-auto max-w-full transition-colors">
             {projects.map((project, index) => (
               <button
                 key={project.id}

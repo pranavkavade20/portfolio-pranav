@@ -6,7 +6,6 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import Folder from '../components/ui/Folder';
-import { ResumeButton } from '../components/common/ResumeButton';
 
 // tech icons 
 import profileImg from '../assets/profile.jpg';
@@ -22,10 +21,10 @@ import boy from '../assets/boy.png';
 
 function About() {
   return (
-    <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-24 pb-20 md:pt-32 md:pb-32">
-      {/* Soft Animated Background Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-secondary/40 dark:bg-brand-secondary/20 rounded-full blur-[100px] z-0 animate-pulse"></div>
-      <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-[120px] z-0 animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-24 pb-20 md:pt-32 md:pb-32 bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
+      {/* Consistent Animated Background Blobs */}
+      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
+      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10 flex flex-col w-full">
 
@@ -68,7 +67,7 @@ function About() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              className="absolute -top-6 -right-6 bg-white dark:bg-zinc-900 px-5 py-3 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-zinc-800 "
+              className="absolute -top-6 -right-6 bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-sm px-5 py-3 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-brand-primary/10 dark:border-brand-primary/20"
             >
               <span className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                 <Rocket size={16} className="text-brand-primary dark:text-brand-secondary" />
@@ -152,7 +151,7 @@ function About() {
             <img src={boy} alt="Pranav" className="w-full h-full object-cover" />
           </div>
 
-          <Card className="relative p-8 md:p-14 border border-zinc-200 dark:border-zinc-800 shadow-xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md !overflow-visible rounded-2xl md:rounded-3xl z-20">
+          <Card className="relative p-8 md:p-14 border border-brand-primary/10 dark:border-brand-primary/20 shadow-xl bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md !overflow-visible rounded-2xl md:rounded-3xl z-20">
             {/* Top Gradient Accent */}
             <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-secondary via-blue-500 to-brand-primary rounded-t-2xl md:rounded-t-3xl"></div>
 

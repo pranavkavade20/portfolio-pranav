@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Calendar, Code2 } from 'lucide-react';
-
+import React from 'react';
 import SectionHeading from '../components/ui/SectionHeading';
-import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 
 function Experience() {
-  const [activeJob, setActiveJob] = useState(0);
 
   const jobs = [
     {
@@ -22,95 +17,59 @@ function Experience() {
 
   return (
     <section className="py-24 md:py-32 relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden transition-colors duration-300">
- 
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-slate-50 dark:from-black/40 to-transparent rounded-bl-full pointer-events-none opacity-60"></div>
-
-      <div className="container mx-auto max-w-6xl px-6 relative z-10">
+      {/* Consistent Animated Background Blobs */}
+      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
+      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+      <div className="container mx-auto max-w-5xl px-6 relative z-10">
         <SectionHeading 
           title="Where I've Built" 
           subtitle="Professional Experience" 
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="mt-16 flex flex-col gap-12">
+          {jobs.map((job, index) => (
+            <div key={index} className="group relative grid grid-cols-1 md:grid-cols-8 gap-4 md:gap-8 transition-all sm:hover:bg-slate-50/50 dark:sm:hover:bg-zinc-800/20 sm:p-6 sm:-m-6 rounded-2xl">
+              {/* Left Column: Date */}
+              <div className="md:col-span-2 mt-1">
+                <span className="text-xs md:text-sm font-semibold tracking-widest text-slate-500 dark:text-zinc-500 uppercase">
+                  {job.period}
+                </span>
+              </div>
 
-          {/* Left Column: Interactive Job Selectors */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
-            {jobs.map((job, index) => (
-              <button
-                key={job.company}
-                onClick={() => setActiveJob(index)}
-                className={`group relative text-left p-5 rounded-2xl border transition-all duration-300 ${activeJob === index
-                    ? 'bg-brand-primary/5 dark:bg-brand-secondary/10 border-brand-primary/20 dark:border-brand-secondary/30 shadow-sm'
-                    : 'bg-white dark:bg-zinc-900 border-transparent hover:border-slate-200 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800'
-                  }`}
-              >
-                {activeJob === index && (
-                  <motion.div layoutId="activeJobIndicator" className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-brand-primary dark:bg-brand-secondary rounded-r-full" />
-                )}
-                <h3 className={`text-lg font-bold tracking-wide transition-colors ${activeJob === index ? 'text-brand-primary dark:text-brand-secondary' : 'text-slate-700 dark:text-zinc-300 group-hover:text-slate-900 dark:group-hover:text-white'}`}>
-                  {job.company}
+              {/* Right Column: Content */}
+              <div className="md:col-span-6 flex flex-col">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 group-hover:text-brand-primary dark:group-hover:text-brand-secondary transition-colors inline-flex items-center gap-2">
+                  {job.role} · {job.company}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 group-hover:opacity-100 transition-opacity -translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
                 </h3>
-                <p className={`text-sm font-medium mt-1 flex items-center gap-1.5 transition-colors ${activeJob === index ? 'text-brand-primary/80 dark:text-brand-secondary/80' : 'text-slate-500 dark:text-zinc-500'}`}>
-                  <Calendar size={14} /> {job.period}
+                
+                <p className="mt-4 text-slate-600 dark:text-zinc-400 leading-relaxed text-base">
+                  {job.description}
                 </p>
-              </button>
-            ))}
-          </div>
 
-          {/* Right Column: Content Display */}
-          <div className="lg:col-span-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeJob}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card className="flex flex-col overflow-hidden border-slate-200 dark:border-zinc-800">
-                  
-                  {/* Window Header */}
-                  <div className="bg-slate-50 dark:bg-zinc-900 px-6 py-4 flex items-center justify-between border-b border-slate-200 dark:border-zinc-800">
-                    <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-slate-300 dark:bg-zinc-700"></div>
-                      <div className="w-3 h-3 rounded-full bg-slate-300 dark:bg-zinc-700"></div>
-                      <div className="w-3 h-3 rounded-full bg-slate-300 dark:bg-zinc-700"></div>
-                    </div>
-                    <span className="text-slate-500 dark:text-zinc-400 text-xs font-mono tracking-wider flex items-center gap-2">
-                      <Terminal size={14} /> ~/experience/{jobs[activeJob].company.toLowerCase().replace(' ', '-')}
-                    </span>
-                  </div>
+                {job.links && (
+                  <ul className="mt-4 flex flex-wrap gap-4 text-sm font-medium text-slate-700 dark:text-zinc-300">
+                    {job.links.map((link, i) => (
+                      <li key={i} className="flex items-center gap-1.5 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        {link.name}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
-                  {/* Window Body */}
-                  <div className="p-8 md:p-12 bg-white dark:bg-zinc-900/50">
-                    <Badge variant="primary" className="mb-6">
-                      {jobs[activeJob].role}
-                    </Badge>
-
-                    <p className="text-slate-600 dark:text-zinc-400 text-lg leading-relaxed mb-10">
-                      {jobs[activeJob].description}
-                    </p>
-
-                    {/* Tech Stack Pills */}
-                    <div>
-                      <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-                        <Code2 size={16} className="text-brand-primary dark:text-brand-secondary" /> Tech Stack
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {jobs[activeJob].techStack.map((tech, i) => (
-                          <Badge key={i} variant="default">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                  </div>
-                </Card>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {job.techStack.map((tech, i) => (
+                    <li key={i}>
+                      <Badge variant="primary" className="!bg-brand-primary/10 !text-brand-primary dark:!bg-brand-secondary/10 dark:!text-brand-secondary hover:!bg-brand-primary/20 dark:hover:!bg-brand-secondary/20">
+                        {tech}
+                      </Badge>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
