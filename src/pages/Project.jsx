@@ -81,10 +81,6 @@ const projects = [
       { phase: "Planning", desc: "Architecting the Django backend and PostgreSQL schema." },
       { phase: "Development", desc: "Building the REST API and React frontend." },
       { phase: "Deployment", desc: "Configuring Redis and launching the platform." }
-    ],
-    challenges: [
-      { title: "Real-time Communication", desc: "Implementing robust chatting using Django Channels and Redis." },
-      { title: "Complex State", desc: "Managing buyer and farmer roles securely within a single platform." }
     ]
   },
   {
@@ -114,10 +110,6 @@ const projects = [
       { phase: "Data Pipeline", desc: "Cleaning and vectorizing recipe datasets." },
       { phase: "Model Training", desc: "Implementing Scikit-Learn algorithms." },
       { phase: "Integration", desc: "Connecting the AI engine to the Django backend." }
-    ],
-    challenges: [
-      { title: "Search Latency", desc: "Optimizing the vector search to return results in under a second." },
-      { title: "Data Quality", desc: "Normalizing thousands of diverse recipes for the model." }
     ]
   },
   {
@@ -141,9 +133,6 @@ const projects = [
       { phase: "UI Design", desc: "Wireframing the responsive dashboard." },
       { phase: "API Design", desc: "Creating robust FastAPI endpoints." },
       { phase: "Integration", desc: "Connecting React state with the backend." }
-    ],
-    challenges: [
-      { title: "State Synchronization", desc: "Ensuring the UI perfectly reflects the PostgreSQL database state." }
     ]
   }
 ];
@@ -224,7 +213,7 @@ const BentoHero = ({ project, onImageClick }) => {
             className="relative rounded-[2rem] overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50 dark:from-zinc-800/80 dark:to-zinc-800/40 border border-slate-200/80 dark:border-zinc-700/80 cursor-zoom-in transition-all duration-500 shadow-sm hover:shadow-soft p-4 md:p-8 lg:p-12 flex items-center justify-center"
           >
             <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/5 dark:group-hover:bg-white/5 transition-colors z-10 pointer-events-none" />
-            
+
             {/* Browser Window Mockup */}
             <div className="w-full flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-zinc-700/50 bg-white dark:bg-zinc-900 group-hover:-translate-y-1 transition-transform duration-500">
               {/* Window Header */}
@@ -419,34 +408,6 @@ const FeaturesSection = ({ project, onImageClick }) => {
   );
 };
 
-const Challenges = ({ project }) => {
-  const [openIdx, setOpenIdx] = useState(0);
-  if (!project.challenges || project.challenges.length === 0) return null;
-  return (
-    <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-20 max-w-3xl mx-auto">
-      <h3 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-10 text-center">Technical Hurdles</h3>
-      <div className="space-y-4">
-        {project.challenges.map((challenge, idx) => (
-          <motion.div key={idx} variants={fadeUp} className="border border-slate-200 dark:border-zinc-700 rounded-[1.5rem] overflow-hidden bg-white dark:bg-zinc-900 shadow-sm transition-colors">
-            <button onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)} className="w-full flex items-center justify-between p-6 text-left">
-              <span className="text-lg font-semibold text-slate-900 dark:text-white">{challenge.title}</span>
-              <span className={`w-8 h-8 flex items-center justify-center rounded-full bg-slate-50 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400 transition-transform duration-300 ${openIdx === idx ? 'rotate-180 bg-slate-100 dark:bg-zinc-700' : ''}`}>
-                <ChevronDown size={18} />
-              </span>
-            </button>
-            <AnimatePresence>
-              {openIdx === idx && (
-                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                  <div className="p-6 pt-0 text-slate-600 dark:text-zinc-400 border-t border-slate-100 dark:border-zinc-800 mt-2">{challenge.desc}</div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-};
 
 // --- MAIN PROJECT COMPONENT ---
 function Project() {
@@ -474,9 +435,9 @@ function Project() {
       <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <SectionHeading 
-          title="Projects I Built" 
-          subtitle="Selected Work" 
+        <SectionHeading
+          title="Projects I Built"
+          subtitle="Selected Work"
           className="mb-12"
         />
 
@@ -509,7 +470,6 @@ function Project() {
             <BentoHero project={activeProject} onImageClick={openLightbox} />
             <FeaturesSection project={activeProject} onImageClick={openLightbox} />
             <ProblemSolution project={activeProject} />
-            <Challenges project={activeProject} />
           </motion.div>
         </AnimatePresence>
 
