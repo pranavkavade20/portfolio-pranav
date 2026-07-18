@@ -160,6 +160,7 @@ function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
+            key="mobile-menu"
             initial={{ opacity: 0, y: -20, height: 0 }}
             animate={{ opacity: 1, y: 0, height: 'auto' }}
             exit={{ opacity: 0, y: -20, height: 0 }}
@@ -180,7 +181,9 @@ function Header() {
                       onClick={(e) => {
                         e.preventDefault();
                         setIsMenuOpen(false);
-                        document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' });
+                        setTimeout(() => {
+                          document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' });
+                        }, 150);
                         setActiveIndex(i);
                       }}
                       className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all ${
