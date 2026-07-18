@@ -7,7 +7,6 @@ import Skill from './pages/Skill'
 import Project from './pages/Project'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
-import CustomCursor from './components/ui/CustomCursor'
 import Preloader from './components/ui/Preloader'
 import './index.css'
 
@@ -25,7 +24,6 @@ function App() {
       <AnimatePresence mode="wait">
         {isLoading && <Preloader key="preloader" />}
       </AnimatePresence>
-      <CustomCursor />
       <Header />
       <SocialSidebar />
       <main className="flex flex-col w-full">
