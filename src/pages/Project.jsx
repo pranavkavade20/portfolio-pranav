@@ -430,11 +430,10 @@ function Project() {
   };
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden min-h-screen bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
-      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+    <section id="projects" className="py-24 md:py-32 relative overflow-hidden min-h-screen bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+
+      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10">
         <SectionHeading
           title="Projects I Built"
           subtitle="Selected Work"

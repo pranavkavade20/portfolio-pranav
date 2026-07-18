@@ -73,35 +73,13 @@ const totalSkills = skillCategories.reduce((sum, c) => sum + c.skills.length, 0)
 
 function Skill() {
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-      {/* Consistent Animated Background Blobs */}
-      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
-      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+    <section className="py-24 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
 
-      <div className="container mx-auto max-w-6xl px-4 md:px-6 relative z-10">
+
+      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10">
         <div className="mb-12 md:mb-16">
           <SectionHeading title="Technical Arsenal" subtitle="Engineering Workspace" />
         </div>
-
-        {/* Terminal-style summary line — quantifiable, scannable in 2 seconds */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
-          className="mb-10 md:mb-14 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-sm px-4 py-2.5 font-mono text-[13px] leading-none"
-        >
-          <span className="text-emerald-600 dark:text-emerald-400">$</span>
-          <span className="text-slate-500 dark:text-slate-400">cat skills.summary</span>
-          <span
-            aria-hidden="true"
-            className="inline-block w-[7px] h-[14px] bg-slate-400 dark:bg-slate-500 animate-pulse"
-          />
-          <span className="text-slate-300 dark:text-slate-700">→</span>
-          <span className="text-slate-700 dark:text-slate-300">
-            {totalSkills} technologies · {skillCategories.length} domains · full-stack
-          </span>
-        </motion.div>
 
         {/* Editor-window cards, one per domain — everything visible at a glance */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">

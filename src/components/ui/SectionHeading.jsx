@@ -19,7 +19,7 @@ const SectionHeading = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`mb-16 md:mb-24 ${aligns[align]} max-w-2xl ${className}`}
+      className={`mb-16 md:mb-20 ${aligns[align]} max-w-2xl ${className}`}
     >
       {subtitle && (
         <p className="text-sm md:text-base font-bold tracking-widest uppercase text-brand-primary dark:text-brand-secondary mb-4">

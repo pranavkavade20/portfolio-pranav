@@ -18,12 +18,10 @@ import postgresqlImg from '../assets/tech/postgresql.png';
 
 function About() {
   return (
-    <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-24 pb-20 md:pt-32 md:pb-32 bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-      {/* Consistent Animated Background Blobs */}
-      <div className="absolute top-[-8%] left-[-8%] w-64 h-64 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
-      <div className="absolute bottom-[10%] right-[-6%] w-72 h-72 bg-brand-secondary/50 dark:bg-brand-primary/20 rounded-full blur-[90px] z-0 animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+    <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-32 pb-24 md:pt-40 md:pb-32 bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
 
-      <div className="container mx-auto max-w-7xl px-6 relative z-10 flex flex-col w-full">
+
+      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10 flex flex-col w-full">
 
         {/* The Journey Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24 md:mb-32 relative">
