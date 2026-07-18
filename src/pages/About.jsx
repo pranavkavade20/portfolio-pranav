@@ -1,20 +1,8 @@
 import React from 'react';
-import { Rocket, MapPin, Code2, Server, Github, Mail } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-import Button from '../components/ui/Button';
-import Card from '../components/ui/Card';
-import Badge from '../components/ui/Badge';
-import Folder from '../components/ui/Folder';
-
-// tech icons 
 import profileImg from '../assets/profile.jpg';
-import pythonImg from '../assets/tech/python.png';
-import djangoImg from '../assets/tech/django.png';
-import reactImg from '../assets/tech/react.png';
-import jsImg from '../assets/tech/javascript.png';
-import fastapiImg from '../assets/tech/fastapi.png';
-import postgresqlImg from '../assets/tech/postgresql.png';
 
 function About() {
   return (
