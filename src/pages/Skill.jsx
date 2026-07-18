@@ -73,10 +73,10 @@ const totalSkills = skillCategories.reduce((sum, c) => sum + c.skills.length, 0)
 
 function Skill() {
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
+    <section className="section-padding relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
 
 
-      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10">
+      <div className="content-container relative z-10">
         <div className="mb-12 md:mb-16">
           <SectionHeading title="Technical Arsenal" subtitle="Engineering Workspace" />
         </div>
@@ -90,7 +90,7 @@ function Skill() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.12 }}
-              className="group relative rounded-2xl border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/5 backdrop-blur-md shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              className="group relative rounded-[20px] border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/5 backdrop-blur-md shadow-sm hover-card overflow-hidden"
             >
               {/* Git-gutter accent, ties each card to its category color */}
               <div
@@ -117,7 +117,7 @@ function Skill() {
 
               {/* Body */}
               <div className="p-5 md:p-6 pl-6 md:pl-7">
-                <h3 className="font-bold text-[17px] text-slate-900 dark:text-white mb-1">
+                <h3 className="font-bold text-card-title text-slate-900 dark:text-white mb-1">
                   {category.title}
                 </h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">

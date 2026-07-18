@@ -18,13 +18,13 @@ import postgresqlImg from '../assets/tech/postgresql.png';
 
 function About() {
   return (
-    <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-32 pb-24 md:pt-40 md:pb-32 bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
+    <main className="min-h-screen relative overflow-hidden flex flex-col items-center pt-[136px] md:pt-[152px] lg:pt-[176px] pb-[56px] md:pb-[72px] lg:pb-[96px] bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
 
 
-      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10 flex flex-col w-full">
+      <div className="content-container relative z-10 flex flex-col">
 
         {/* The Journey Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24 md:mb-32 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start relative">
 
           {/* Left Column: Profile */}
           <motion.div
@@ -52,26 +52,23 @@ function About() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-7 order-2 flex flex-col gap-8"
+            className="lg:col-span-7 order-2 flex flex-col gap-8 justify-center"
           >
-            <Card className="p-8 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <h3 className="text-slate-900 dark:text-white font-bold text-2xl tracking-tight">
-                    The Journey
-                  </h3>
-                </div>
-                <div className="space-y-6 text-slate-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed md:leading-loose">
-                  <p>
-                    My software engineering journey began during my graduation with C where I learned the fundamentals of programming. Later, Java strengthened my understanding of object-oriented programming (OOP) and problem-solving. Although programming was challenging at first, consistent practice, guidance from my professors, and self-learning helped me build a strong foundation.
-                  </p>
-                  <p>
-                    Discovering <strong className="text-slate-900 dark:text-white font-semibold">JavaScript and Python</strong> inspired me to build real-world applications instead of just writing code. Through personal projects and my internship, I gained hands-on experience developing production-ready software. Today, I'm focused on building scalable, AI-powered web applications while continuously growing as a software engineer.
-                  </p>
-                </div>
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <h3 className="text-slate-900 dark:text-white font-bold text-2xl tracking-tight">
+                  The Journey
+                </h3>
               </div>
-            </Card>
+              <div className="space-y-6 text-slate-600 dark:text-zinc-400 text-body">
+                <p>
+                  My software engineering journey began during my graduation with C where I learned the fundamentals of programming. Later, Java strengthened my understanding of object-oriented programming (OOP) and problem-solving. Although programming was challenging at first, consistent practice, guidance from my professors, and self-learning helped me build a strong foundation.
+                </p>
+                <p>
+                  Discovering <strong className="text-slate-900 dark:text-white font-semibold">JavaScript and Python</strong> inspired me to build real-world applications instead of just writing code. Through personal projects and my internship, I gained hands-on experience developing production-ready software. Today, I'm focused on building scalable, AI-powered web applications while continuously growing as a software engineer.
+                </p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

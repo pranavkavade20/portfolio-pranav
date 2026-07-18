@@ -26,7 +26,7 @@ const SectionHeading = ({
           {subtitle}
         </p>
       )}
-      <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+      <h2 className="text-section-title text-slate-900 dark:text-white">
         {title}
       </h2>
     </motion.div>

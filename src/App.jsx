@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import Header from './components/layout/Header'
 import SocialSidebar from './components/layout/SocialSidebar'
 import About from './pages/About'
@@ -6,11 +8,23 @@ import Project from './pages/Project'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 import CustomCursor from './components/ui/CustomCursor'
+import Preloader from './components/ui/Preloader'
 import './index.css'
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2500)
+    return () => clearTimeout(timer)
+  }, [])
   return (
     <div className="relative">
+      <AnimatePresence mode="wait">
+        {isLoading && <Preloader key="preloader" />}
+      </AnimatePresence>
       <CustomCursor />
       <Header />
       <SocialSidebar />

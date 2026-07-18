@@ -81,36 +81,20 @@ function Header() {
           : 'bg-transparent'
         }`}
     >
-      <div className="w-full max-w-[1200px] h-[80px] mx-auto px-[20px]">
+      <div className="content-container h-[80px]">
         <div className="flex justify-between items-center h-full relative">
 
-          <a href="#about" className="flex items-center gap-2 group z-50 font-mono" onClick={(e) => {
+          <a href="#about" className="flex items-center group z-50" onClick={(e) => {
             e.preventDefault();
             setIsMenuOpen(false);
             document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
           }}>
-            <motion.span
-              initial={{ opacity: 0.7 }}
-              whileHover={{ opacity: 1, x: 2 }}
-              className="text-brand-primary dark:text-brand-secondary text-xl font-bold transition-all duration-200"
-            >
-              &gt;
-            </motion.span>
             <motion.div
-              whileHover={{ x: 2 }}
-              className="text-xl font-semibold tracking-tight flex items-center transition-transform duration-200"
+              initial={{ opacity: 0.9 }}
+              whileHover={{ opacity: 1, scale: 1.05 }}
+              className="transition-all duration-200 flex items-center justify-center"
             >
-              <span className="text-neutral-800 dark:text-neutral-200">
-                Pranav
-              </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-secondary dark:to-brand-secondary/80 ml-px">
-                .py
-              </span>
-              <motion.div
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                className="w-2.5 h-5 bg-brand-primary/80 dark:bg-brand-secondary/80 ml-1.5 rounded-[1px]"
-              />
+              <img src="/logo.svg" alt="P Logo" className="w-10 h-10 md:w-12 md:h-12 drop-shadow-sm" />
             </motion.div>
           </a>
 
@@ -180,9 +164,9 @@ function Header() {
             animate={{ opacity: 1, y: 0, height: 'auto' }}
             exit={{ opacity: 0, y: -20, height: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-white dark:bg-brand-bg-dark absolute top-full left-0 w-full"
+            className="md:hidden overflow-hidden bg-white dark:bg-brand-bg-dark absolute top-full left-0 w-full shadow-lg"
           >
-            <div className="px-[20px] py-6 flex flex-col gap-2">
+            <div className="px-6 py-6 flex flex-col gap-2">
               {navItems.map((item, i) => {
                 return (
                   <motion.div
@@ -237,4 +221,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header;

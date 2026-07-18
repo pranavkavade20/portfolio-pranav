@@ -10,7 +10,7 @@ const Button = ({
   as: Component = 'button',
   ...props 
 }) => {
-  const baseStyles = "inline-flex items-center justify-center font-semibold tracking-wide rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const baseStyles = "inline-flex items-center justify-center font-semibold tracking-wide rounded-[12px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
   
   const variants = {
     primary: "bg-brand-primary dark:bg-brand-secondary text-white dark:text-brand-primary hover:bg-brand-primary/90 dark:hover:bg-brand-secondary/90 shadow-md hover:shadow-lg focus:ring-brand-primary dark:focus:ring-brand-secondary",

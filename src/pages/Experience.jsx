@@ -16,9 +16,9 @@ function Experience() {
   ];
 
   return (
-    <section className="py-24 md:py-32 relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden transition-colors duration-300">
+    <section className="section-padding relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden transition-colors duration-300">
 
-      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10">
+      <div className="content-container relative z-10">
         <SectionHeading 
           title="Where I've Built" 
           subtitle="Professional Experience" 
@@ -36,12 +36,12 @@ function Experience() {
 
               {/* Right Column: Content */}
               <div className="md:col-span-6 flex flex-col">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-zinc-100 group-hover:text-brand-primary dark:group-hover:text-brand-secondary transition-colors inline-flex items-center gap-2">
+                <h3 className="text-card-title font-bold text-slate-900 dark:text-zinc-100 group-hover:text-brand-primary dark:group-hover:text-brand-secondary transition-colors inline-flex items-center gap-2">
                   {job.role} · {job.company}
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 group-hover:opacity-100 transition-opacity -translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
                 </h3>
                 
-                <p className="mt-4 text-slate-600 dark:text-zinc-400 leading-relaxed text-base">
+                <p className="mt-4 text-slate-600 dark:text-zinc-400 text-body">
                   {job.description}
                 </p>
 

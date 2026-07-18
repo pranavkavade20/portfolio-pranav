@@ -8,11 +8,11 @@ import Button from '../components/ui/Button';
 
 function Contact() {
   return (
-    <section className="py-24 md:py-32 relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden min-h-[80vh] flex items-center transition-colors duration-300">
+    <section className="section-padding relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden min-h-[80vh] flex items-center transition-colors duration-300">
       
 
 
-      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10">
+      <div className="content-container relative z-10">
         
         <SectionHeading 
           title="Let's Connect" 
@@ -31,8 +31,8 @@ function Contact() {
               <MessageSquare size={32} />
             </div>
 
-            <p className="text-lg md:text-xl text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
-              I'm currently looking for new opportunities as a Full Stack Python Developer.
+            <p className="text-body text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12 font-medium">
+              I'm currently looking for new opportunities as a Full Stack Python Engineer.
               Whether you have a question or just want to say hi, my inbox is always open!
             </p>
 

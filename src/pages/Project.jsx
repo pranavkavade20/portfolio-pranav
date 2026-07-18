@@ -183,13 +183,13 @@ const Lightbox = ({ image, onClose }) => {
 const BentoHero = ({ project, onImageClick }) => {
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="visible" className="w-full max-w-6xl mx-auto pb-16">
-      <div className="bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md rounded-[2rem] p-6 md:p-8 shadow-soft border border-brand-primary/10 dark:border-brand-primary/20 transition-colors duration-300">
+      <div className="bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md rounded-[20px] p-6 md:p-8 shadow-soft border border-brand-primary/10 dark:border-brand-primary/20 transition-colors duration-300">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors">
+            <h1 className="text-section-title text-slate-900 dark:text-white mb-4 transition-colors">
               {project.title}
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 dark:text-zinc-400 leading-relaxed transition-colors">
+            <p className="text-body text-slate-600 dark:text-zinc-400 transition-colors">
               {project.desc}
             </p>
           </div>
@@ -210,7 +210,7 @@ const BentoHero = ({ project, onImageClick }) => {
         <div className="w-full group mt-8">
           <div
             onClick={() => onImageClick(project.bentoImages[0])}
-            className="relative rounded-[2rem] overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50 dark:from-zinc-800/80 dark:to-zinc-800/40 border border-slate-200/80 dark:border-zinc-700/80 cursor-zoom-in transition-all duration-500 shadow-sm hover:shadow-soft p-4 md:p-8 lg:p-12 flex items-center justify-center"
+            className="relative rounded-[20px] overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50 dark:from-zinc-800/80 dark:to-zinc-800/40 border border-slate-200/80 dark:border-zinc-700/80 cursor-zoom-in transition-all duration-500 shadow-sm hover:shadow-soft p-4 md:p-8 lg:p-12 flex items-center justify-center"
           >
             <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/5 dark:group-hover:bg-white/5 transition-colors z-10 pointer-events-none" />
 
@@ -251,13 +251,13 @@ const ProblemSolution = ({ project }) => {
   if (!project.problem || !project.solution) return null;
   return (
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md border border-brand-primary/10 dark:border-brand-primary/20 shadow-soft transition-colors">
+      <motion.div variants={fadeUp} className="p-8 rounded-[20px] bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md border border-brand-primary/10 dark:border-brand-primary/20 shadow-soft transition-colors">
         <h3 className="text-xs font-bold tracking-wider uppercase text-brand-primary dark:text-brand-secondary mb-4">The Challenge</h3>
-        <p className="text-lg md:text-xl text-slate-700 dark:text-zinc-300 leading-relaxed">{project.problem}</p>
+        <p className="text-body text-slate-700 dark:text-zinc-300">{project.problem}</p>
       </motion.div>
-      <motion.div variants={fadeUp} className="p-8 rounded-[2rem] bg-brand-primary/10 dark:bg-brand-secondary/10 border border-brand-primary/20 dark:border-brand-secondary/30 shadow-soft transition-colors">
+      <motion.div variants={fadeUp} className="p-8 rounded-[20px] bg-brand-primary/10 dark:bg-brand-secondary/10 border border-brand-primary/20 dark:border-brand-secondary/30 shadow-soft transition-colors">
         <h3 className="text-xs font-bold tracking-wider uppercase text-brand-primary dark:text-brand-secondary mb-4">The Solution</h3>
-        <p className="text-lg md:text-xl text-slate-800 dark:text-zinc-200 leading-relaxed">{project.solution}</p>
+        <p className="text-body text-slate-800 dark:text-zinc-200">{project.solution}</p>
       </motion.div>
     </motion.div>
   );
@@ -298,7 +298,7 @@ const FeaturesSection = ({ project, onImageClick }) => {
     <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="py-24 max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
-          <h3 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors">Platform Features & Screens</h3>
+          <h3 className="text-section-title text-slate-900 dark:text-white transition-colors">Platform Features & Screens</h3>
           <p className="text-slate-500 dark:text-zinc-400 mt-2 transition-colors">
             {hasRoleFeatures ? "Explore tailored experiences for both sides of the marketplace." : "Explore the core capabilities and screens of the application."}
           </p>
@@ -368,7 +368,7 @@ const FeaturesSection = ({ project, onImageClick }) => {
               animate={{ opacity: 1, scale: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.98, x: -20 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className={`relative group bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md border border-brand-primary/10 dark:border-brand-primary/20 rounded-[2rem] p-4 md:p-6 shadow-soft flex flex-col h-full cursor-zoom-in transition-colors`}
+              className={`relative group bg-brand-primary/5 dark:bg-brand-primary/10 backdrop-blur-md border border-brand-primary/10 dark:border-brand-primary/20 rounded-[20px] p-4 md:p-6 shadow-soft flex flex-col h-full cursor-zoom-in transition-colors`}
               onClick={() => onImageClick && onImageClick(getFeatureImage())}
             >
               {/* Enlarge Hint */}
@@ -397,7 +397,7 @@ const FeaturesSection = ({ project, onImageClick }) => {
                   <div className={`w-12 h-12 shrink-0 bg-brand-primary/10 border border-brand-primary/20 rounded-xl flex items-center justify-center ${getIconColor()}`}>
                     {activeFeature.icon ? <activeFeature.icon size={24} /> : <CheckCircle2 size={24} />}
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight">{activeFeature.title}</h4>
+                  <h4 className="text-card-title text-slate-900 dark:text-white">{activeFeature.title}</h4>
                 </div>
               </div>
             </motion.div>
@@ -430,10 +430,10 @@ function Project() {
   };
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative overflow-hidden min-h-screen bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
+    <section id="projects" className="section-padding relative overflow-hidden min-h-screen bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
 
 
-      <div className="container mx-auto max-w-6xl px-6 md:px-8 lg:px-12 relative z-10">
+      <div className="content-container relative z-10">
         <SectionHeading
           title="Projects I Built"
           subtitle="Selected Work"
