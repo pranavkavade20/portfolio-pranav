@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer } from '../config/animations';
 import SectionHeading from '../components/ui/SectionHeading';
 
 // Frontend
@@ -24,14 +25,12 @@ import mongoIcon from '../assets/skills/database_tools/MongoDB.svg';
 import postgresIcon from '../assets/skills/database_tools/PostgresSQL.svg';
 import postmanIcon from '../assets/skills/database_tools/Postman.svg';
 
-// Each category is modeled as a file in an editor: a real, scannable
-// artifact from an engineer's world rather than a decorative shape.
 const skillCategories = [
   {
     fileName: 'frontend.tsx',
     title: 'Frontend Engineering',
     description: 'Building interactive interfaces and responsive UI',
-    accent: '#2563EB',
+    accent: 'bg-blue-500',
     skills: [
       { name: 'HTML5', icon: htmlIcon },
       { name: 'CSS3', icon: cssIcon },
@@ -45,7 +44,7 @@ const skillCategories = [
     fileName: 'backend.py',
     title: 'Backend Engineering',
     description: 'Designing APIs, data models and business logic',
-    accent: '#16A34A',
+    accent: 'bg-emerald-500',
     skills: [
       { name: 'Python', icon: pythonIcon },
       { name: 'SQL', icon: sqlIcon },
@@ -58,7 +57,7 @@ const skillCategories = [
     fileName: 'toolbox.yml',
     title: 'Databases & Tooling',
     description: 'Version control, data storage and dev workflow',
-    accent: '#EA580C',
+    accent: 'bg-amber-500',
     skills: [
       { name: 'Git', icon: gitIcon },
       { name: 'GitHub', icon: githubIcon },
@@ -69,80 +68,63 @@ const skillCategories = [
   },
 ];
 
-const totalSkills = skillCategories.reduce((sum, c) => sum + c.skills.length, 0);
-
 function Skill() {
   return (
     <section className="section-padding relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-
-
       <div className="content-container relative z-10">
         <div className="mb-12 md:mb-16">
           <SectionHeading title="Technical Arsenal" subtitle="Engineering Workspace" />
         </div>
 
-        {/* Editor-window cards, one per domain — everything visible at a glance */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {skillCategories.map((category, index) => (
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+        >
+          {skillCategories.map((category) => (
             <motion.article
               key={category.fileName}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.12 }}
-              className="group relative rounded-[20px] border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/5 backdrop-blur-md shadow-sm hover-card overflow-hidden"
+              variants={fadeUp}
+              className="group relative glass-panel rounded-card overflow-hidden flex flex-col"
             >
-              {/* Git-gutter accent, ties each card to its category color */}
-              <div
-                className="absolute left-0 top-0 bottom-0 w-[3px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ backgroundColor: category.accent }}
-              />
-
               {/* Tab chrome */}
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/10">
-                <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ backgroundColor: category.accent }}
-                  aria-hidden="true"
-                />
-                <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700" aria-hidden="true" />
-                <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700" aria-hidden="true" />
-                <span className="ml-2 font-mono text-xs text-slate-500 dark:text-slate-400 truncate">
+              <div className="flex items-center gap-2 px-5 py-3 border-b border-black/[0.08] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.02]">
+                <span className={`w-2 h-2 rounded-full ${category.accent}`} aria-hidden="true" />
+                <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-zinc-700" aria-hidden="true" />
+                <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-zinc-700" aria-hidden="true" />
+                <span className="ml-2 font-mono text-xs text-slate-500 dark:text-zinc-400 truncate">
                   {category.fileName}
                 </span>
-                <span className="ml-auto font-mono text-[11px] text-slate-400 dark:text-slate-600">
+                <span className="ml-auto font-mono text-[11px] text-slate-400 dark:text-zinc-600">
                   {String(category.skills.length).padStart(2, '0')}
                 </span>
               </div>
 
               {/* Body */}
-              <div className="p-5 md:p-6 pl-6 md:pl-7">
-                <h3 className="font-bold text-card-title text-slate-900 dark:text-white mb-1">
+              <div className="p-5 md:p-6 flex-1 flex flex-col">
+                <h3 className="font-semibold text-card-title text-slate-900 dark:text-zinc-100 mb-1">
                   {category.title}
                 </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                <p className="text-sm text-slate-500 dark:text-zinc-400 mb-6 leading-relaxed">
                   {category.description}
                 </p>
 
-                <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
+                <ul className="flex flex-wrap gap-2 mt-auto">
                   {category.skills.map((skill) => (
                     <motion.li
                       key={skill.name}
-                      whileHover={{
-                        y: -3,
-                        borderColor: category.accent,
-                        backgroundColor: `${category.accent}0D`,
-                      }}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      className="flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/10 pl-2 pr-3 py-1.5"
+                      whileHover={{ y: -2 }}
+                      className="flex items-center gap-1.5 rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white/50 dark:bg-black/20 pl-2 pr-3 py-1.5 shadow-sm transition-colors hover:bg-white dark:hover:bg-zinc-800"
                     >
                       <img
                         src={skill.icon}
                         alt=""
-                        className="w-4 h-4 object-contain dark:drop-shadow-[0_0_3px_rgba(255,255,255,0.15)]"
+                        className="w-4 h-4 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                         draggable="false"
                       />
-                      <span className="text-[13px] font-medium text-slate-700 dark:text-slate-200">
+                      <span className="text-[13px] font-medium text-slate-700 dark:text-zinc-300">
                         {skill.name}
                       </span>
                     </motion.li>
@@ -151,7 +133,7 @@ function Skill() {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

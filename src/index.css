@@ -3,57 +3,93 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-brand-primary: #E67E22;    /* Primary Orange */
-  --color-brand-secondary: #F6B26B;  /* Soft Orange */
-  --color-brand-bg-light: #F6F1EB;   /* Warm Off White */
-  --color-brand-bg-dark: #1E140A;    /* Dark Brown */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
-  --radius-card: 20px;
-  --radius-btn: 12px;
+  /* Strict Neutral Palette (Linear/Apple inspired) */
+  --color-brand-bg-light: #FAFAFA;
+  --color-brand-bg-dark: #09090B;
+  
+  --color-surface-light: #FFFFFF;
+  --color-surface-dark: #121214;
+  
+  --color-border-light: rgba(0, 0, 0, 0.08);
+  --color-border-dark: rgba(255, 255, 255, 0.08);
+  
+  --color-text-primary-light: #111111;
+  --color-text-primary-dark: #EDEDED;
+  
+  --color-text-secondary-light: #666666;
+  --color-text-secondary-dark: #A1A1AA;
+  
+  --color-accent-light: #111111; /* Off black as accent in light mode */
+  --color-accent-dark: #FFFFFF;  /* Pure white as accent in dark mode */
+  
+  --radius-card: 16px;
+  --radius-btn: 8px;
+  --radius-pill: 9999px;
+  
+  --shadow-premium-light: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-premium-dark: 0 4px 20px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-inner-light: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-inner-dark: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* Custom Utilities */
 @utility content-container {
-  @apply w-full max-w-[1280px] mx-auto px-6 md:px-8;
+  @apply w-full max-w-[1024px] mx-auto px-6 md:px-8;
 }
 
 @utility section-padding {
-  @apply py-[56px] md:py-[72px] lg:py-[96px];
+  @apply py-20 md:py-32;
 }
 
 @utility text-hero {
-  @apply text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-tight tracking-tight;
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-[1.1];
 }
 
 @utility text-section-title {
-  @apply text-[28px] md:text-[36px] lg:text-[42px] font-bold leading-tight tracking-tight;
+  @apply text-3xl md:text-4xl font-semibold tracking-tight text-balance;
 }
 
 @utility text-card-title {
-  @apply text-[20px] md:text-[22px] lg:text-[24px] font-semibold leading-snug;
+  @apply text-lg md:text-xl font-medium tracking-tight;
 }
 
 @utility text-body {
-  @apply text-[16px] md:text-[18px] leading-relaxed;
+  @apply text-base md:text-lg leading-relaxed text-slate-600 dark:text-zinc-400;
 }
 
-@utility hover-card {
-  @apply transition-all duration-[400ms] hover:shadow-xl hover:scale-[1.02];
+@utility glass-panel {
+  @apply bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.08] shadow-[var(--shadow-premium-light)] dark:shadow-[var(--shadow-premium-dark)] shadow-[var(--shadow-inner-light)] dark:shadow-[var(--shadow-inner-dark)];
 }
 
 /* Base Styles */
 body {
-  @apply bg-brand-bg-light text-slate-900 dark:bg-brand-bg-dark dark:text-zinc-50 transition-colors duration-300;
-  font-family: Google Sans, Inter, Roboto, sans-serif;
+  @apply bg-brand-bg-light text-slate-900 dark:bg-brand-bg-dark dark:text-zinc-100 transition-colors duration-300;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* For fixed headers */
 }
 
 ::selection {
-  background-color: #E67E22; /* Primary brand color selection */
-  color: #fff;
+  @apply bg-black text-white dark:bg-white dark:text-black;
+}
+
+/* Scrollbar customization for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-zinc-700 rounded-full border-2 border-transparent bg-clip-padding;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-zinc-600;
 }
