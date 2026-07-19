@@ -8,6 +8,7 @@ import Project from './pages/Project'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 import Preloader from './components/ui/Preloader'
+import SmoothScroll from './components/ui/SmoothScroll'
 import './index.css'
 
 function App() {
@@ -20,10 +21,11 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
   return (
-    <div className="relative">
-      <AnimatePresence mode="wait">
-        {isLoading && <Preloader key="preloader" />}
-      </AnimatePresence>
+    <SmoothScroll>
+      <div className="relative">
+        <AnimatePresence mode="wait">
+          {isLoading && <Preloader key="preloader" />}
+        </AnimatePresence>
       <Header />
       <SocialSidebar />
       <main className="flex flex-col w-full">
@@ -43,7 +45,8 @@ function App() {
           <Contact />
         </section>
       </main>
-    </div>
+      </div>
+    </SmoothScroll>
   )
 }
 

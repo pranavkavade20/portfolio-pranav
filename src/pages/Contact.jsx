@@ -1,5 +1,5 @@
-import React from 'react';
-import { Mail, MessageSquare } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, MessageSquare, Copy, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp } from '../config/animations';
 
@@ -8,6 +8,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 
 function Contact() {
+  const [copied, setCopied] = useState(false);
   return (
     <section className="section-padding relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden min-h-[80vh] flex items-center transition-colors duration-300">
       <div className="content-container relative z-10">
@@ -34,7 +35,7 @@ function Contact() {
               Whether you have a question or just want to say hi, my inbox is always open!
             </p>
 
-            <div className="flex justify-center items-center">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Button 
                 as="a" 
                 href="mailto:pranavkavade9@gmail.com" 
@@ -43,6 +44,20 @@ function Contact() {
                 icon={Mail}
               >
                 Say Hello
+              </Button>
+              
+              <Button 
+                variant="secondary" 
+                size="lg"
+                icon={copied ? Check : Copy}
+                onClick={() => {
+                  navigator.clipboard.writeText('pranavkavade9@gmail.com');
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+                className="min-w-[160px]"
+              >
+                {copied ? 'Copied!' : 'Copy Email'}
               </Button>
             </div>
           </Card>

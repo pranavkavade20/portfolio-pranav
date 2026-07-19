@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import {
   Github, ArrowRight,
   CheckCircle2, ChevronDown, X, MonitorPlay, Maximize2,
@@ -181,6 +181,28 @@ const Lightbox = ({ image, onClose }) => {
 };
 
 const BentoHero = ({ project, onImageClick }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+
+  const rotateX = useTransform(mouseYSpring, [-100, 100], [5, -5]);
+  const rotateY = useTransform(mouseXSpring, [-100, 100], [-5, 5]);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    x.set(e.clientX - centerX);
+    y.set(e.clientY - centerY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="visible" className="w-full max-w-6xl mx-auto pb-16">
       <div className="glass-panel rounded-card p-6 md:p-8 transition-colors duration-300">
@@ -207,15 +229,18 @@ const BentoHero = ({ project, onImageClick }) => {
           </div>
         </div>
 
-        <div className="w-full group mt-8">
-          <div
+        <div className="w-full group mt-8" style={{ perspective: 1200 }}>
+          <motion.div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             onClick={() => onImageClick(project.bentoImages[0])}
-            className="relative rounded-card overflow-hidden bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.05] cursor-zoom-in transition-all duration-500 hover:shadow-[var(--shadow-premium-light)] dark:hover:shadow-[var(--shadow-premium-dark)] p-4 md:p-8 lg:p-12 flex items-center justify-center"
+            style={{ rotateX, rotateY }}
+            className="relative rounded-card overflow-hidden bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.05] cursor-zoom-in transition-shadow duration-500 hover:shadow-[var(--shadow-premium-light)] dark:hover:shadow-[var(--shadow-premium-dark)] p-4 md:p-8 lg:p-12 flex items-center justify-center transform-gpu"
           >
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors z-10 pointer-events-none" />
 
             {/* Browser Window Mockup */}
-            <div className="w-full flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-brand-primary/10 dark:border-brand-primary/20 bg-brand-bg-light/80 dark:bg-brand-bg-dark/80 backdrop-blur-md group-hover:-translate-y-1 transition-transform duration-500">
+            <div className="w-full flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-brand-primary/10 dark:border-brand-primary/20 bg-brand-bg-light/80 dark:bg-brand-bg-dark/80 backdrop-blur-md transition-transform duration-500">
               {/* Window Header */}
               <div className="w-full h-10 bg-slate-50 dark:bg-zinc-900 border-b border-slate-100 dark:border-zinc-800 flex items-center px-4 gap-2 shrink-0">
                 <div className="w-3 h-3 rounded-full bg-rose-400/90 shadow-sm"></div>
@@ -223,8 +248,14 @@ const BentoHero = ({ project, onImageClick }) => {
                 <div className="w-3 h-3 rounded-full bg-emerald-400/90 shadow-sm"></div>
               </div>
               {/* Window Content */}
-              <div className="relative w-full bg-slate-100/50 dark:bg-zinc-900">
-                <img src={project.bentoImages[0]} alt={`${project.title} hero`} className="w-full h-auto max-h-[75vh] object-contain object-top" />
+              <div className="relative w-full bg-slate-100/50 dark:bg-zinc-900 overflow-hidden">
+                <motion.img 
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  src={project.bentoImages[0]} 
+                  alt={`${project.title} hero`} 
+                  className="w-full h-auto max-h-[75vh] object-contain object-top" 
+                />
               </div>
             </div>
 
@@ -232,7 +263,7 @@ const BentoHero = ({ project, onImageClick }) => {
             <div className="absolute bottom-6 right-6 bg-white/95 dark:bg-zinc-800/95 backdrop-blur-md px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-zinc-300 shadow-xl flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-20 border border-slate-200/50 dark:border-zinc-700/50">
               <Maximize2 size={16} /> Enlarge
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="flex flex-wrap gap-2 my-6">

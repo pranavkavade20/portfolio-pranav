@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TextReveal from './TextReveal';
 
 const SectionHeading = ({ 
   title, 
@@ -14,22 +15,22 @@ const SectionHeading = ({
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={`mb-16 md:mb-20 ${aligns[align]} max-w-2xl ${className}`}
-    >
+    <div className={`mb-16 md:mb-20 ${aligns[align]} max-w-2xl ${className}`}>
       {subtitle && (
-        <p className="text-sm md:text-base font-bold tracking-widest uppercase text-brand-primary dark:text-brand-secondary mb-4">
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-sm md:text-base font-bold tracking-widest uppercase text-slate-500 dark:text-zinc-400 mb-4"
+        >
           {subtitle}
-        </p>
+        </motion.p>
       )}
       <h2 className="text-section-title text-slate-900 dark:text-white">
-        {title}
+        <TextReveal text={title} type="word" />
       </h2>
-    </motion.div>
+    </div>
   );
 };
 

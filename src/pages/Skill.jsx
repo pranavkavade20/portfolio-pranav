@@ -112,19 +112,28 @@ function Skill() {
                 </p>
 
                 <ul className="flex flex-wrap gap-2 mt-auto">
-                  {category.skills.map((skill) => (
+                  {category.skills.map((skill, index) => (
                     <motion.li
                       key={skill.name}
-                      whileHover={{ y: -2 }}
-                      className="flex items-center gap-1.5 rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white/50 dark:bg-black/20 pl-2 pr-3 py-1.5 shadow-sm transition-colors hover:bg-white dark:hover:bg-zinc-800"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 + 0.2, type: 'spring', stiffness: 300, damping: 20 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className="group/skill flex items-center gap-1.5 rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white/50 dark:bg-black/20 pl-2 pr-3 py-1.5 shadow-sm transition-colors hover:bg-white dark:hover:bg-zinc-800 hover:shadow-md hover:border-black/10 dark:hover:border-white/10"
                     >
-                      <img
-                        src={skill.icon}
-                        alt=""
-                        className="w-4 h-4 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                        draggable="false"
-                      />
-                      <span className="text-[13px] font-medium text-slate-700 dark:text-zinc-300">
+                      <motion.div
+                         whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}
+                         transition={{ duration: 0.5 }}
+                      >
+                        <img
+                          src={skill.icon}
+                          alt=""
+                          className="w-4 h-4 object-contain opacity-80 group-hover/skill:opacity-100 transition-opacity"
+                          draggable="false"
+                        />
+                      </motion.div>
+                      <span className="text-[13px] font-medium text-slate-700 dark:text-zinc-300 transition-colors group-hover/skill:text-slate-900 dark:group-hover/skill:text-white">
                         {skill.name}
                       </span>
                     </motion.li>
