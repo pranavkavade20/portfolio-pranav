@@ -27,7 +27,7 @@ import postmanIcon from '../assets/skills/database_tools/Postman.svg';
 
 const skillCategories = [
   {
-    fileName: 'frontend.tsx',
+    fileName: 'Frontend',
     title: 'Frontend Engineering',
     description: 'Building interactive interfaces and responsive UI',
     accent: 'bg-blue-500',
@@ -41,7 +41,7 @@ const skillCategories = [
     ],
   },
   {
-    fileName: 'backend.py',
+    fileName: 'Backend',
     title: 'Backend Engineering',
     description: 'Designing APIs, data models and business logic',
     accent: 'bg-emerald-500',
@@ -54,7 +54,7 @@ const skillCategories = [
     ],
   },
   {
-    fileName: 'toolbox.yml',
+    fileName: 'Databases & Tools',
     title: 'Databases & Tooling',
     description: 'Version control, data storage and dev workflow',
     accent: 'bg-amber-500',
