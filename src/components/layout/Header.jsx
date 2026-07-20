@@ -11,7 +11,7 @@ function Header() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 50) {
+    if (latest > 10) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -56,96 +56,116 @@ function Header() {
   }, [navItems]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-50 px-4 py-4 md:py-6 flex justify-center pointer-events-none">
-      
-      {/* Desktop Pill Nav */}
-      <motion.div 
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        className={`pointer-events-auto hidden md:flex items-center gap-2 p-1.5 rounded-full transition-all duration-500 ${scrolled ? 'glass-panel shadow-lg' : 'bg-transparent'}`}
-      >
-        <a href="#about" className="px-3 flex items-center justify-center mr-2">
-           <img src="/logo.svg" alt="Logo" className="w-6 h-6 dark:invert opacity-80 hover:opacity-100 transition-opacity" />
-        </a>
+    <header 
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/40 dark:bg-black/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)]' 
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 md:h-20">
+          
+          {/* Logo Section (Left) */}
+          <div className="flex-shrink-0 flex items-center">
+            <a href="#about" className="flex items-center gap-2">
+              <img src="/logo.svg" alt="Logo" className="w-6 h-6 opacity-90 hover:opacity-100 transition-opacity" />
+            </a>
+          </div>
 
-        {navItems.map((item, index) => (
-          <a
-            key={item.name}
-            href={item.path}
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' });
-              setActiveIndex(index);
-            }}
-            className="relative px-4 py-2 rounded-full text-sm font-medium transition-colors"
-          >
-            {activeIndex === index && (
-              <motion.div
-                layoutId="nav-pill"
-                className="absolute inset-0 bg-black/[0.04] dark:bg-white/[0.08] rounded-full"
-                transition={{ type: "spring", stiffness: 350, damping: 30 }}
-              />
-            )}
-            <span className={`relative z-10 ${activeIndex === index ? 'text-black dark:text-white font-semibold' : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'}`}>
-              {item.name}
-            </span>
-          </a>
-        ))}
-        
-        <div className="w-[1px] h-4 bg-black/10 dark:bg-white/10 mx-2" />
-        
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-full text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
-          aria-label="Toggle Theme"
-        >
-          <motion.div animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.5, type: "spring" }}>
-            <Contrast size={18} />
-          </motion.div>
-        </button>
-      </motion.div>
-
-      {/* Mobile Nav Header */}
-      <div className={`md:hidden pointer-events-auto w-full max-w-md mx-auto flex items-center justify-between p-3 rounded-2xl glass-panel ${scrolled ? 'shadow-lg' : 'shadow-sm'}`}>
-        <a href="#about" className="px-2">
-           <img src="/logo.svg" alt="Logo" className="w-6 h-6 dark:invert opacity-90" />
-        </a>
-        <div className="flex items-center gap-1">
-          <button onClick={toggleTheme} className="p-2 text-slate-600 dark:text-zinc-400">
-            <Contrast size={20} />
-          </button>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 text-slate-600 dark:text-zinc-400">
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="md:hidden pointer-events-auto absolute top-20 left-4 right-4 glass-panel rounded-2xl overflow-hidden shadow-2xl flex flex-col p-2"
-          >
-            {navItems.map((item, i) => (
+          {/* Desktop Navigation (Center/Right) */}
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {navItems.map((item, index) => (
               <a
                 key={item.name}
                 href={item.path}
                 onClick={(e) => {
                   e.preventDefault();
-                  setIsMenuOpen(false);
-                  setTimeout(() => document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' }), 100);
-                  setActiveIndex(i);
+                  document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' });
+                  setActiveIndex(index);
                 }}
-                className={`p-4 rounded-xl text-center font-medium transition-colors ${activeIndex === i ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white' : 'text-slate-600 dark:text-zinc-400'}`}
+                className="relative px-4 py-2 rounded-full text-sm font-medium transition-colors"
               >
-                {item.name}
+                {activeIndex === index && (
+                  <motion.div
+                    layoutId="nav-pill"
+                    className="absolute inset-0 bg-black/[0.04] dark:bg-white/[0.08] rounded-full"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className={`relative z-10 ${
+                  activeIndex === index 
+                    ? 'text-black dark:text-white font-semibold' 
+                    : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+                }`}>
+                  {item.name}
+                </span>
               </a>
             ))}
+          </nav>
+
+          {/* Actions Section (Right) */}
+          <div className="hidden md:flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
+              aria-label="Toggle Theme"
+            >
+              <motion.div animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.5, type: "spring" }}>
+                <Contrast size={20} />
+              </motion.div>
+            </button>
+          </div>
+
+          {/* Mobile Menu Buttons */}
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-slate-600 dark:text-zinc-400"
+            >
+              <Contrast size={20} />
+            </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 text-slate-600 dark:text-zinc-400"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown with Glassmorphism */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-white/40 dark:bg-black/40 backdrop-blur-xl overflow-hidden"
+          >
+            <div className="px-4 pt-2 pb-6 space-y-2">
+              {navItems.map((item, i) => (
+                <a
+                  key={item.name}
+                  href={item.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    setTimeout(() => document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' }), 150);
+                    setActiveIndex(i);
+                  }}
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                    activeIndex === i 
+                      ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white' 
+                      : 'text-slate-600 dark:text-zinc-400'
+                  }`}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

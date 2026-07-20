@@ -48,7 +48,7 @@ const SocialSidebar = () => {
 
   return (
     <>
-      <div className="hidden md:flex fixed left-6 top-0 h-full flex-col justify-center items-center gap-6 z-40">
+      <div className="hidden lg:flex fixed left-6 top-0 h-full flex-col justify-center items-center gap-6 z-40">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -61,7 +61,7 @@ const SocialSidebar = () => {
         </motion.div>
       </div>
 
-      <div className="flex md:hidden fixed bottom-4 left-0 right-0 justify-center z-40 px-4">
+      <div className="flex lg:hidden fixed bottom-4 left-0 right-0 justify-center z-40 px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
