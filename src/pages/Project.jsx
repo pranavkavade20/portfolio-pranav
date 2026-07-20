@@ -114,7 +114,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "Product Manager",
+    title: "Productify",
     tag: "Full Stack Web App",
     desc: "Responsive dashboard for inventory management. Focuses on React Hooks,state management, and seamless FastAPI integration.",
     tech: ['React', 'FastAPI', 'PostgreSQL', 'Tailwind CSS'],
