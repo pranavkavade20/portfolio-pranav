@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Contrast } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import CircleHalf from '../../assets/circle-half.svg';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -56,16 +57,15 @@ function Header() {
   }, [navItems]);
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/40 dark:bg-black/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)]' 
+    <header
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${scrolled
+          ? 'bg-white/40 dark:bg-black/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)]'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          
+
           {/* Logo Section (Left) */}
           <div className="flex-shrink-0 flex items-center">
             <a href="#about" className="flex items-center gap-2">
@@ -93,11 +93,10 @@ function Header() {
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
-                <span className={`relative z-10 ${
-                  activeIndex === index 
-                    ? 'text-black dark:text-white font-semibold' 
+                <span className={`relative z-10 ${activeIndex === index
+                    ? 'text-black dark:text-white font-semibold'
                     : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
-                }`}>
+                  }`}>
                   {item.name}
                 </span>
               </a>
@@ -108,11 +107,11 @@ function Header() {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
+              className="p-2 rounded-full text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.1] hover:scale-110 active:scale-95 transition-all duration-200"
               aria-label="Toggle Theme"
             >
               <motion.div animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.5, type: "spring" }}>
-                <Contrast size={20} />
+                <img src={CircleHalf} alt="Toggle theme" width={20} height={20} className="dark:invert" />
               </motion.div>
             </button>
           </div>
@@ -121,9 +120,11 @@ function Header() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 text-slate-600 dark:text-zinc-400"
+              className="p-2 rounded-full text-slate-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.1] hover:scale-110 active:scale-95 transition-all duration-200"
             >
-              <Contrast size={20} />
+              <motion.div animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.5, type: "spring" }}>
+                <img src={CircleHalf} alt="Toggle theme" width={20} height={20} className="dark:invert" />
+              </motion.div>
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -156,11 +157,10 @@ function Header() {
                     setTimeout(() => document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' }), 150);
                     setActiveIndex(i);
                   }}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                    activeIndex === i 
-                      ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white' 
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${activeIndex === i
+                      ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white'
                       : 'text-slate-600 dark:text-zinc-400'
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </a>
