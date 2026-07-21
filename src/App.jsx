@@ -10,6 +10,8 @@ import Contact from './pages/Contact'
 import Preloader from './components/ui/Preloader'
 import SmoothScroll from './components/ui/SmoothScroll'
 import './index.css'
+import { ThemeProvider } from './contexts/ThemeContext.jsx'
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -21,32 +23,34 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
   return (
-    <SmoothScroll>
-      <div className="relative">
-        <AnimatePresence mode="wait">
-          {isLoading && <Preloader key="preloader" />}
-        </AnimatePresence>
-      <Header />
-      <SocialSidebar />
-      <main className="flex flex-col w-full">
-        <section id="about">
-          <About />
-        </section>
-        <section id="experience">
-          <Experience />
-        </section>
-        <section id="skills">
-          <Skill />
-        </section>
-        <section id="projects">
-          <Project />
-        </section>
-        <section id="contact">
-          <Contact />
-        </section>
-      </main>
-      </div>
-    </SmoothScroll>
+    <ThemeProvider>
+        <SmoothScroll>
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              {isLoading && <Preloader key="preloader" />}
+            </AnimatePresence>
+            <Header />
+            <SocialSidebar />
+            <main className="flex flex-col w-full">
+              <section id="about">
+                <About />
+              </section>
+              <section id="experience">
+                <Experience />
+              </section>
+              <section id="skills">
+                <Skill />
+              </section>
+              <section id="projects">
+                <Project />
+              </section>
+              <section id="contact">
+                <Contact />
+              </section>
+            </main>
+          </div>
+        </SmoothScroll>
+    </ThemeProvider>
   )
 }
 

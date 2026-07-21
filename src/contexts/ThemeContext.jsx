@@ -1,29 +1,27 @@
-/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    // Check local storage or system preference on initial load
+
+  // This method set system default Theme
+  const systemTheme = () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       return savedTheme;
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+  }
+
+  const [theme, setTheme] = useState(systemTheme);
 
   useEffect(() => {
     const root = window.document.documentElement;
-    
-    // Remove both classes to ensure clean slate
+
     root.classList.remove('light', 'dark');
-    
-    // Add current theme class
     root.classList.add(theme);
-    
-    // Save to local storage
     localStorage.setItem('theme', theme);
+
   }, [theme]);
 
   const toggleTheme = () => {
@@ -39,8 +37,5 @@ export const ThemeProvider = ({ children }) => {
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
   return context;
 };
