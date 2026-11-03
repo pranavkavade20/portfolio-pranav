@@ -94,7 +94,7 @@ function Experience() {
     {
       company: "DASP Digital Pvt. Ltd.",
       role: "Software Engineer",
-      period: "Mar 2026 - Present",
+      period: "Nov 2026 - Present",
       description:
         "Maintaining and enhancing existing product systems by implementing new requirements, improving application functionality, and resolving bugs. Working across user management, payment, and other business modules, developing RESTful APIs, managing PostgreSQL database operations, and implementing role-based access control (RBAC) to support secure and reliable application workflows.",
       techStack: [
