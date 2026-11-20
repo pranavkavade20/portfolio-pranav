@@ -20,7 +20,7 @@ function Header() {
   });
 
   const navItems = [
-    { name: 'About', path: '#about' },
+    { name: 'Home', path: '#home' },
     { name: 'Experience', path: '#experience' },
     { name: 'Skills', path: '#skills' },
     { name: 'Projects', path: '#projects' },
@@ -59,8 +59,8 @@ function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${scrolled
-          ? 'bg-white/40 dark:bg-black/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)]'
-          : 'bg-transparent'
+        ? 'bg-white/40 dark:bg-black/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)]'
+        : 'bg-transparent'
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,8 +94,8 @@ function Header() {
                   />
                 )}
                 <span className={`relative z-10 ${activeIndex === index
-                    ? 'text-black dark:text-white font-semibold'
-                    : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+                  ? 'text-black dark:text-white font-semibold'
+                  : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
                   }`}>
                   {item.name}
                 </span>
@@ -158,8 +158,8 @@ function Header() {
                     setActiveIndex(i);
                   }}
                   className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${activeIndex === i
-                      ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white'
-                      : 'text-slate-600 dark:text-zinc-400'
+                    ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white'
+                    : 'text-slate-600 dark:text-zinc-400'
                     }`}
                 >
                   {item.name}

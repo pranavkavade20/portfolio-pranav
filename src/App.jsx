@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import Header from './components/layout/Header'
 import SocialSidebar from './components/layout/SocialSidebar'
-import About from './pages/About'
+import Home from './pages/Home.jsx'
 import Skill from './pages/Skill'
 import Project from './pages/Project'
 import Experience from './pages/Experience'
@@ -24,32 +24,32 @@ function App() {
   }, [])
   return (
     <ThemeProvider>
-        <SmoothScroll>
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              {isLoading && <Preloader key="preloader" />}
-            </AnimatePresence>
-            <Header />
-            <SocialSidebar />
-            <main className="flex flex-col w-full">
-              <section id="about">
-                <About />
-              </section>
-              <section id="experience">
-                <Experience />
-              </section>
-              <section id="skills">
-                <Skill />
-              </section>
-              <section id="projects">
-                <Project />
-              </section>
-              <section id="contact">
-                <Contact />
-              </section>
-            </main>
-          </div>
-        </SmoothScroll>
+      <SmoothScroll>
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            {isLoading && <Preloader key="preloader" />}
+          </AnimatePresence>
+          <Header />
+          <SocialSidebar />
+          <main className="flex flex-col w-full">
+            <section id="home">
+              <Home />
+            </section>
+            <section id="experience">
+              <Experience />
+            </section>
+            <section id="skills">
+              <Skill />
+            </section>
+            <section id="projects">
+              <Project />
+            </section>
+            <section id="contact">
+              <Contact />
+            </section>
+          </main>
+        </div>
+      </SmoothScroll>
     </ThemeProvider>
   )
 }
