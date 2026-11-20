@@ -48,8 +48,16 @@ function Header() {
 
           {/* Logo Section (Left) */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center gap-2" aria-label="Home">
-              <img src="/logo.svg" alt="Logo" className="w-6 h-6 opacity-90 hover:opacity-100 transition-opacity" />
+            <Link
+              to="/"
+              className="group flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 rounded-xl transition-transform active:scale-95"
+              aria-label="Home"
+            >
+              <img
+                src="/logo.svg"
+                alt="Logo"
+                className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105 opacity-95 group-hover:opacity-100 drop-shadow-sm group-hover:drop-shadow-[0_4px_12px_rgba(255,115,0,0.35)]"
+              />
             </Link>
           </div>
 

@@ -19,9 +19,10 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    // Synchronized with preloader animation (5.0 seconds)
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 2500)
+    }, 5100)
     return () => clearTimeout(timer)
   }, [])
 
@@ -73,7 +74,13 @@ function App() {
       <SmoothScroll>
         <div className="relative min-h-screen flex flex-col bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
           <AnimatePresence mode="wait">
-            {isLoading && <Preloader key="preloader" />}
+            {isLoading && (
+              <Preloader
+                key="preloader"
+                name="PRANAV KAVADE"
+                onComplete={() => setIsLoading(false)}
+              />
+            )}
           </AnimatePresence>
           <Header />
           <SocialSidebar />
