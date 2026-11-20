@@ -2,6 +2,9 @@ import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
+const MotionButton = motion.button;
+const MotionA = motion.a;
+
 const Button = ({ 
   children, 
   variant = 'primary', 
@@ -56,19 +59,8 @@ const Button = ({
     lg: 18
   };
 
-  const MotionComponent = Component === 'button' ? motion.button : motion.create(Component);
-
-  return (
-    <MotionComponent 
-      ref={ref}
-      className={cn(baseStyles, variants[variant], sizes[size], className)}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      style={{ x: springX, y: springY }}
-      {...props}
-    >
+  const content = (
+    <>
       <span className={cn("relative z-10 flex items-center justify-center w-full", sizes[size].includes('gap-') ? sizes[size].split(' ').find(c => c.startsWith('gap-')) : '')}>
         {children}
         {Icon && (
@@ -84,7 +76,39 @@ const Button = ({
       {variant === 'primary' && (
         <span className="absolute inset-0 rounded-btn bg-white/20 dark:bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       )}
-    </MotionComponent>
+    </>
+  );
+
+  if (Component === 'a') {
+    return (
+      <MotionA
+        ref={ref}
+        className={cn(baseStyles, variants[variant], sizes[size], className)}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        style={{ x: springX, y: springY }}
+        {...props}
+      >
+        {content}
+      </MotionA>
+    );
+  }
+
+  return (
+    <MotionButton 
+      ref={ref}
+      className={cn(baseStyles, variants[variant], sizes[size], className)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      style={{ x: springX, y: springY }}
+      {...props}
+    >
+      {content}
+    </MotionButton>
   );
 };
 

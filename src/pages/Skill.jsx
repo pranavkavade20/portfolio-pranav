@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../config/animations';
 import SectionHeading from '../components/ui/SectionHeading';
+import PageNav from '../components/layout/PageNav';
 
 // Frontend
 import htmlIcon from '../assets/skills/frontend/HTML5.svg';
@@ -24,6 +25,20 @@ import githubIcon from '../assets/skills/database_tools/GitHub.svg';
 import mongoIcon from '../assets/skills/database_tools/MongoDB.svg';
 import postgresIcon from '../assets/skills/database_tools/PostgresSQL.svg';
 import postmanIcon from '../assets/skills/database_tools/Postman.svg';
+
+const pageVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
+  },
+  exit: {
+    opacity: 0,
+    y: -15,
+    transition: { duration: 0.25, ease: [0.25, 1, 0.5, 1] }
+  }
+};
 
 const skillCategories = [
   {
@@ -70,8 +85,14 @@ const skillCategories = [
 
 function Skill() {
   return (
-    <section className="section-padding relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-      <div className="content-container relative z-10">
+    <motion.section
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-[calc(100vh-5rem)] relative overflow-hidden bg-brand-bg-light dark:bg-brand-bg-dark pt-28 md:pt-32 pb-20 md:pb-24 transition-colors duration-300"
+    >
+      <div className="content-container relative z-10 w-full">
         <div className="mb-12 md:mb-16">
           <SectionHeading title="Technical Arsenal" subtitle="Engineering Workspace" />
         </div>
@@ -143,8 +164,13 @@ function Skill() {
             </motion.article>
           ))}
         </motion.div>
+
+        <PageNav
+          prev={{ name: 'Experience', path: '/experience' }}
+          next={{ name: 'Projects', path: '/projects' }}
+        />
       </div>
-    </section>
+    </motion.section>
   );
 }
 

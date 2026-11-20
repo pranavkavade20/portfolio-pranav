@@ -1,7 +1,11 @@
-import { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 
 export default function SmoothScroll({ children }) {
+  const lenisRef = useRef(null);
+  const location = useLocation();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -15,17 +19,30 @@ export default function SmoothScroll({ children }) {
       infinite: false,
     });
 
+    lenisRef.current = lenis;
+
+    let reqId;
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      reqId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    reqId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(reqId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  // When navigating between pages in the SPA, immediately reset scroll to top
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return <>{children}</>;
 }

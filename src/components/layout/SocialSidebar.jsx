@@ -1,28 +1,32 @@
 import React from 'react';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { portfolioConfig } from '../../config/portfolio';
 
 const SocialSidebar = () => {
+  const location = useLocation();
+  const isContactActive = location.pathname === '/contact';
+
   const socialItems = [
     {
       href: 'https://github.com/pranavkavade20',
       aria: 'GitHub',
       icon: <Github size={24} />,
+      external: true,
     },
     {
       href: 'https://www.linkedin.com/in/pranavkavade20',
       aria: 'LinkedIn',
       icon: <Linkedin size={24} />,
+      external: true,
     },
     {
-      href: '#contact',
+      to: '/contact',
       aria: 'Contact',
       icon: <Mail size={24} />,
-      onClick: (e) => {
-        e.preventDefault();
-        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-      },
+      isInternal: true,
+      active: isContactActive,
     },
     {
       href: portfolioConfig.resumeUrl,
@@ -32,19 +36,37 @@ const SocialSidebar = () => {
     },
   ];
 
-  const renderLink = ({ href, aria, icon, onClick, external }) => (
-    <a
-      key={aria}
-      href={href}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noopener noreferrer' : undefined}
-      onClick={onClick}
-      className="text-slate-500 hover:text-brand-primary dark:text-zinc-400 dark:hover:text-brand-secondary transition-all hover:-translate-y-1"
-      aria-label={aria}
-    >
-      {icon}
-    </a>
-  );
+  const renderLink = (item) => {
+    if (item.isInternal) {
+      return (
+        <Link
+          key={item.aria}
+          to={item.to}
+          className={`transition-all hover:-translate-y-1 ${
+            item.active
+              ? 'text-black dark:text-white scale-110'
+              : 'text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+          }`}
+          aria-label={item.aria}
+        >
+          {item.icon}
+        </Link>
+      );
+    }
+
+    return (
+      <a
+        key={item.aria}
+        href={item.href}
+        target={item.external ? '_blank' : undefined}
+        rel={item.external ? 'noopener noreferrer' : undefined}
+        className="text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-all hover:-translate-y-1"
+        aria-label={item.aria}
+      >
+        {item.icon}
+      </a>
+    );
+  };
 
   return (
     <>

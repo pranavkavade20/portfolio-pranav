@@ -6,12 +6,33 @@ import { fadeUp } from '../config/animations';
 import SectionHeading from '../components/ui/SectionHeading';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import PageNav from '../components/layout/PageNav';
+
+const pageVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
+  },
+  exit: {
+    opacity: 0,
+    y: -15,
+    transition: { duration: 0.25, ease: [0.25, 1, 0.5, 1] }
+  }
+};
 
 function Contact() {
   const [copied, setCopied] = useState(false);
   return (
-    <section className="section-padding relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden min-h-[80vh] flex items-center transition-colors duration-300">
-      <div className="content-container relative z-10">
+    <motion.section
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-[calc(100vh-5rem)] relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden flex flex-col justify-center pt-28 md:pt-32 pb-20 md:pb-24 transition-colors duration-300"
+    >
+      <div className="content-container relative z-10 w-full">
         
         <SectionHeading 
           title="Let's Connect" 
@@ -62,8 +83,13 @@ function Contact() {
             </div>
           </Card>
         </motion.div>
+
+        <PageNav
+          prev={{ name: 'Projects', path: '/projects' }}
+          next={{ name: 'Back to Home', path: '/' }}
+        />
       </div>
-    </section>
+    </motion.section>
   );
 }
 

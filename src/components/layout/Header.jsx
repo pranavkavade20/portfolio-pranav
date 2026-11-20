@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import CircleHalf from '../../assets/circle-half.svg';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -8,7 +9,7 @@ function Header() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const location = useLocation();
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -20,41 +21,20 @@ function Header() {
   });
 
   const navItems = [
-    { name: 'Home', path: '#home' },
-    { name: 'Experience', path: '#experience' },
-    { name: 'Skills', path: '#skills' },
-    { name: 'Projects', path: '#projects' },
-    { name: 'Contact', path: '#contact' },
+    { name: 'Home', path: '/' },
+    { name: 'Experience', path: '/experience' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Contact', path: '/contact' },
   ];
 
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-50% 0px -50% 0px',
-      threshold: 0
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = navItems.findIndex(item => item.path === `#${entry.target.id}`);
-          if (index !== -1) {
-            setActiveIndex(index);
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    navItems.forEach(item => {
-      const sectionId = item.path.replace('#', '');
-      const element = document.getElementById(sectionId);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [navItems]);
+  const currentPath = location.pathname;
+  const isItemActive = (path) => {
+    if (path === '/') {
+      return currentPath === '/' || currentPath === '/home';
+    }
+    return currentPath === path || currentPath.startsWith(path + '/');
+  };
 
   return (
     <header
@@ -68,39 +48,37 @@ function Header() {
 
           {/* Logo Section (Left) */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="#about" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2" aria-label="Home">
               <img src="/logo.svg" alt="Logo" className="w-6 h-6 opacity-90 hover:opacity-100 transition-opacity" />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation (Center/Right) */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            {navItems.map((item, index) => (
-              <a
-                key={item.name}
-                href={item.path}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' });
-                  setActiveIndex(index);
-                }}
-                className="relative px-4 py-2 rounded-full text-sm font-medium transition-colors"
-              >
-                {activeIndex === index && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-black/[0.04] dark:bg-white/[0.08] rounded-full"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 ${activeIndex === index
-                  ? 'text-black dark:text-white font-semibold'
-                  : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
-                  }`}>
-                  {item.name}
-                </span>
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const active = isItemActive(item.path);
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className="relative px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                >
+                  {active && (
+                    <motion.div
+                      layoutId="nav-pill"
+                      className="absolute inset-0 bg-black/[0.04] dark:bg-white/[0.08] rounded-full"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className={`relative z-10 ${active
+                    ? 'text-black dark:text-white font-semibold'
+                    : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
+                    }`}>
+                    {item.name}
+                  </span>
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Actions Section (Right) */}
@@ -121,6 +99,7 @@ function Header() {
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full text-slate-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.1] hover:scale-110 active:scale-95 transition-all duration-200"
+              aria-label="Toggle Theme"
             >
               <motion.div animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.5, type: "spring" }}>
                 <img src={CircleHalf} alt="Toggle theme" width={20} height={20} className="dark:invert" />
@@ -129,6 +108,7 @@ function Header() {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 text-slate-600 dark:text-zinc-400"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -147,24 +127,22 @@ function Header() {
             className="md:hidden bg-white/40 dark:bg-black/40 backdrop-blur-xl overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
-              {navItems.map((item, i) => (
-                <a
-                  key={item.name}
-                  href={item.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsMenuOpen(false);
-                    setTimeout(() => document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' }), 150);
-                    setActiveIndex(i);
-                  }}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${activeIndex === i
-                    ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white'
-                    : 'text-slate-600 dark:text-zinc-400'
-                    }`}
-                >
-                  {item.name}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const active = isItemActive(item.path);
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${active
+                      ? 'bg-black/[0.04] dark:bg-white/[0.08] text-black dark:text-white'
+                      : 'text-slate-600 dark:text-zinc-400'
+                      }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}

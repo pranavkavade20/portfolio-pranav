@@ -3,10 +3,25 @@ import { MapPin } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { fadeUp, scaleIn, staggerContainer } from '../config/animations';
 import TextReveal from '../components/ui/TextReveal';
+import PageNav from '../components/layout/PageNav';
 
 import profileImg from '../assets/profile.jpg';
 
-function About() {
+const pageVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
+  },
+  exit: {
+    opacity: 0,
+    y: -15,
+    transition: { duration: 0.25, ease: [0.25, 1, 0.5, 1] }
+  }
+};
+
+function Home() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -16,8 +31,15 @@ function About() {
   const yPos = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
-    <main ref={containerRef} className="min-h-screen relative overflow-hidden flex flex-col items-center justify-center section-padding bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-      <div className="content-container relative z-10">
+    <motion.main
+      ref={containerRef}
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-[calc(100vh-5rem)] relative overflow-hidden flex flex-col items-center justify-center pt-28 md:pt-32 pb-20 md:pb-24 bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300"
+    >
+      <div className="content-container relative z-10 w-full">
         <motion.div 
           variants={staggerContainer}
           initial="hidden"
@@ -73,9 +95,11 @@ function About() {
             </div>
           </div>
         </motion.div>
+
+        <PageNav next={{ name: 'Experience', path: '/experience' }} />
       </div>
-    </main>
+    </motion.main>
   );
 }
 
-export default About;
+export default Home;

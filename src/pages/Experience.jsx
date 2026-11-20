@@ -1,8 +1,23 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { fadeUp, staggerContainer } from "../config/animations";
 import SectionHeading from "../components/ui/SectionHeading";
 import Badge from "../components/ui/Badge";
+import PageNav from "../components/layout/PageNav";
+
+const pageVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
+  },
+  exit: {
+    opacity: 0,
+    y: -15,
+    transition: { duration: 0.25, ease: [0.25, 1, 0.5, 1] }
+  }
+};
 
 const ExperienceCard = ({ job }) => {
   const mouseX = useMotionValue(0);
@@ -132,8 +147,14 @@ function Experience() {
   ];
 
   return (
-    <section className="section-padding relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden transition-colors duration-300">
-      <div className="content-container relative z-10">
+    <motion.section
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-[calc(100vh-5rem)] relative bg-brand-bg-light dark:bg-brand-bg-dark overflow-hidden pt-28 md:pt-32 pb-20 md:pb-24 transition-colors duration-300"
+    >
+      <div className="content-container relative z-10 w-full">
         <SectionHeading
           title="Where I've Built"
           subtitle="Professional Experience"
@@ -182,8 +203,13 @@ function Experience() {
             <span className="absolute left-0 bottom-0 w-full h-[1.5px] bg-slate-900 dark:bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
           </a>
         </motion.div>
+
+        <PageNav
+          prev={{ name: 'Home', path: '/' }}
+          next={{ name: 'Skills', path: '/skills' }}
+        />
       </div>
-    </section>
+    </motion.section>
   );
 }
 
