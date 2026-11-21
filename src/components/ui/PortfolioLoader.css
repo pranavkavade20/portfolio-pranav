@@ -1,10 +1,11 @@
 /* ==========================================================================
    PortfolioLoader.css
-   High-Fidelity 7-Second Portfolio Intro Loading Animation
-   Exact 6-Phase Storyboard Implementation for Light & Dark Themes
+   Meta x Google UI/UX Restyled Intro Loader
+   Consumes design tokens, fluid responsive sizing, 48dp touch targets,
+   and WCAG 2.1 AA compliant accessibility states.
    ========================================================================== */
 
-/* Container & Fullscreen Presentation */
+/* Fullscreen Backdrop Container */
 .pl-container {
   position: fixed;
   inset: 0;
@@ -18,42 +19,23 @@
   overflow: hidden;
   user-select: none;
   cursor: default;
-  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: opacity;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  transition: background-color var(--motion-base) var(--ease-standard);
+  will-change: opacity, transform;
 }
 
-/* Dark Theme Background (Deep charcoal / near-black) */
-.pl-theme-dark {
-  background-color: var(--color-brand-bg-dark, #09090B);
-  color: var(--color-text-primary-dark, #EDEDED);
-}
-
-/* Light Theme Background (Portfolio standard #FAFAFA) */
-.pl-theme-light {
-  background-color: var(--color-brand-bg-light, #FAFAFA);
-  color: var(--color-text-primary-light, #111111);
-}
-
-/* Subtle Engineering Grid Backdrop */
+/* Subtle Material Engineering Grid Backdrop */
 .pl-grid-backdrop {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background-size: 40px 40px;
+  background-size: 32px 32px;
   background-position: center center;
-}
-
-.pl-theme-dark .pl-grid-backdrop {
   background-image:
-    linear-gradient(to right, rgba(255, 115, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 115, 0, 0.035) 1px, transparent 1px);
-}
-
-.pl-theme-light .pl-grid-backdrop {
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in srgb, var(--color-primary) 3%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-primary) 3%, transparent) 1px, transparent 1px);
 }
 
 /* Ambient Radial Vignette */
@@ -62,28 +44,16 @@
   inset: 0;
   pointer-events: none;
   z-index: 2;
-  transition: opacity 0.5s ease;
-}
-
-.pl-theme-dark .pl-vignette {
   background: radial-gradient(
-    ellipse 65% 55% at 50% 50%,
-    rgba(255, 115, 0, 0.12) 0%,
-    rgba(9, 9, 11, 0.75) 55%,
-    #09090B 100%
+    ellipse 70% 60% at 50% 50%,
+    color-mix(in srgb, var(--color-primary) 10%, transparent) 0%,
+    color-mix(in srgb, var(--color-background) 75%, transparent) 60%,
+    var(--color-background) 100%
   );
+  transition: opacity var(--motion-base) ease;
 }
 
-.pl-theme-light .pl-vignette {
-  background: radial-gradient(
-    ellipse 65% 55% at 50% 50%,
-    rgba(245, 158, 11, 0.08) 0%,
-    rgba(250, 250, 250, 0.8) 55%,
-    #FAFAFA 100%
-  );
-}
-
-/* Canvas Layer for Ambient Embers & Trailing Sparks */
+/* Particle Canvas Layer */
 .pl-canvas {
   position: absolute;
   inset: 0;
@@ -93,7 +63,7 @@
   z-index: 3;
 }
 
-/* Main Centered Stage */
+/* Main Centered Stage (Feed Column Alignment) */
 .pl-stage {
   position: relative;
   z-index: 10;
@@ -101,42 +71,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: var(--feed-max-width, 680px);
+  padding: 0 var(--space-4, 16px);
   transform: translateZ(0);
 }
 
-/* SVG Wrapper with Responsive Dimensions */
+/* SVG Wrapper with Fluid Mobile-First Dimensions */
 .pl-svg-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 190px;
-  height: 190px;
-}
-
-@media (min-width: 640px) {
-  .pl-svg-wrapper {
-    width: 230px;
-    height: 230px;
-  }
-}
-
-@media (min-width: 768px) {
-  .pl-svg-wrapper {
-    width: 270px;
-    height: 270px;
-  }
+  width: clamp(160px, 45vw, 250px);
+  height: clamp(160px, 45vw, 250px);
 }
 
 .pl-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.08));
-}
-
-.pl-theme-dark .pl-svg {
-  filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 4px 20px color-mix(in srgb, var(--color-primary) 18%, transparent));
 }
 
 /* --------------------------------------------------------------------------
@@ -207,7 +162,7 @@
   }
 }
 
-/* Directional Shadow Tuck Reveal (at 2.6s - 3.0s) */
+/* Directional Shadow Tuck Reveal */
 .pl-shadow-rect {
   opacity: 0;
   animation: plRevealShadow 0.4s ease-out 2.6s forwards;
@@ -225,7 +180,6 @@
 /* --------------------------------------------------------------------------
    PHASE 04: Complete Logo Resolution & Light Sweep (2.8s – 4.0s)
    -------------------------------------------------------------------------- */
-/* Ground Plane Floor Glow */
 .pl-floor-glow-element {
   opacity: 0;
   transform-origin: 64px 118px;
@@ -255,7 +209,6 @@
   }
 }
 
-/* Specular Diagonal Sheen / Light Sweep */
 .pl-light-sweep-bar {
   opacity: 0;
   transform: translateX(-80px);
@@ -279,7 +232,6 @@
   }
 }
 
-/* Logo Settle (Magnetic Lock in Phase 04 & Soft Settle in Phase 06) */
 .pl-logo-group {
   transform-origin: 64px 64px;
   animation: plLogoSettle 7.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -290,14 +242,12 @@
     transform: scale(1.0);
   }
   42% {
-    /* Subtle magnetic resolve impact at 2.9s */
     transform: scale(1.035);
   }
   48% {
     transform: scale(1.0);
   }
   82% {
-    /* Phase 06 soft settle */
     transform: translateY(0) scale(1.0);
   }
   88% {
@@ -326,7 +276,6 @@
   }
 }
 
-/* Circular Ring Group Fade Out in Phase 06 (5.8s – 6.2s) */
 .pl-progress-ring-group {
   opacity: 1;
   animation: plProgressRingFade 0.4s ease-out 5.8s forwards;
@@ -350,7 +299,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 1.25rem;
+  margin-top: var(--space-4, 16px);
   opacity: 0;
   transform: translateY(12px);
   animation: plRevealTypography 0.75s cubic-bezier(0.16, 1, 0.3, 1) 5.85s forwards;
@@ -371,70 +320,41 @@
 .pl-brand-name {
   font-family: var(--font-sans);
   font-weight: 700;
-  letter-spacing: 0.38em;
-  font-size: 1.15rem;
+  letter-spacing: 0.35em;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
   text-transform: uppercase;
+  color: var(--color-on-surface);
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1.2;
-  margin-left: 0.38em; /* Offset for trailing letter-spacing */
-  transition: color 0.3s ease;
-}
-
-.pl-theme-dark .pl-brand-name {
-  color: #EDEDED;
-  text-shadow: 0 0 12px rgba(255, 194, 38, 0.25);
-}
-
-.pl-theme-light .pl-brand-name {
-  color: #111111;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-left: 0.35em;
+  transition: color var(--motion-base) ease;
 }
 
 .pl-brand-divider {
-  width: 140px;
-  height: 1px;
-  margin: 0.55rem 0 0.5rem 0;
-  transition: background 0.3s ease;
-}
-
-.pl-theme-dark .pl-brand-divider {
+  width: clamp(120px, 30vw, 160px);
+  height: 1.5px;
+  margin: var(--space-2, 8px) 0;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 115, 0, 0.55) 50%,
+    var(--color-primary) 50%,
     transparent 100%
   );
-  box-shadow: 0 0 6px rgba(255, 115, 0, 0.3);
-}
-
-.pl-theme-light .pl-brand-divider {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(234, 88, 12, 0.4) 50%,
-    transparent 100%
-  );
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
 
 .pl-brand-title {
   font-family: var(--font-sans);
-  font-weight: 500;
-  letter-spacing: 0.26em;
-  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
   text-transform: uppercase;
-  margin-left: 0.26em; /* Offset for trailing letter-spacing */
+  color: var(--color-primary);
+  margin-left: 0.24em;
   line-height: 1.2;
-  transition: color 0.3s ease;
-}
-
-.pl-theme-dark .pl-brand-title {
-  color: #A1A1AA;
-}
-
-.pl-theme-light .pl-brand-title {
-  color: #666666;
+  transition: color var(--motion-base) ease;
 }
 
 /* Exit Transition (6.7s – 7.0s) */
@@ -455,71 +375,62 @@
 }
 
 /* --------------------------------------------------------------------------
-   Skip Button (Refined & Accessible)
+   Skip Button (48dp Touch Target, Accessible Focus, Safe-Area Compliant)
    -------------------------------------------------------------------------- */
 .pl-skip-btn {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: max(1rem, env(safe-area-inset-top, 1rem));
+  right: max(1rem, env(safe-area-inset-right, 1rem));
   z-index: 50;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 9999px;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  min-height: 48px;
+  min-width: 48px;
+  padding: 0 var(--space-4, 16px);
+  border-radius: var(--radius-full, 9999px);
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background-color: color-mix(in srgb, var(--color-surface) 85%, transparent);
+  border: 1px solid var(--color-outline-variant);
+  color: var(--color-on-surface);
+  box-shadow: var(--elevation-1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
+  transition: all var(--motion-fast) var(--ease-standard);
   outline: none;
 }
 
-.pl-theme-dark .pl-skip-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #A1A1AA;
+.pl-skip-btn:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--elevation-2);
+  transform: translateY(-1px);
 }
 
-.pl-theme-dark .pl-skip-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 194, 38, 0.4);
-  color: #FFFFFF;
-  box-shadow: 0 0 12px rgba(255, 115, 0, 0.2);
+.pl-skip-btn:active {
+  transform: scale(0.96);
 }
 
-.pl-theme-light .pl-skip-btn {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #666666;
-}
-
-.pl-theme-light .pl-skip-btn:hover {
-  background: rgba(0, 0, 0, 0.08);
-  border-color: rgba(234, 88, 12, 0.35);
-  color: #111111;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.pl-skip-btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .pl-skip-kbd {
-  font-family: monospace;
-  font-size: 0.65rem;
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-  opacity: 0.75;
-}
-
-.pl-theme-dark .pl-skip-kbd {
-  background: rgba(255, 255, 255, 0.1);
-  color: #EDEDED;
-}
-
-.pl-theme-light .pl-skip-kbd {
-  background: rgba(0, 0, 0, 0.06);
-  color: #333333;
+  font-family: var(--font-sans), monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs, 4px);
+  background-color: var(--color-surface-variant);
+  color: var(--color-on-surface-variant);
+  border: 1px solid var(--color-outline-variant);
 }
 
 /* --------------------------------------------------------------------------

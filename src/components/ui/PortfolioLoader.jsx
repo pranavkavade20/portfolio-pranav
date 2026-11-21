@@ -169,10 +169,10 @@ const PortfolioLoader = ({ onComplete }) => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Color palette calibrated for dark vs light mode
+    // Color palette mapped to primary brand tokens (Orange)
     const palette = isDark
-      ? ['#FFC226', '#FF7300', '#EB3E05', '#FFE082', '#FFFFFF']
-      : ['#D97706', '#EA580C', '#C2410C', '#F59E0B', '#B45309'];
+      ? ['#ff8c42', '#fb923c', '#ea580c', '#fed7aa', '#ffffff']
+      : ['#ea580c', '#c2410c', '#9a3412', '#f97316', '#ffedd5'];
 
     // 32 ambient zero-G background micro-sparks
     const ambientSparks = Array.from({ length: 32 }, () => ({
@@ -408,12 +408,10 @@ const PortfolioLoader = ({ onComplete }) => {
   return (
     <div
       ref={containerRef}
-      className={`pl-container ${isDark ? 'pl-theme-dark' : 'pl-theme-light'} ${
-        isExiting ? 'pl-container-exiting' : ''
-      }`}
+      className={`pl-container ${isExiting ? 'pl-container-exiting' : ''}`}
       role="status"
       aria-live="polite"
-      aria-label="Loading portfolio"
+      aria-label="Loading portfolio intro animation. Press Escape or click Skip to enter."
     >
       {/* 1. Subtle Engineering Grid Backdrop */}
       <div className="pl-grid-backdrop" />
