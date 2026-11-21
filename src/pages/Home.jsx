@@ -4,20 +4,19 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { fadeUp, scaleIn, staggerContainer } from '../config/animations';
 import TextReveal from '../components/ui/TextReveal';
 import PageNav from '../components/layout/PageNav';
-
 import profileImg from '../assets/profile.jpg';
 
 const pageVariants = {
-  initial: { opacity: 0, y: 15 },
+  initial: { opacity: 0, y: 12 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
+    transition: { duration: 0.35, ease: [0.2, 0, 0, 1] }
   },
   exit: {
     opacity: 0,
-    y: -15,
-    transition: { duration: 0.25, ease: [0.25, 1, 0.5, 1] }
+    y: -12,
+    transition: { duration: 0.2, ease: [0.3, 0, 1, 1] }
   }
 };
 
@@ -28,7 +27,7 @@ function Home() {
     offset: ["start end", "end start"]
   });
 
-  const yPos = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const yPos = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <motion.main
@@ -37,59 +36,71 @@ function Home() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-[calc(100vh-5rem)] relative overflow-hidden flex flex-col items-center justify-center pt-28 md:pt-32 pb-20 md:pb-24 bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300"
+      className="min-h-[calc(100vh-4rem)] relative overflow-hidden flex flex-col justify-center pt-24 md:pt-28 pb-16 md:pb-20 transition-colors"
     >
       <div className="content-container relative z-10 w-full">
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center"
         >
-          {/* Left Column: Profile */}
-          <motion.div variants={scaleIn} className="lg:col-span-5 relative flex justify-center order-1 lg:order-1 mt-8 lg:mt-0">
-            <motion.div 
+          {/* Profile Card Column */}
+          <motion.div
+            variants={scaleIn}
+            className="lg:col-span-5 relative flex justify-center order-1 mt-4 lg:mt-0"
+          >
+            <motion.div
               style={{ y: yPos }}
-              className="relative w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden shadow-[var(--shadow-premium-light)] dark:shadow-[var(--shadow-premium-dark)] border border-black/5 dark:border-white/10 group"
+              className="relative w-full max-w-[320px] aspect-[4/5] rounded-2xl overflow-hidden bg-surface border border-outline-variant shadow-elevation-2 group"
             >
-              <img src={profileImg} alt="Pranav Kavade" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
-              
-              <div className="absolute bottom-6 left-6 text-white pointer-events-none transition-transform duration-500 group-hover:-translate-y-2">
-                <h3 className="font-semibold text-2xl tracking-tight mb-1 drop-shadow-md">Pranav Kavade</h3>
-                <p className="text-white/90 text-sm font-medium flex items-center gap-1.5 drop-shadow-sm">
-                  <MapPin size={14} />
+              <img
+                src={profileImg}
+                alt="Pranav Kavade - Full Stack Engineer"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+              <div className="absolute bottom-5 left-5 right-5 text-white pointer-events-none">
+                <h3 className="font-bold text-xl sm:text-2xl tracking-tight mb-1 drop-shadow-md">
+                  Pranav Kavade
+                </h3>
+                <p className="text-white/90 text-xs sm:text-sm font-medium flex items-center gap-1.5 drop-shadow-sm">
+                  <MapPin size={14} className="text-primary" />
                   Maharashtra, IN
                 </p>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Text Content */}
-          <div className="lg:col-span-7 order-2 flex flex-col gap-8 justify-center">
-            <div className="relative z-10">
-              <div className="mb-8 text-section-title text-slate-900 dark:text-zinc-100 font-bold tracking-tight">
-                <TextReveal text="Engineer." delay={0.1} /> <br />
-                <TextReveal text="Designer." delay={0.2} /> <br />
-                <TextReveal text="Problem Solver." delay={0.3} />
+          {/* Bio & Value Proposition Column */}
+          <div className="lg:col-span-7 order-2 flex flex-col gap-6 justify-center text-left">
+            <div>
+              <div className="mb-6 text-hero text-on-surface font-extrabold tracking-tight">
+                <TextReveal text="Engineer." delay={0.05} /> <br />
+                <span className="text-primary">
+                  <TextReveal text="Designer." delay={0.15} />
+                </span> <br />
+                <TextReveal text="Problem Solver." delay={0.25} />
               </div>
-              
-              <motion.div 
+
+              <motion.div
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                className="space-y-6 text-body"
+                viewport={{ once: true, margin: "-40px" }}
+                className="space-y-4 text-on-surface-variant text-base sm:text-lg leading-relaxed"
               >
                 <motion.p variants={fadeUp}>
-                  My software engineering journey began with C, establishing the fundamentals. I later adopted Java to strengthen my understanding of object-oriented architecture and robust problem-solving.
+                  My engineering journey began with C and Java, cultivating a disciplined foundation in algorithms, systems thinking, and object-oriented architecture.
                 </motion.p>
                 <motion.p variants={fadeUp}>
-                  Transitioning to <strong className="text-slate-900 dark:text-zinc-100 font-medium">JavaScript and Python</strong> unlocked the ability to build real-world applications. Through personal projects and internships, I developed a product-centric mindset, focusing on both engineering quality and user experience. 
+                  Transitioning to <strong className="text-on-surface font-semibold">Python, and JavaScript </strong> ecosystem enabled me to engineer production web applications. I bridge robust backend APIs with polished, responsive interfaces.
                 </motion.p>
                 <motion.p variants={fadeUp}>
-                  Today, I'm focused on building scalable, AI-powered web applications that feel fast, look exceptional, and solve real problems.
+                  Today, I focus on building resilient, scalable, and delightful software products that solve real-world problems for users and businesses.
                 </motion.p>
               </motion.div>
             </div>

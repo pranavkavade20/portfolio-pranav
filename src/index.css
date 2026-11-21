@@ -1,94 +1,291 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, [data-theme="dark"], .dark *));
 
-@theme {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  
-  /* Strict Neutral Palette (Linear/Apple inspired) */
-  --color-brand-bg-light: #FAFAFA;
-  --color-brand-bg-dark: #09090B;
-  
-  --color-surface-light: #FFFFFF;
-  --color-surface-dark: #121214;
-  
-  --color-border-light: rgba(0, 0, 0, 0.08);
-  --color-border-dark: rgba(255, 255, 255, 0.08);
-  
-  --color-text-primary-light: #111111;
-  --color-text-primary-dark: #EDEDED;
-  
-  --color-text-secondary-light: #666666;
-  --color-text-secondary-dark: #A1A1AA;
-  
-  --color-accent-light: #111111; /* Off black as accent in light mode */
-  --color-accent-dark: #FFFFFF;  /* Pure white as accent in dark mode */
-  
+/* ==========================================================================
+   Meta x Google UI/UX Design Tokens
+   Base: resources/tokens.css with Orange primary brand palette
+   ========================================================================== */
+
+:root {
+  /* Color roles: Light Mode (Orange Brand) */
+  --color-primary: #ea580c; /* Accessible energetic orange (WCAG AA 4.5+:1 against white) */
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ffedd5;
+  --color-on-primary-container: #7c2d12;
+
+  --color-background: #f8f9fa; /* Material/Meta soft gray page background */
+  --color-surface: #ffffff;
+  --color-surface-variant: #f1f3f5;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #44474e;
+  --color-outline: #d0d3d6;
+  --color-outline-variant: #e5e7eb;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #410002;
+
+  --color-success: #15803d;
+  --color-on-success: #ffffff;
+  --color-success-container: #dcfce7;
+  --color-on-success-container: #14532d;
+
+  --color-warning: #b45309;
+  --color-on-warning: #ffffff;
+  --color-warning-container: #fef3c7;
+  --color-on-warning-container: #78350f;
+
+  /* Spacing Scale (4px base, 8px rhythm) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Shape Scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
   --radius-card: 16px;
-  --radius-btn: 8px;
+  --radius-btn: 9999px;
   --radius-pill: 9999px;
-  
-  --shadow-premium-light: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
-  --shadow-premium-dark: 0 4px 20px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-inner-light: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --shadow-inner-dark: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* Elevation (Prefer tonal surfaces and 1px outlines over heavy shadows) */
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --elevation-2: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.03);
+  --elevation-3: 0 12px 28px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+
+  /* Typography */
+  --font-sans: "Inter", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", sans-serif;
+  --text-display: 600 2.25rem/2.75rem var(--font-sans);
+  --text-headline: 600 1.5rem/2rem var(--font-sans);
+  --text-title: 600 1.125rem/1.5rem var(--font-sans);
+  --text-body: 400 0.9375rem/1.375rem var(--font-sans);
+  --text-body-lg: 400 1rem/1.5rem var(--font-sans);
+  --text-label: 600 0.875rem/1.25rem var(--font-sans);
+  --text-caption: 400 0.75rem/1rem var(--font-sans);
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-base: 240ms;
+  --motion-slow: 360ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0, 1);
+  --ease-accelerate: cubic-bezier(0.3, 0, 1, 1);
+
+  /* State layers */
+  --state-hover: 0.08;
+  --state-focus: 0.12;
+  --state-pressed: 0.12;
+
+  /* Layout */
+  --gutter: 16px;
+  --feed-max-width: 680px;
+  --target-min: 48px;
+  --focus-ring: 2px solid var(--color-primary);
+  --focus-offset: 2px;
 }
 
-/* Custom Utilities */
+/* Dark Mode Tokens */
+.dark, :root[data-theme="dark"], :root.dark {
+  --color-primary: #ff8c42; /* Vibrant, high-contrast warm orange */
+  --color-on-primary: #431407;
+  --color-primary-container: #7c2d12;
+  --color-on-primary-container: #ffedd5;
+
+  --color-background: #111214; /* Deep neutral surface, never pure #000 */
+  --color-surface: #1d1e21; /* Slightly lighter card surface for classic feed depth */
+  --color-surface-variant: #28292d;
+  --color-on-surface: #e5e7eb;
+  --color-on-surface-variant: #9ca3af;
+  --color-outline: #3e4147;
+  --color-outline-variant: #2d3036;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  --color-success: #86efac;
+  --color-on-success: #052e16;
+  --color-success-container: #14532d;
+  --color-on-success-container: #dcfce7;
+
+  --color-warning: #fde047;
+  --color-on-warning: #422006;
+  --color-warning-container: #713f12;
+  --color-on-warning-container: #fef08a;
+
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --elevation-2: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --elevation-3: 0 12px 28px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.09);
+}
+
+/* ==========================================================================
+   Tailwind CSS v4 Theme Bridge
+   ========================================================================== */
+
+@theme {
+  --font-sans: var(--font-sans);
+
+  /* Primary Brand Roles */
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+  --color-primary-container: var(--color-primary-container);
+  --color-on-primary-container: var(--color-on-primary-container);
+
+  /* Surface & Background Roles */
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-variant: var(--color-surface-variant);
+  --color-on-surface: var(--color-on-surface);
+  --color-on-surface-variant: var(--color-on-surface-variant);
+  --color-outline: var(--color-outline);
+  --color-outline-variant: var(--color-outline-variant);
+
+  /* Semantic Feedback Roles */
+  --color-error: var(--color-error);
+  --color-on-error: var(--color-on-error);
+  --color-error-container: var(--color-error-container);
+  --color-on-error-container: var(--color-on-error-container);
+  --color-success: var(--color-success);
+  --color-on-success: var(--color-on-success);
+  --color-warning: var(--color-warning);
+  --color-on-warning: var(--color-on-warning);
+
+  /* Backward Compatibility Aliases for Smooth Migration */
+  --color-brand-bg-light: var(--color-background);
+  --color-brand-bg-dark: var(--color-background);
+  --color-surface-light: var(--color-surface);
+  --color-surface-dark: var(--color-surface);
+  --color-border-light: var(--color-outline-variant);
+  --color-border-dark: var(--color-outline-variant);
+  --color-text-primary-light: var(--color-on-surface);
+  --color-text-primary-dark: var(--color-on-surface);
+  --color-text-secondary-light: var(--color-on-surface-variant);
+  --color-text-secondary-dark: var(--color-on-surface-variant);
+
+  /* Shape tokens */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+  --radius-card: var(--radius-card);
+  --radius-btn: var(--radius-btn);
+  --radius-pill: var(--radius-pill);
+
+  /* Elevation Shadows */
+  --shadow-elevation-1: var(--elevation-1);
+  --shadow-elevation-2: var(--elevation-2);
+  --shadow-elevation-3: var(--elevation-3);
+  --shadow-premium-light: var(--elevation-1);
+  --shadow-premium-dark: var(--elevation-1);
+}
+
+/* ==========================================================================
+   Component & Layout Utilities
+   ========================================================================== */
+
 @utility content-container {
-  @apply w-full max-w-[1024px] mx-auto px-6 md:px-8;
+  @apply w-full max-w-[1024px] mx-auto px-4 sm:px-6 md:px-8;
+}
+
+@utility feed-container {
+  @apply w-full max-w-[680px] mx-auto px-4;
 }
 
 @utility section-padding {
-  @apply py-20 md:py-32;
+  @apply py-12 md:py-20;
 }
 
 @utility text-hero {
-  @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-[1.1];
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-[1.15];
 }
 
 @utility text-section-title {
-  @apply text-3xl md:text-4xl font-semibold tracking-tight text-balance;
+  @apply text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-balance;
 }
 
 @utility text-card-title {
-  @apply text-lg md:text-xl font-medium tracking-tight;
-}
-
-@utility text-body {
-  @apply text-base md:text-lg leading-relaxed text-slate-600 dark:text-zinc-400;
+  @apply text-base sm:text-lg font-semibold tracking-tight;
 }
 
 @utility glass-panel {
-  @apply bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.08] shadow-[var(--shadow-premium-light)] dark:shadow-[var(--shadow-premium-dark)] shadow-[var(--shadow-inner-light)] dark:shadow-[var(--shadow-inner-dark)];
+  @apply bg-surface/90 backdrop-blur-xl border border-outline-variant shadow-elevation-1;
 }
 
-/* Base Styles */
+/* Touch target helper enforcing minimum 48x48dp for mobile interaction */
+@utility touch-target {
+  @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
+}
+
+/* ==========================================================================
+   Base Styles & Accessibility
+   ========================================================================== */
+
 body {
-  @apply bg-brand-bg-light text-slate-900 dark:bg-brand-bg-dark dark:text-zinc-100 transition-colors duration-300;
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 html {
-  scroll-padding-top: 100px; /* For fixed headers */
+  scroll-padding-top: 80px;
+  scroll-behavior: smooth;
+}
+
+/* Accessible focus ring: always 2px solid primary with 2px offset */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 ::selection {
-  @apply bg-black text-white dark:bg-white dark:text-black;
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
 }
 
-/* Scrollbar customization for a premium feel */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-zinc-700 rounded-full border-2 border-transparent bg-clip-padding;
+  background-color: var(--color-outline);
+  border-radius: var(--radius-full);
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400 dark:bg-zinc-600;
+  background-color: var(--color-on-surface-variant);
+}
+
+/* Reduced Motion Override (WCAG AA requirement) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

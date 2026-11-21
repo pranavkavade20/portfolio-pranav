@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from './TextReveal';
+import { cn } from '../../lib/utils';
 
 const SectionHeading = ({ 
   title, 
@@ -15,19 +16,19 @@ const SectionHeading = ({
   };
 
   return (
-    <div className={`mb-16 md:mb-20 ${aligns[align]} max-w-2xl ${className}`}>
+    <div className={cn("mb-12 md:mb-16 max-w-2xl", aligns[align] || aligns.center, className)}>
       {subtitle && (
         <motion.p 
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-sm md:text-base font-bold tracking-widest uppercase text-slate-500 dark:text-zinc-400 mb-4"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-primary mb-2.5"
         >
           {subtitle}
         </motion.p>
       )}
-      <h2 className="text-section-title text-slate-900 dark:text-white">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-on-surface">
         <TextReveal text={title} type="word" />
       </h2>
     </div>

@@ -12,6 +12,7 @@ import PortfolioLoader from './components/ui/PortfolioLoader'
 import SmoothScroll from './components/ui/SmoothScroll'
 import './index.css'
 import { ThemeProvider } from './contexts/ThemeContext.jsx'
+import { SnackbarProvider } from './components/ui/Snackbar.jsx'
 
 function App() {
   // First visit check: run the 7-second intro on first visit or if requested via URL (?replay=true)
@@ -76,33 +77,41 @@ function App() {
 
   return (
     <ThemeProvider>
-      <SmoothScroll>
-        <div className="relative min-h-screen flex flex-col bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
-          <AnimatePresence mode="wait">
-            {isLoading && (
-              <PortfolioLoader
-                key="portfolio-loader"
-                onComplete={handleLoaderComplete}
-              />
-            )}
-          </AnimatePresence>
-          <Header />
-          <SocialSidebar />
-          <main className="flex-1 flex flex-col w-full">
+      <SnackbarProvider>
+        <SmoothScroll>
+          <div className="relative min-h-screen flex flex-col bg-background text-on-surface transition-colors duration-200">
             <AnimatePresence mode="wait">
-              <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Navigate to="/" replace />} />
-                <Route path="/experience" element={<Experience />} />
-                <Route path="/skills" element={<Skill />} />
-                <Route path="/projects" element={<Project />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
+              {isLoading && (
+                <PortfolioLoader
+                  key="portfolio-loader"
+                  onComplete={handleLoaderComplete}
+                />
+              )}
             </AnimatePresence>
-          </main>
-        </div>
-      </SmoothScroll>
+            
+            {/* Header */}
+            <Header />
+            
+            {/* Left Social Sidebar (Desktop) */}
+            <SocialSidebar />
+            
+            {/* Main Content Area */}
+            <main className="flex-1 flex flex-col w-full">
+              <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/home" element={<Navigate to="/" replace />} />
+                  <Route path="/experience" element={<Experience />} />
+                  <Route path="/skills" element={<Skill />} />
+                  <Route path="/projects" element={<Project />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </AnimatePresence>
+            </main>
+          </div>
+        </SmoothScroll>
+      </SnackbarProvider>
     </ThemeProvider>
   )
 }

@@ -93,7 +93,7 @@ function Header() {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.1] hover:scale-110 active:scale-95 transition-all duration-200"
+              className="p-2 rounded-full text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.1] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
               aria-label="Toggle Theme"
             >
               <motion.div animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.5, type: "spring" }}>
@@ -106,7 +106,7 @@ function Header() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full text-slate-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.1] hover:scale-110 active:scale-95 transition-all duration-200"
+              className="p-2 rounded-full text-slate-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.1] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
               aria-label="Toggle Theme"
             >
               <motion.div animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.5, type: "spring" }}>
@@ -115,7 +115,7 @@ function Header() {
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-slate-600 dark:text-zinc-400"
+              className="p-2 text-slate-600 dark:text-zinc-400 cursor-pointer"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}

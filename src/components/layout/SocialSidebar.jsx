@@ -3,6 +3,7 @@ import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { portfolioConfig } from '../../config/portfolio';
+import { cn } from '../../lib/utils';
 
 const SocialSidebar = () => {
   const location = useLocation();
@@ -11,42 +12,44 @@ const SocialSidebar = () => {
   const socialItems = [
     {
       href: 'https://github.com/pranavkavade20',
-      aria: 'GitHub',
-      icon: <Github size={24} />,
+      aria: 'GitHub Profile',
+      icon: <Github size={20} />,
       external: true,
     },
     {
       href: 'https://www.linkedin.com/in/pranavkavade20',
-      aria: 'LinkedIn',
-      icon: <Linkedin size={24} />,
+      aria: 'LinkedIn Profile',
+      icon: <Linkedin size={20} />,
       external: true,
     },
     {
       to: '/contact',
-      aria: 'Contact',
-      icon: <Mail size={24} />,
+      aria: 'Contact Page',
+      icon: <Mail size={20} />,
       isInternal: true,
       active: isContactActive,
     },
     {
       href: portfolioConfig.resumeUrl,
-      aria: 'Resume',
-      icon: <FileText size={24} />,
+      aria: 'View R&eacute;sum&eacute;',
+      icon: <FileText size={20} />,
       external: true,
     },
   ];
 
   const renderLink = (item) => {
+    const baseClasses = cn(
+      "touch-target p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-variant transition-all duration-200",
+      "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+      item.active && "text-primary bg-primary-container"
+    );
+
     if (item.isInternal) {
       return (
         <Link
           key={item.aria}
           to={item.to}
-          className={`transition-all hover:-translate-y-1 ${
-            item.active
-              ? 'text-black dark:text-white scale-110'
-              : 'text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
-          }`}
+          className={baseClasses}
           aria-label={item.aria}
         >
           {item.icon}
@@ -60,7 +63,7 @@ const SocialSidebar = () => {
         href={item.href}
         target={item.external ? '_blank' : undefined}
         rel={item.external ? 'noopener noreferrer' : undefined}
-        className="text-slate-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-all hover:-translate-y-1"
+        className={baseClasses}
         aria-label={item.aria}
       >
         {item.icon}
@@ -69,31 +72,22 @@ const SocialSidebar = () => {
   };
 
   return (
-    <>
-      <div className="hidden lg:flex fixed left-6 top-0 h-full flex-col justify-center items-center gap-6 z-40">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex flex-col items-center gap-6"
-        >
-          {socialItems.slice(0, 3).map(renderLink)}
-          <div className="w-px h-8 bg-slate-300 dark:bg-zinc-700 my-2"></div>
-          {renderLink(socialItems[3])}
-        </motion.div>
-      </div>
-
-      <div className="flex lg:hidden fixed bottom-4 left-0 right-0 justify-center z-40 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="glass-panel w-full max-w-xs mx-auto rounded-full px-4 py-3 flex items-center justify-center gap-5 shadow-xl"
-        >
-          {socialItems.map(renderLink)}
-        </motion.div>
-      </div>
-    </>
+    // Only displayed on large desktop viewports (lg: 1024px+), avoiding collisions on mobile/tablets
+    <aside 
+      aria-label="Social Links"
+      className="hidden lg:flex fixed left-6 top-0 h-full flex-col justify-center items-center z-30 pointer-events-none"
+    >
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.4, duration: 0.4 }}
+        className="pointer-events-auto flex flex-col items-center gap-3 p-2 rounded-full bg-surface/80 backdrop-blur-md border border-outline-variant shadow-elevation-1"
+      >
+        {socialItems.slice(0, 3).map(renderLink)}
+        <div className="w-5 h-px bg-outline-variant my-1" />
+        {renderLink(socialItems[3])}
+      </motion.div>
+    </aside>
   );
 };
 
