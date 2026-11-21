@@ -1,0 +1,551 @@
+/* ==========================================================================
+   PortfolioLoader.css
+   High-Fidelity 7-Second Portfolio Intro Loading Animation
+   Exact 6-Phase Storyboard Implementation for Light & Dark Themes
+   ========================================================================== */
+
+/* Container & Fullscreen Presentation */
+.pl-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+/* Dark Theme Background (Deep charcoal / near-black) */
+.pl-theme-dark {
+  background-color: var(--color-brand-bg-dark, #09090B);
+  color: var(--color-text-primary-dark, #EDEDED);
+}
+
+/* Light Theme Background (Portfolio standard #FAFAFA) */
+.pl-theme-light {
+  background-color: var(--color-brand-bg-light, #FAFAFA);
+  color: var(--color-text-primary-light, #111111);
+}
+
+/* Subtle Engineering Grid Backdrop */
+.pl-grid-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-size: 40px 40px;
+  background-position: center center;
+}
+
+.pl-theme-dark .pl-grid-backdrop {
+  background-image:
+    linear-gradient(to right, rgba(255, 115, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 115, 0, 0.035) 1px, transparent 1px);
+}
+
+.pl-theme-light .pl-grid-backdrop {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+/* Ambient Radial Vignette */
+.pl-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.5s ease;
+}
+
+.pl-theme-dark .pl-vignette {
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 50%,
+    rgba(255, 115, 0, 0.12) 0%,
+    rgba(9, 9, 11, 0.75) 55%,
+    #09090B 100%
+  );
+}
+
+.pl-theme-light .pl-vignette {
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 50%,
+    rgba(245, 158, 11, 0.08) 0%,
+    rgba(250, 250, 250, 0.8) 55%,
+    #FAFAFA 100%
+  );
+}
+
+/* Canvas Layer for Ambient Embers & Trailing Sparks */
+.pl-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Main Centered Stage */
+.pl-stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(0);
+}
+
+/* SVG Wrapper with Responsive Dimensions */
+.pl-svg-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 190px;
+  height: 190px;
+}
+
+@media (min-width: 640px) {
+  .pl-svg-wrapper {
+    width: 230px;
+    height: 230px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pl-svg-wrapper {
+    width: 270px;
+    height: 270px;
+  }
+}
+
+.pl-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.08));
+}
+
+.pl-theme-dark .pl-svg {
+  filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.45));
+}
+
+/* --------------------------------------------------------------------------
+   PHASE 01: Initial Spark (0.0s – 0.8s)
+   -------------------------------------------------------------------------- */
+.pl-initial-spark {
+  transform-origin: 64px 64px;
+  animation: plSparkIgnite 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes plSparkIgnite {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  70% {
+    opacity: 0.95;
+    transform: scale(0.95);
+  }
+  90% {
+    opacity: 0.85;
+    transform: scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+    pointer-events: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PHASE 02: P Ribbon Drawing (0.8s – 1.8s)
+   -------------------------------------------------------------------------- */
+.pl-loop-draw-path {
+  stroke-dasharray: 148;
+  stroke-dashoffset: 148;
+  animation: plDrawRibbon 1.0s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+}
+
+@keyframes plDrawRibbon {
+  0% {
+    stroke-dashoffset: 148;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PHASE 03: Vertical Stem Formation (1.8s – 2.8s)
+   -------------------------------------------------------------------------- */
+.pl-stem-draw-path {
+  stroke-dasharray: 105;
+  stroke-dashoffset: 105;
+  animation: plDrawStem 1.0s cubic-bezier(0.4, 0, 0.2, 1) 1.8s forwards;
+}
+
+@keyframes plDrawStem {
+  0% {
+    stroke-dashoffset: 105;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Directional Shadow Tuck Reveal (at 2.6s - 3.0s) */
+.pl-shadow-rect {
+  opacity: 0;
+  animation: plRevealShadow 0.4s ease-out 2.6s forwards;
+}
+
+@keyframes plRevealShadow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PHASE 04: Complete Logo Resolution & Light Sweep (2.8s – 4.0s)
+   -------------------------------------------------------------------------- */
+/* Ground Plane Floor Glow */
+.pl-floor-glow-element {
+  opacity: 0;
+  transform-origin: 64px 118px;
+  animation: plFloorGlow 4.2s ease-in-out 2.7s forwards;
+}
+
+@keyframes plFloorGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  18% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+  45% {
+    opacity: 0.65;
+    transform: scale(1.0);
+  }
+  75% {
+    opacity: 0.55;
+    transform: scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Specular Diagonal Sheen / Light Sweep */
+.pl-light-sweep-bar {
+  opacity: 0;
+  transform: translateX(-80px);
+  animation: plLightSweep 0.95s cubic-bezier(0.25, 1, 0.5, 1) 2.95s forwards;
+}
+
+@keyframes plLightSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  20% {
+    opacity: 0.85;
+  }
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(180px);
+  }
+}
+
+/* Logo Settle (Magnetic Lock in Phase 04 & Soft Settle in Phase 06) */
+.pl-logo-group {
+  transform-origin: 64px 64px;
+  animation: plLogoSettle 7.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes plLogoSettle {
+  0%, 39% {
+    transform: scale(1.0);
+  }
+  42% {
+    /* Subtle magnetic resolve impact at 2.9s */
+    transform: scale(1.035);
+  }
+  48% {
+    transform: scale(1.0);
+  }
+  82% {
+    /* Phase 06 soft settle */
+    transform: translateY(0) scale(1.0);
+  }
+  88% {
+    transform: translateY(-2px) scale(1.015);
+  }
+  94%, 100% {
+    transform: translateY(0) scale(1.0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PHASE 05: Circular Progress Ring (4.0s – 5.8s)
+   -------------------------------------------------------------------------- */
+.pl-progress-ring-circle {
+  stroke-dasharray: 365;
+  stroke-dashoffset: 365;
+  animation: plProgressRingDraw 1.8s cubic-bezier(0.4, 0, 0.2, 1) 4.0s forwards;
+}
+
+@keyframes plProgressRingDraw {
+  0% {
+    stroke-dashoffset: 365;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Circular Ring Group Fade Out in Phase 06 (5.8s – 6.2s) */
+.pl-progress-ring-group {
+  opacity: 1;
+  animation: plProgressRingFade 0.4s ease-out 5.8s forwards;
+}
+
+@keyframes plProgressRingFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PHASE 06: Final Logo Lockup & Typography (5.8s – 7.0s)
+   -------------------------------------------------------------------------- */
+.pl-branding-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: plRevealTypography 0.75s cubic-bezier(0.16, 1, 0.3, 1) 5.85s forwards;
+  pointer-events: none;
+}
+
+@keyframes plRevealTypography {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pl-brand-name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  margin-left: 0.38em; /* Offset for trailing letter-spacing */
+  transition: color 0.3s ease;
+}
+
+.pl-theme-dark .pl-brand-name {
+  color: #EDEDED;
+  text-shadow: 0 0 12px rgba(255, 194, 38, 0.25);
+}
+
+.pl-theme-light .pl-brand-name {
+  color: #111111;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pl-brand-divider {
+  width: 140px;
+  height: 1px;
+  margin: 0.55rem 0 0.5rem 0;
+  transition: background 0.3s ease;
+}
+
+.pl-theme-dark .pl-brand-divider {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 115, 0, 0.55) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(255, 115, 0, 0.3);
+}
+
+.pl-theme-light .pl-brand-divider {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(234, 88, 12, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+.pl-brand-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  margin-left: 0.26em; /* Offset for trailing letter-spacing */
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.pl-theme-dark .pl-brand-title {
+  color: #A1A1AA;
+}
+
+.pl-theme-light .pl-brand-title {
+  color: #666666;
+}
+
+/* Exit Transition (6.7s – 7.0s) */
+.pl-container-exiting {
+  animation: plExitFade 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+}
+
+@keyframes plExitFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.985);
+    pointer-events: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Skip Button (Refined & Accessible)
+   -------------------------------------------------------------------------- */
+.pl-skip-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  outline: none;
+}
+
+.pl-theme-dark .pl-skip-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A1A1AA;
+}
+
+.pl-theme-dark .pl-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 194, 38, 0.4);
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(255, 115, 0, 0.2);
+}
+
+.pl-theme-light .pl-skip-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #666666;
+}
+
+.pl-theme-light .pl-skip-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(234, 88, 12, 0.35);
+  color: #111111;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.pl-skip-kbd {
+  font-family: monospace;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  opacity: 0.75;
+}
+
+.pl-theme-dark .pl-skip-kbd {
+  background: rgba(255, 255, 255, 0.1);
+  color: #EDEDED;
+}
+
+.pl-theme-light .pl-skip-kbd {
+  background: rgba(0, 0, 0, 0.06);
+  color: #333333;
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Prefers-Reduced-Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pl-loop-draw-path,
+  .pl-stem-draw-path,
+  .pl-progress-ring-circle {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+
+  .pl-shadow-rect,
+  .pl-branding-lockup,
+  .pl-progress-ring-group {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .pl-initial-spark,
+  .pl-light-sweep-bar,
+  .pl-active-spark-head,
+  .pl-ring-beacon,
+  .pl-canvas {
+    display: none !important;
+  }
+}

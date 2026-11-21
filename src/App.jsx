@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Header from './components/layout/Header'
@@ -8,22 +8,27 @@ import Skill from './pages/Skill'
 import Project from './pages/Project'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
-import Preloader from './components/ui/Preloader'
+import PortfolioLoader from './components/ui/PortfolioLoader'
 import SmoothScroll from './components/ui/SmoothScroll'
 import './index.css'
 import { ThemeProvider } from './contexts/ThemeContext.jsx'
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
+  // First visit check: run the 7-second intro on first visit or if requested via URL (?replay=true)
+  const [isLoading, setIsLoading] = useState(() => {
+    if (typeof window === 'undefined') return false
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('replay') === 'true' || params.get('intro') === 'true') {
+      return true
+    }
+    return !localStorage.getItem('portfolio_intro_seen')
+  })
+
   const location = useLocation()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    // Synchronized with preloader animation (5.0 seconds)
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 5100)
-    return () => clearTimeout(timer)
+  const handleLoaderComplete = useCallback(() => {
+    setIsLoading(false)
   }, [])
 
   // Backward compatibility for hash links e.g. #experience -> /experience
@@ -75,10 +80,9 @@ function App() {
         <div className="relative min-h-screen flex flex-col bg-brand-bg-light dark:bg-brand-bg-dark transition-colors duration-300">
           <AnimatePresence mode="wait">
             {isLoading && (
-              <Preloader
-                key="preloader"
-                name="PRANAV KAVADE"
-                onComplete={() => setIsLoading(false)}
+              <PortfolioLoader
+                key="portfolio-loader"
+                onComplete={handleLoaderComplete}
               />
             )}
           </AnimatePresence>
