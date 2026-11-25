@@ -28,8 +28,6 @@ import {
   ChevronDown,
   Maximize2,
   Layers,
-  Bookmark,
-  Share2,
   FolderSearch,
 } from 'lucide-react';
 import { pageVariants } from '../config/animations';
@@ -41,7 +39,6 @@ import Badge from '../components/ui/Badge';
 import Dialog from '../components/ui/Dialog';
 import MediaImage from '../components/ui/MediaImage';
 import EmptyState from '../components/ui/EmptyState';
-import { useSnackbar } from '../components/ui/Snackbar';
 
 // --- IMAGE IMPORTS ---
 import farmketImg1 from '../assets/project_images/farmket/HomePage.jpg';
@@ -250,12 +247,9 @@ const projects = [
   },
 ];
 
-const SAVED_STORAGE_KEY = 'portfolio_saved_projects';
-
 function Project() {
   const [searchParams, setSearchParams] = useSearchParams();
   const projectParam = searchParams.get('project')?.toLowerCase();
-  const { showSnackbar } = useSnackbar();
   const shouldReduceMotion = useReducedMotion();
 
   const matchedIndex = useMemo(() => {
@@ -274,15 +268,6 @@ function Project() {
   const [lightbox, setLightbox] = useState({ isOpen: false, url: null });
   const [isExpandedTech, setIsExpandedTech] = useState(false);
 
-  const [savedIds, setSavedIds] = useState(() => {
-    try {
-      const raw = localStorage.getItem(SAVED_STORAGE_KEY);
-      return raw ? JSON.parse(raw) : [];
-    } catch {
-      return [];
-    }
-  });
-
   const [prevTab, setPrevTab] = useState(activeTab);
   if (prevTab !== activeTab) {
     setPrevTab(activeTab);
@@ -291,58 +276,6 @@ function Project() {
     setCustomPreviewImg(null);
     setIsExpandedTech(false);
   }
-
-  const persistSavedIds = (nextIds) => {
-    setSavedIds(nextIds);
-    try {
-      localStorage.setItem(SAVED_STORAGE_KEY, JSON.stringify(nextIds));
-    } catch {
-      setSavedIds(savedIds);
-      showSnackbar({
-        message: 'Could not save bookmark preference.',
-        type: 'error',
-        actionLabel: 'Retry',
-        onAction: () => persistSavedIds(nextIds),
-      });
-    }
-  };
-
-  const isSaved = savedIds.includes(activeProject.id);
-
-  const handleToggleSave = () => {
-    const previous = savedIds;
-    const next = isSaved
-      ? previous.filter((id) => id !== activeProject.id)
-      : [...previous, activeProject.id];
-
-    persistSavedIds(next);
-    showSnackbar({
-      message: isSaved
-        ? `Removed ${activeProject.title} from bookmarks`
-        : `Saved ${activeProject.title} to bookmarks`,
-      type: 'info',
-      actionLabel: 'Undo',
-      onAction: () => persistSavedIds(previous),
-    });
-  };
-
-  const handleShareProject = async () => {
-    const url = `${window.location.origin}/projects?project=${encodeURIComponent(activeProject.title.toLowerCase())}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      showSnackbar({
-        message: `Link copied for ${activeProject.title}`,
-        type: 'success',
-      });
-    } catch {
-      showSnackbar({
-        message: 'Could not copy project link.',
-        type: 'error',
-        actionLabel: 'Retry',
-        onAction: handleShareProject,
-      });
-    }
-  };
 
   const handleProjectChange = (index) => {
     setActiveRole('farmer');
@@ -472,30 +405,6 @@ function Project() {
                   <Badge variant="secondary" icon={BadgeIcon} className="normal-case tracking-normal font-medium">
                     {activeProject.badgeText}
                   </Badge>
-
-                  <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      onClick={handleToggleSave}
-                      aria-pressed={isSaved}
-                      aria-label={isSaved ? `Remove ${activeProject.title} bookmark` : `Bookmark ${activeProject.title}`}
-                      className={`touch-target px-3 gap-1.5 rounded-full text-xs font-medium state-layer cursor-pointer ${
-                        isSaved ? 'text-on-primary-container bg-primary-container' : 'text-on-surface-variant hover:text-on-surface'
-                      }`}
-                    >
-                      <Bookmark size={15} fill={isSaved ? 'currentColor' : 'none'} aria-hidden="true" />
-                      <span>{isSaved ? 'Saved' : 'Save'}</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleShareProject}
-                      aria-label={`Copy link to ${activeProject.title}`}
-                      className="touch-target px-3 gap-1.5 rounded-full text-xs font-medium text-on-surface-variant hover:text-on-surface state-layer cursor-pointer"
-                    >
-                      <Share2 size={15} aria-hidden="true" />
-                      <span>Share</span>
-                    </button>
-                  </div>
                 </div>
 
                 {/* Title, Summary, Actions */}
@@ -911,11 +820,12 @@ function Project() {
               <Button
                 variant="outlined"
                 size="md"
+                icon={ChevronLeft}
+                iconPosition="left"
                 onClick={() => stepLightbox(-1)}
                 aria-label="Previous screenshot"
               >
-                <ChevronLeft size={16} aria-hidden="true" />
-                <span>Previous</span>
+                Previous
               </Button>
               <span className="text-xs font-mono font-medium text-on-surface-variant tabular-nums">
                 {lightboxIndex + 1} / {activeProject.gallery.length}

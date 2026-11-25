@@ -17,6 +17,7 @@ const Button = ({
   size = 'md',
   className = '',
   icon: Icon,
+  iconPosition = 'right',
   as: Component = 'button',
   magnetic = false,
   isLoading = false,
@@ -85,6 +86,12 @@ const Button = ({
     lg: 18,
   };
 
+  const iconNode = Icon && (
+    <span className="shrink-0 inline-flex items-center justify-center" aria-hidden="true">
+      <Icon size={iconSizes[size] || 17} />
+    </span>
+  );
+
   const innerContent = (
     <>
       <span
@@ -93,12 +100,9 @@ const Button = ({
           isLoading && 'invisible'
         )}
       >
-        <span>{children}</span>
-        {Icon && (
-          <span className="shrink-0 inline-flex items-center justify-center" aria-hidden="true">
-            <Icon size={iconSizes[size] || 17} />
-          </span>
-        )}
+        {iconPosition === 'left' && iconNode}
+        <span className="inline-flex items-center justify-center gap-2">{children}</span>
+        {iconPosition !== 'left' && iconNode}
       </span>
       {isLoading && (
         <span className="absolute inset-0 z-10 inline-flex items-center justify-center gap-2">
