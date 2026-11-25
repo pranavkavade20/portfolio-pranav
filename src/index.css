@@ -8,29 +8,26 @@
    ========================================================================== */
 
 :root {
-  /* Color roles: Light Mode (Warm Orange Brand)
-     --color-primary (#c74408) is WCAG AA 4.93:1 on #fff and 4.68:1 on #f8f9fa;
-     --color-primary-vivid (#ea580c) is reserved for >=3:1 large display/icons. */
-  --color-primary: #c74408;
-  --color-primary-vivid: #ea580c;
+  /* Color roles: Light Mode (Warm Stone Neutrals + Accessible Warm Orange) */
+  --color-primary: #b63a05;
   --color-on-primary: #ffffff;
-  --color-primary-container: #ffedd5;
-  --color-on-primary-container: #7c2d12;
+  --color-primary-container: #ffeadb;
+  --color-on-primary-container: #6b2100;
 
-  --color-background: #f8f9fa;
+  --color-background: #f3f2f0;
   --color-surface: #ffffff;
-  --color-surface-variant: #eef0f3;
-  --color-on-surface: #191c1e;
-  --color-on-surface-variant: #44474e;
-  --color-outline: #8a8f98;
-  --color-outline-variant: #e0e3e7;
+  --color-surface-variant: #eceae7;
+  --color-on-surface: #191817;
+  --color-on-surface-variant: #524f4c;
+  --color-outline: #75726e;
+  --color-outline-variant: #d8d5d0;
 
-  --color-error: #ba1a1a;
+  --color-error: #b91c1c;
   --color-on-error: #ffffff;
-  --color-error-container: #ffdad6;
-  --color-on-error-container: #410002;
+  --color-error-container: #fee2e2;
+  --color-on-error-container: #7f1d1d;
 
-  --color-success: #15803d;
+  --color-success: #166534;
   --color-on-success: #ffffff;
   --color-success-container: #dcfce7;
   --color-on-success-container: #14532d;
@@ -40,16 +37,13 @@
   --color-warning-container: #fef3c7;
   --color-on-warning-container: #78350f;
 
-  /* Overlay, scrim, and window decorator semantic tokens */
-  --color-scrim: rgba(17, 18, 20, 0.72);
-  --color-scrim-strong: rgba(17, 18, 20, 0.88);
-  --color-media-scrim: rgba(17, 18, 20, 0.78);
+  /* Overlay, scrim, and media semantic tokens */
+  --color-scrim: rgba(20, 20, 22, 0.72);
+  --color-scrim-strong: rgba(20, 20, 22, 0.88);
+  --color-media-scrim: rgba(20, 20, 22, 0.78);
   --color-on-media: #ffffff;
-  --color-on-media-muted: rgba(255, 255, 255, 0.86);
+  --color-on-media-muted: rgba(255, 255, 255, 0.88);
   --color-media-border: rgba(255, 255, 255, 0.16);
-  --color-dot-close: #e05d44;
-  --color-dot-minimize: #d99b26;
-  --color-dot-maximize: #27a34b;
 
   /* Spacing (4px base, 8px rhythm) */
   --space-1: 4px;
@@ -132,37 +126,36 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-primary: #ff8c42;
-    --color-primary-vivid: #ff8c42;
-    --color-on-primary: #431407;
-    --color-primary-container: #7c2d12;
-    --color-on-primary-container: #ffedd5;
+    --color-on-primary: #3e1202;
+    --color-primary-container: #692407;
+    --color-on-primary-container: #ffeadb;
 
-    --color-background: #111214;
-    --color-surface: #1d1e21;
-    --color-surface-variant: #28292d;
-    --color-on-surface: #e5e7eb;
-    --color-on-surface-variant: #9ca3af;
-    --color-outline: #6c7079;
-    --color-outline-variant: #2e3137;
+    --color-background: #141416;
+    --color-surface: #1e1f22;
+    --color-surface-variant: #2a2b30;
+    --color-on-surface: #ededee;
+    --color-on-surface-variant: #a5a3a0;
+    --color-outline: #787673;
+    --color-outline-variant: #323338;
 
-    --color-error: #ffb4ab;
-    --color-on-error: #690005;
-    --color-error-container: #93000a;
-    --color-on-error-container: #ffdad6;
+    --color-error: #fca5a5;
+    --color-on-error: #450a0a;
+    --color-error-container: #7f1d1d;
+    --color-on-error-container: #fee2e2;
 
     --color-success: #86efac;
     --color-on-success: #052e16;
     --color-success-container: #14532d;
     --color-on-success-container: #dcfce7;
 
-    --color-warning: #fde047;
-    --color-on-warning: #422006;
-    --color-warning-container: #713f12;
-    --color-on-warning-container: #fef08a;
+    --color-warning: #fcd34d;
+    --color-on-warning: #451a03;
+    --color-warning-container: #78350f;
+    --color-on-warning-container: #fef3c7;
 
-    --color-scrim: rgba(0, 0, 0, 0.76);
-    --color-scrim-strong: rgba(0, 0, 0, 0.9);
-    --color-media-scrim: rgba(17, 18, 20, 0.84);
+    --color-scrim: rgba(14, 14, 16, 0.78);
+    --color-scrim-strong: rgba(14, 14, 16, 0.92);
+    --color-media-scrim: rgba(14, 14, 16, 0.86);
 
     --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
     --elevation-2: 0 2px 8px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.07);
@@ -174,37 +167,36 @@
 :root[data-theme="dark"],
 .dark {
   --color-primary: #ff8c42;
-  --color-primary-vivid: #ff8c42;
-  --color-on-primary: #431407;
-  --color-primary-container: #7c2d12;
-  --color-on-primary-container: #ffedd5;
+  --color-on-primary: #3e1202;
+  --color-primary-container: #692407;
+  --color-on-primary-container: #ffeadb;
 
-  --color-background: #111214;
-  --color-surface: #1d1e21;
-  --color-surface-variant: #28292d;
-  --color-on-surface: #e5e7eb;
-  --color-on-surface-variant: #9ca3af;
-  --color-outline: #6c7079;
-  --color-outline-variant: #2e3137;
+  --color-background: #141416;
+  --color-surface: #1e1f22;
+  --color-surface-variant: #2a2b30;
+  --color-on-surface: #ededee;
+  --color-on-surface-variant: #a5a3a0;
+  --color-outline: #787673;
+  --color-outline-variant: #323338;
 
-  --color-error: #ffb4ab;
-  --color-on-error: #690005;
-  --color-error-container: #93000a;
-  --color-on-error-container: #ffdad6;
+  --color-error: #fca5a5;
+  --color-on-error: #450a0a;
+  --color-error-container: #7f1d1d;
+  --color-on-error-container: #fee2e2;
 
   --color-success: #86efac;
   --color-on-success: #052e16;
   --color-success-container: #14532d;
   --color-on-success-container: #dcfce7;
 
-  --color-warning: #fde047;
-  --color-on-warning: #422006;
-  --color-warning-container: #713f12;
-  --color-on-warning-container: #fef08a;
+  --color-warning: #fcd34d;
+  --color-on-warning: #451a03;
+  --color-warning-container: #78350f;
+  --color-on-warning-container: #fef3c7;
 
-  --color-scrim: rgba(0, 0, 0, 0.76);
-  --color-scrim-strong: rgba(0, 0, 0, 0.9);
-  --color-media-scrim: rgba(17, 18, 20, 0.84);
+  --color-scrim: rgba(14, 14, 16, 0.78);
+  --color-scrim-strong: rgba(14, 14, 16, 0.92);
+  --color-media-scrim: rgba(14, 14, 16, 0.86);
 
   --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
   --elevation-2: 0 2px 8px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.07);
@@ -226,7 +218,6 @@
 
   /* Primary Brand Roles */
   --color-primary: var(--color-primary);
-  --color-primary-vivid: var(--color-primary-vivid);
   --color-on-primary: var(--color-on-primary);
   --color-primary-container: var(--color-primary-container);
   --color-on-primary-container: var(--color-on-primary-container);
@@ -254,16 +245,13 @@
   --color-warning-container: var(--color-warning-container);
   --color-on-warning-container: var(--color-on-warning-container);
 
-  /* Overlay & Decorator Roles */
+  /* Overlay Roles */
   --color-scrim: var(--color-scrim);
   --color-scrim-strong: var(--color-scrim-strong);
   --color-media-scrim: var(--color-media-scrim);
   --color-on-media: var(--color-on-media);
   --color-on-media-muted: var(--color-on-media-muted);
   --color-media-border: var(--color-media-border);
-  --color-dot-close: var(--color-dot-close);
-  --color-dot-minimize: var(--color-dot-minimize);
-  --color-dot-maximize: var(--color-dot-maximize);
 
   /* Spacing tokens (4px base, 8px rhythm) */
   --spacing-1: var(--space-1);

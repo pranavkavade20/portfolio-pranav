@@ -153,7 +153,7 @@ const Dialog = ({
             aria-describedby={description ? descId : undefined}
             className={cn(
               'relative w-full bg-surface text-on-surface',
-              'rounded-t-xl tablet:rounded-md border border-outline-variant shadow-elevation-3',
+              'rounded-t-xl tablet:rounded-md border border-outline shadow-elevation-3',
               'p-4 tablet:p-6 pb-[max(var(--space-6),env(safe-area-inset-bottom))] max-h-[90dvh] overflow-y-auto z-10',
               'focus:outline-none',
               sizes[size] || sizes.md,

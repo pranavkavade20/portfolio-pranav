@@ -76,7 +76,7 @@ export const SnackbarProvider = ({ children }) => {
               animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.96 }}
               transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
-              className="pointer-events-auto bg-surface text-on-surface border border-outline-variant shadow-elevation-3 rounded-md pl-4 pr-1.5 py-1.5 flex items-center justify-between gap-2 min-h-[52px]"
+              className="pointer-events-auto bg-surface text-on-surface border border-outline shadow-elevation-3 rounded-md pl-4 pr-1.5 py-1.5 flex items-center justify-between gap-2 min-h-[52px]"
             >
               <div className="flex items-center gap-3 min-w-0 py-1">
                 {icons[snackbar.type] || icons.info}

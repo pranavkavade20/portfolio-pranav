@@ -169,10 +169,15 @@ const PortfolioLoader = ({ onComplete }) => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Color palette mapped to primary brand tokens (Orange)
-    const palette = isDark
-      ? ['#ff8c42', '#fb923c', '#ea580c', '#fed7aa', '#ffffff']
-      : ['#ea580c', '#c2410c', '#9a3412', '#f97316', '#ffedd5'];
+    // Resolve canvas spark palette dynamically from active CSS design tokens
+    const styles = getComputedStyle(document.documentElement);
+    const readToken = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
+    const primaryToken = readToken('--color-primary', 'currentColor');
+    const containerToken = readToken('--color-primary-container', primaryToken);
+    const onContainerToken = readToken('--color-on-primary-container', primaryToken);
+    const onSurfaceToken = readToken('--color-on-surface', primaryToken);
+    const beaconColor = isDark ? containerToken : primaryToken;
+    const palette = [primaryToken, containerToken, onContainerToken, onSurfaceToken];
 
     // 32 ambient zero-G background micro-sparks
     const ambientSparks = Array.from({ length: 32 }, () => ({
@@ -325,7 +330,7 @@ const PortfolioLoader = ({ onComplete }) => {
             vx: (Math.random() - 0.5) * 0.4,
             vy: (Math.random() - 0.5) * 0.4,
             size: Math.random() * 1.5 + 0.6,
-            color: '#FFE082',
+            color: beaconColor,
             alpha: 0.8,
             decay: 0.04,
           });
@@ -445,7 +450,7 @@ const PortfolioLoader = ({ onComplete }) => {
             aria-hidden="true"
           >
             <defs>
-              {/* EXACT ORIGINAL GRADIENTS FROM logo.svg */}
+              {/* Token-driven Brand Gradients */}
               <linearGradient
                 id="pl-loop-grad"
                 x1="104"
@@ -454,9 +459,9 @@ const PortfolioLoader = ({ onComplete }) => {
                 y2="86"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop offset="0%" stopColor="#FFC226" />
-                <stop offset="55%" stopColor="#FF7300" />
-                <stop offset="100%" stopColor="#E33B00" />
+                <stop offset="0%" stopColor="color-mix(in srgb, var(--color-primary) 55%, var(--color-primary-container))" />
+                <stop offset="55%" stopColor="var(--color-primary)" />
+                <stop offset="100%" stopColor="var(--color-on-primary-container)" />
               </linearGradient>
 
               <linearGradient
@@ -467,9 +472,9 @@ const PortfolioLoader = ({ onComplete }) => {
                 y2="114"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop offset="0%" stopColor="#FF6B00" />
-                <stop offset="65%" stopColor="#EB3E05" />
-                <stop offset="100%" stopColor="#C92800" />
+                <stop offset="0%" stopColor="var(--color-primary)" />
+                <stop offset="65%" stopColor="color-mix(in srgb, var(--color-primary) 75%, var(--color-on-primary-container))" />
+                <stop offset="100%" stopColor="var(--color-on-primary-container)" />
               </linearGradient>
 
               <linearGradient
@@ -482,10 +487,10 @@ const PortfolioLoader = ({ onComplete }) => {
               >
                 <stop
                   offset="0%"
-                  stopColor="#5C1100"
-                  stopOpacity={isDark ? '0.38' : '0.45'}
+                  stopColor="var(--color-on-surface)"
+                  stopOpacity={isDark ? '0.38' : '0.32'}
                 />
-                <stop offset="100%" stopColor="#5C1100" stopOpacity="0" />
+                <stop offset="100%" stopColor="var(--color-on-surface)" stopOpacity="0" />
               </linearGradient>
 
               {/* Progress Ring Gradient */}
@@ -496,44 +501,38 @@ const PortfolioLoader = ({ onComplete }) => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#FF7300" />
-                <stop offset="60%" stopColor="#FFC226" />
-                <stop offset="100%" stopColor={isDark ? '#FFE082' : '#F59E0B'} />
+                <stop offset="0%" stopColor="var(--color-primary)" />
+                <stop offset="60%" stopColor="color-mix(in srgb, var(--color-primary) 65%, var(--color-primary-container))" />
+                <stop offset="100%" stopColor="var(--color-primary-container)" />
               </linearGradient>
 
               {/* Spark Glow Radials */}
               <radialGradient id="pl-spark-halo" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
-                <stop offset="35%" stopColor="#FFC226" stopOpacity="0.85" />
-                <stop offset="70%" stopColor="#FF7300" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#FF7300" stopOpacity="0" />
+                <stop offset="0%" stopColor="var(--color-surface)" stopOpacity="1" />
+                <stop offset="35%" stopColor="var(--color-primary-container)" stopOpacity="0.85" />
+                <stop offset="70%" stopColor="var(--color-primary)" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
               </radialGradient>
 
               <radialGradient id="pl-beacon-glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
-                <stop offset="40%" stopColor="#FFC226" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#FF7300" stopOpacity="0" />
+                <stop offset="0%" stopColor="var(--color-surface)" stopOpacity="1" />
+                <stop offset="40%" stopColor="var(--color-primary-container)" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
               </radialGradient>
 
               {/* Floor Ambient Glow */}
               <radialGradient id="pl-floor-glow" cx="50%" cy="50%" r="50%">
                 <stop
                   offset="0%"
-                  stopColor={
-                    isDark
-                      ? 'rgba(255, 115, 0, 0.42)'
-                      : 'rgba(234, 88, 12, 0.22)'
-                  }
+                  stopColor="var(--color-primary)"
+                  stopOpacity={isDark ? '0.38' : '0.22'}
                 />
                 <stop
                   offset="60%"
-                  stopColor={
-                    isDark
-                      ? 'rgba(255, 194, 38, 0.15)'
-                      : 'rgba(245, 158, 11, 0.08)'
-                  }
+                  stopColor="var(--color-primary-container)"
+                  stopOpacity={isDark ? '0.16' : '0.10'}
                 />
-                <stop offset="100%" stopColor="transparent" />
+                <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
               </radialGradient>
 
               {/* Light Sweep Sheen Gradient for Phase 04 */}
@@ -545,24 +544,18 @@ const PortfolioLoader = ({ onComplete }) => {
                 y2="0%"
                 gradientTransform="rotate(45)"
               >
-                <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+                <stop offset="0%" stopColor="var(--color-surface)" stopOpacity="0" />
                 <stop
                   offset="45%"
-                  stopColor={
-                    isDark
-                      ? 'rgba(255,255,255,0.7)'
-                      : 'rgba(255,255,255,0.85)'
-                  }
+                  stopColor="var(--color-surface)"
+                  stopOpacity={isDark ? '0.65' : '0.85'}
                 />
                 <stop
                   offset="55%"
-                  stopColor={
-                    isDark
-                      ? 'rgba(255,230,150,0.8)'
-                      : 'rgba(255,245,210,0.9)'
-                  }
+                  stopColor="var(--color-primary-container)"
+                  stopOpacity={isDark ? '0.75' : '0.9'}
                 />
-                <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                <stop offset="100%" stopColor="var(--color-surface)" stopOpacity="0" />
               </linearGradient>
 
               {/* Drawing Mask for Ribbon Loop (Phase 02) */}
@@ -665,11 +658,8 @@ const PortfolioLoader = ({ onComplete }) => {
                 cy="64"
                 r="58"
                 fill="none"
-                stroke={
-                  isDark
-                    ? 'rgba(255, 115, 0, 0.12)'
-                    : 'rgba(217, 119, 6, 0.1)'
-                }
+                stroke="var(--color-primary)"
+                strokeOpacity={isDark ? '0.16' : '0.14'}
                 strokeWidth="1.2"
               />
               <circle
@@ -696,13 +686,13 @@ const PortfolioLoader = ({ onComplete }) => {
                   fill="url(#pl-spark-halo)"
                   opacity="0.65"
                 />
-                <circle cx="64" cy="64" r="3.5" fill="#FFFFFF" />
+                <circle cx="64" cy="64" r="3.5" fill="var(--color-surface)" />
                 <line
                   x1="42"
                   y1="64"
                   x2="86"
                   y2="64"
-                  stroke="#FFE082"
+                  stroke="var(--color-primary-container)"
                   strokeWidth="1.2"
                   strokeLinecap="round"
                   opacity="0.9"
@@ -712,7 +702,7 @@ const PortfolioLoader = ({ onComplete }) => {
                   y1="42"
                   x2="64"
                   y2="86"
-                  stroke="#FFE082"
+                  stroke="var(--color-primary-container)"
                   strokeWidth="1.2"
                   strokeLinecap="round"
                   opacity="0.9"
@@ -722,7 +712,7 @@ const PortfolioLoader = ({ onComplete }) => {
                   y1="53"
                   x2="75"
                   y2="75"
-                  stroke="#FFC226"
+                  stroke="var(--color-primary)"
                   strokeWidth="0.8"
                   opacity="0.5"
                 />
@@ -731,7 +721,7 @@ const PortfolioLoader = ({ onComplete }) => {
                   y1="53"
                   x2="53"
                   y2="75"
-                  stroke="#FFC226"
+                  stroke="var(--color-primary)"
                   strokeWidth="0.8"
                   opacity="0.5"
                 />
@@ -751,13 +741,13 @@ const PortfolioLoader = ({ onComplete }) => {
                   fill="url(#pl-spark-halo)"
                   opacity="0.85"
                 />
-                <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+                <circle cx="0" cy="0" r="3" fill="var(--color-surface)" />
                 <line
                   x1="-12"
                   y1="0"
                   x2="12"
                   y2="0"
-                  stroke="#FFF7D6"
+                  stroke="var(--color-primary-container)"
                   strokeWidth="1.2"
                   strokeLinecap="round"
                 />
@@ -766,7 +756,7 @@ const PortfolioLoader = ({ onComplete }) => {
                   y1="-12"
                   x2="0"
                   y2="12"
-                  stroke="#FFF7D6"
+                  stroke="var(--color-primary-container)"
                   strokeWidth="1.2"
                   strokeLinecap="round"
                 />
@@ -786,7 +776,7 @@ const PortfolioLoader = ({ onComplete }) => {
                   fill="url(#pl-beacon-glow)"
                   opacity="0.85"
                 />
-                <circle cx="0" cy="0" r="2.5" fill="#FFFFFF" />
+                <circle cx="0" cy="0" r="2.5" fill="var(--color-surface)" />
               </g>
             </g>
           </svg>

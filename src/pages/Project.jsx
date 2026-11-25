@@ -107,7 +107,7 @@ const skillLogos = {
 };
 
 const RedisIcon = () => (
-  <svg className="w-3.5 h-3.5 text-error shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <svg className="w-3.5 h-3.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M3 8.5L12 4L21 8.5L12 13L3 8.5Z" fill="currentColor" />
     <path d="M3 13L12 17.5L21 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     <path d="M3 17.5L12 22L21 17.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -515,7 +515,7 @@ function Project() {
                     <button
                       type="button"
                       onClick={() => setIsExpandedTech((prev) => !prev)}
-                      className="relative inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-xs font-semibold bg-surface-variant text-on-surface-variant hover:text-on-surface border border-outline-variant state-layer cursor-pointer after:content-[''] after:absolute after:-inset-y-2 after:inset-x-0 tablet:after:inset-0"
+                      className="relative inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-xs font-semibold bg-surface-variant text-on-surface-variant hover:text-on-surface border border-outline state-layer cursor-pointer after:content-[''] after:absolute after:-inset-y-2 after:inset-x-0 tablet:after:inset-0"
                       aria-expanded={isExpandedTech}
                     >
                       <span>
@@ -589,14 +589,14 @@ function Project() {
                 <button
                   type="button"
                   onClick={() => openLightbox(activeProject.image)}
-                  className="block w-full text-left rounded-md border border-outline-variant bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-outline hover:shadow-elevation-2"
+                  className="block w-full text-left rounded-md border border-outline bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-primary hover:shadow-elevation-2"
                   aria-label={`Enlarge ${activeProject.title} overview screenshot`}
                 >
                   <div className="h-9 px-4 bg-surface-variant border-b border-outline-variant flex items-center justify-between">
                     <div className="flex items-center gap-1.5" aria-hidden="true">
-                      <span className="w-2.5 h-2.5 rounded-full bg-dot-close" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-dot-minimize" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-dot-maximize" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-outline" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-outline/75" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-outline/50" />
                     </div>
                     <span className="text-xs font-mono text-on-surface-variant truncate max-w-[200px]">
                       {activeProject.title.toLowerCase()}.dev
@@ -751,7 +751,7 @@ function Project() {
                     <button
                       type="button"
                       onClick={() => openLightbox(activeDisplayImage)}
-                      className="block w-full text-left rounded-md border border-outline-variant bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-outline hover:shadow-elevation-2"
+                      className="block w-full text-left rounded-md border border-outline bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-primary hover:shadow-elevation-2"
                       aria-label={`Enlarge ${activeFeature?.title || 'feature preview'} screenshot`}
                     >
                       <div className="h-9 px-3.5 bg-surface-variant border-b border-outline-variant flex items-center justify-between gap-2">
@@ -804,7 +804,7 @@ function Project() {
                             className={`relative rounded-sm overflow-hidden aspect-[16/10] bg-surface-variant border transition-all cursor-pointer min-h-[48px] ${
                               isSelected
                                 ? 'border-primary ring-2 ring-primary ring-offset-2 ring-offset-surface'
-                                : 'border-outline-variant hover:border-outline opacity-85 hover:opacity-100'
+                                : 'border-outline hover:border-on-surface opacity-85 hover:opacity-100'
                             }`}
                             aria-label={`Preview ${item.label}`}
                             aria-pressed={isSelected}
