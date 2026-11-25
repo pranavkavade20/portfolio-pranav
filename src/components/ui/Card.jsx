@@ -3,12 +3,14 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 /**
- * Meta x Google Card Component
- * Tonal surface with 1px outline-variant border and optional interactive elevation.
+ * Architectural Card Primitive
+ * Supports surface, tonal (recessed), and flat (borderless hairline-ready) variants
+ * to create hierarchy through material and ground instead of uniform boxes.
  */
 const Card = ({
   children,
   className = '',
+  variant = 'surface', // 'surface' | 'tonal' | 'flat'
   hoverEffect = false,
   interactive = false,
   ...props
@@ -16,13 +18,20 @@ const Card = ({
   const shouldReduceMotion = useReducedMotion();
   const isHoverable = hoverEffect || interactive;
 
+  const surfaceStyles = {
+    surface: 'bg-surface border border-outline-variant shadow-elevation-1',
+    tonal: 'bg-surface-variant/75 border border-outline-variant/80 shadow-none',
+    flat: 'bg-surface border border-transparent shadow-none',
+  };
+
   return (
     <motion.div
       whileHover={isHoverable && !shouldReduceMotion ? { y: -2 } : undefined}
       transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
       className={cn(
-        'bg-surface text-on-surface rounded-lg border border-outline-variant shadow-elevation-1',
-        'transition-[border-color,box-shadow] duration-base ease-standard',
+        'text-on-surface rounded-lg',
+        'transition-[border-color,box-shadow,background-color] duration-base ease-standard',
+        surfaceStyles[variant] || surfaceStyles.surface,
         isHoverable && 'hover:border-outline hover:shadow-elevation-2',
         interactive && 'state-layer cursor-pointer',
         className
@@ -41,7 +50,7 @@ const CardHeader = ({ className = '', children, ...props }) => (
 );
 
 const CardTitle = ({ className = '', children, ...props }) => (
-  <h3 className={cn('font-semibold text-lg text-on-surface tracking-tight', className)} {...props}>
+  <h3 className={cn('font-semibold text-lg text-on-surface tracking-tight leading-snug', className)} {...props}>
     {children}
   </h3>
 );

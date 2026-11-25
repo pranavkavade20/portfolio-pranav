@@ -1,10 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, FileText } from 'lucide-react';
+import { Briefcase, FileText } from 'lucide-react';
 import { fadeUp, pageVariants, staggerContainer } from '../config/animations';
 import SectionHeading from '../components/ui/SectionHeading';
-import Card from '../components/ui/Card';
-import Chip from '../components/ui/Chip';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import PageNav from '../components/layout/PageNav';
@@ -14,10 +12,15 @@ const jobs = [
   {
     company: 'DASP Digital Pvt. Ltd.',
     role: 'Software Engineer',
-    period: 'Apr 2026 - Present',
+    period: 'Apr 2026 – Present',
     current: true,
-    description:
-      'Maintaining and enhancing existing product systems by implementing new requirements, improving application functionality, and resolving bugs. Working across user management, payment, and other business modules, developing RESTful APIs, managing PostgreSQL database operations, and implementing role-based access control (RBAC) to support secure and reliable application workflows.',
+    summary:
+      'Maintaining and enhancing existing product systems by implementing new requirements, improving application functionality, and resolving bugs.',
+    highlights: [
+      'Working across user management, payment, and core business modules',
+      'Developing RESTful APIs and managing PostgreSQL database operations',
+      'Implementing role-based access control (RBAC) for secure application workflows',
+    ],
     techStack: [
       'Python',
       'JavaScript',
@@ -36,12 +39,16 @@ const jobs = [
   {
     company: 'ScaleFull Technologies',
     role: 'Full Stack Developer Intern',
-    period: 'Jan 2025 - Apr 2025',
+    period: 'Jan 2025 – Apr 2025',
     current: false,
-    description:
-      'Focused on building dynamic, responsive user interfaces and managing the flow of application data. On the backend, designed database schemas, handled API integrations, and organized the project codebase to follow industry best practices.',
+    summary:
+      'Focused on building dynamic, responsive user interfaces and managing the flow of application data across full-stack features.',
+    highlights: [
+      'Designed database schemas and handled end-to-end API integrations',
+      'Organized the project codebase to follow consistent engineering practices',
+    ],
     techStack: [
-      'Javascript',
+      'JavaScript',
       'MongoDB',
       'Express.js',
       'React.js',
@@ -53,52 +60,75 @@ const jobs = [
   },
 ];
 
-const ExperienceCard = ({ job }) => {
+const ExperienceItem = ({ job }) => {
   return (
-    <Card hoverEffect>
-      <Card.Header className="border-b border-outline-variant">
-        <div className="flex flex-col tablet:flex-row tablet:items-start justify-between gap-3">
-          <div className="flex items-start gap-3 min-w-0">
-            <span className="p-2.5 rounded-md bg-secondary-container text-on-secondary-container shrink-0" aria-hidden="true">
-              <Briefcase size={18} />
-            </span>
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
-                <Card.Title>{job.role}</Card.Title>
-                {job.current && <Badge variant="success">Current</Badge>}
-              </div>
-              <p className="text-sm font-semibold text-secondary mt-0.5">
-                {job.company}
-              </p>
+    <article className="relative pl-6 tablet:pl-8 pb-8 last:pb-0">
+      {/* Timeline Spine & Node */}
+      <span
+        className="absolute left-[5px] top-2 bottom-0 w-px bg-outline-variant last:hidden"
+        aria-hidden="true"
+      />
+      <span
+        className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 ${
+          job.current
+            ? 'bg-success border-background ring-2 ring-success/25'
+            : 'bg-surface border-outline'
+        }`}
+        aria-hidden="true"
+      />
+
+      <div className="bg-surface border border-outline-variant rounded-lg p-5 tablet:p-6 shadow-elevation-1">
+        {/* Header Row */}
+        <div className="flex flex-col tablet:flex-row tablet:items-start justify-between gap-2 pb-4 border-b border-outline-variant/80">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <h2 className="text-lg tablet:text-xl font-semibold tracking-tight text-on-surface">
+                {job.role}
+              </h2>
+              {job.current && <Badge variant="success">Current</Badge>}
             </div>
+            <p className="text-sm font-medium text-primary mt-0.5 flex items-center gap-1.5">
+              <Briefcase size={14} className="shrink-0 opacity-80" aria-hidden="true" />
+              <span>{job.company}</span>
+            </p>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 text-xs font-medium text-on-surface-variant self-start px-3 py-1.5 rounded-full bg-surface-variant shrink-0">
-            <Calendar size={13} className="text-on-surface-variant shrink-0" aria-hidden="true" />
-            <span>{job.period}</span>
-          </div>
+          <time className="text-xs font-mono font-medium text-on-surface-variant tabular-nums self-start pt-0.5 shrink-0">
+            {job.period}
+          </time>
         </div>
-      </Card.Header>
 
-      <Card.Content className="pt-4 space-y-4">
-        <p className="text-base text-on-surface-variant leading-relaxed w-full">
-          {job.description}
-        </p>
-
-        <div>
-          <p className="text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2.5">
-            Technologies & Tools
+        {/* Summary & Scannable Responsibilities */}
+        <div className="pt-4 space-y-3">
+          <p className="text-base text-on-surface-variant leading-relaxed max-w-[68ch]">
+            {job.summary}
           </p>
-          <ul className="flex flex-wrap gap-2">
-            {job.techStack.map((tech) => (
-              <li key={tech}>
-                <Chip variant="default">{tech}</Chip>
+
+          <ul className="space-y-1.5 text-sm text-on-surface-variant">
+            {job.highlights.map((point) => (
+              <li key={point} className="flex items-start gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-outline mt-2 shrink-0" aria-hidden="true" />
+                <span className="leading-relaxed">{point}</span>
               </li>
             ))}
           </ul>
         </div>
-      </Card.Content>
-    </Card>
+
+        {/* Clean Tech Stack Tags */}
+        <div className="pt-4 mt-4 border-t border-outline-variant/70">
+          <ul className="flex flex-wrap gap-1.5" aria-label={`Technologies used at ${job.company}`}>
+            {job.techStack.map((tech) => (
+              <li
+                key={tech}
+                className="px-2.5 py-1 rounded-sm bg-surface-variant/80 border border-outline-variant/70 text-xs font-mono text-on-surface"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </article>
   );
 };
 
@@ -109,46 +139,47 @@ function Experience() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="py-6"
+      className="py-6 tablet:py-8"
       aria-label="Professional Experience"
     >
       <div className="feed-container">
         <SectionHeading
           title="Where I've Built"
-          subtitle="Professional Experience"
+          subtitle="Professional experience"
           description="Production engineering across backend APIs, databases, and cross-platform product interfaces."
+          action={
+            <Button
+              as="a"
+              href={portfolioConfig.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outlined"
+              size="md"
+              icon={FileText}
+              className="w-full tablet:w-auto"
+              aria-label="View Full Résumé PDF"
+            >
+              View Résumé (PDF)
+            </Button>
+          }
         />
 
         <motion.div
           variants={staggerContainer}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          className="flex flex-col gap-5"
+          animate="visible"
+          className="flex flex-col"
         >
           {jobs.map((job) => (
-            <motion.div key={job.company} variants={fadeUp}>
-              <ExperienceCard job={job} />
+            <motion.div
+              key={job.company}
+              variants={fadeUp}
+              className="group [&:last-child>article>span:first-child]:hidden"
+            >
+              <ExperienceItem job={job} />
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Single Primary Action */}
-        <div className="mt-8 flex justify-start">
-          <Button
-            as="a"
-            href={portfolioConfig.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="primary"
-            size="lg"
-            icon={FileText}
-            className="w-full tablet:w-auto"
-            aria-label="View Full Résumé PDF"
-          >
-            View Full Résumé (PDF)
-          </Button>
-        </div>
 
         <PageNav
           prev={{ name: 'Home', path: '/' }}

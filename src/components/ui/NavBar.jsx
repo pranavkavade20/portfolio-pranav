@@ -132,7 +132,7 @@ const NavBar = ({
       className={cn(
         'hidden expanded:flex flex-col justify-between shrink-0',
         'w-[var(--sidebar-width)] sticky top-[var(--appbar-height)] h-[calc(100dvh-var(--appbar-height))]',
-        'border-r border-outline-variant bg-surface p-4',
+        'border-r border-outline-variant/80 bg-surface/60 p-4',
         className
       )}
     >

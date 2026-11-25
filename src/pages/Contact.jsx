@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
-import { Mail, MessageSquare, Copy, Check, Github, Linkedin, Send, ChevronDown } from 'lucide-react';
+import {
+  Mail,
+  Copy,
+  Check,
+  Github,
+  Linkedin,
+  Send,
+  ArrowUpRight,
+  MapPin,
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, pageVariants } from '../config/animations';
 import SectionHeading from '../components/ui/SectionHeading';
-import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
-import Chip from '../components/ui/Chip';
 import Input from '../components/ui/Input';
 import PageNav from '../components/layout/PageNav';
 import { useSnackbar } from '../components/ui/Snackbar';
 
 const EMAIL = 'pranavkavade9@gmail.com';
 
+const QUICK_TOPICS = [
+  'Full-time role inquiry',
+  'Project collaboration',
+  'Technical discussion',
+];
+
 function Contact() {
   const [copied, setCopied] = useState(false);
-  const [composerOpen, setComposerOpen] = useState(false);
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [messageError, setMessageError] = useState('');
@@ -65,7 +77,6 @@ function Contact() {
       type: 'success',
       actionLabel: 'Undo',
       onAction: () => {
-        setComposerOpen(true);
         setSubject(previousSubject);
         setMessage(previousMessage);
       },
@@ -78,108 +89,144 @@ function Contact() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="py-6"
+      className="py-6 tablet:py-8"
       aria-label="Contact Information"
     >
-      <div className="feed-container flex flex-col gap-5">
+      <div className="feed-container">
         <SectionHeading
           title="Let's Connect"
-          subtitle="Get In Touch"
+          subtitle="Get in touch"
           description="Open to full-stack engineering roles, freelance collaborations, and technical discussions."
         />
 
-        <motion.div variants={fadeUp} initial="hidden" animate="visible">
-          <Card className="p-6 tablet:p-8 text-center">
-            <div className="w-14 h-14 bg-primary-container text-primary rounded-lg flex items-center justify-center mx-auto mb-5" aria-hidden="true">
-              <MessageSquare size={26} />
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 expanded:grid-cols-12 gap-6 items-start"
+        >
+          {/* Left Column: Direct Reach & Profiles */}
+          <div className="expanded:col-span-5 bg-surface border border-outline-variant rounded-lg p-5 tablet:p-6 shadow-elevation-1 flex flex-col gap-6">
+            <div>
+              <div className="inline-flex items-center gap-2 text-xs font-medium text-on-success-container bg-success-container px-2.5 py-1 rounded-full mb-3">
+                <span className="w-2 h-2 rounded-full bg-success shrink-0" aria-hidden="true" />
+                <span>Available for opportunities</span>
+              </div>
+
+              <h2 className="text-lg font-semibold tracking-tight text-on-surface">
+                Direct email
+              </h2>
+              <p className="text-sm font-mono text-on-surface mt-1 select-all break-all">
+                {EMAIL}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2.5 mt-4">
+                <Button
+                  as="a"
+                  href={`mailto:${EMAIL}`}
+                  variant="primary"
+                  size="md"
+                  icon={Mail}
+                  className="flex-1 tablet:flex-none"
+                  aria-label={`Send email to ${EMAIL}`}
+                >
+                  Send Email
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  size="md"
+                  icon={copied ? Check : Copy}
+                  onClick={handleCopyEmail}
+                  className="min-w-[116px]"
+                  aria-label="Copy email address to clipboard"
+                >
+                  {copied ? 'Copied' : 'Copy'}
+                </Button>
+              </div>
             </div>
 
-            <h2 className="text-xl tablet:text-2xl font-semibold tracking-tight text-on-surface mb-2">
-              Start a Conversation
-            </h2>
+            <div className="pt-5 border-t border-outline-variant flex flex-col gap-1">
+              <p className="text-xs font-mono text-on-surface-variant pb-1">
+                Online profiles
+              </p>
 
-            <p className="text-base text-on-surface-variant max-w-2xl mx-auto mb-6 leading-relaxed">
-              Reach out directly via email at{' '}
-              <span className="font-semibold text-on-surface">{EMAIL}</span> or connect on social platforms.
-            </p>
-
-            {/* Primary & Secondary Actions */}
-            <div className="flex flex-col tablet:flex-row justify-center items-center gap-3 mb-6">
-              <Button
-                as="a"
-                href={`mailto:${EMAIL}`}
-                variant="primary"
-                size="lg"
-                icon={Mail}
-                className="w-full tablet:w-auto"
-                aria-label={`Send email to ${EMAIL}`}
-              >
-                Say Hello (Email)
-              </Button>
-
-              <Button
-                variant="tonal"
-                size="lg"
-                icon={copied ? Check : Copy}
-                onClick={handleCopyEmail}
-                className="w-full tablet:w-auto min-w-[160px]"
-                aria-label="Copy email address to clipboard"
-              >
-                {copied ? 'Copied!' : 'Copy Email'}
-              </Button>
-            </div>
-
-            {/* Social Network Chips */}
-            <div className="pt-5 border-t border-outline-variant flex flex-wrap items-center justify-center gap-3">
-              <span className="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">
-                Find me online:
-              </span>
-              <Chip
-                as="a"
+              <a
                 href="https://github.com/pranavkavade20"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="outlined"
-                icon={Github}
+                className="state-layer flex items-center justify-between gap-2 px-3 min-h-[48px] -mx-3 rounded-md text-on-surface hover:bg-surface-variant/70 transition-colors"
               >
-                GitHub
-              </Chip>
-              <Chip
-                as="a"
+                <span className="flex items-center gap-3 min-w-0">
+                  <Github size={17} className="text-on-surface-variant shrink-0" aria-hidden="true" />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium leading-tight">GitHub</span>
+                    <span className="block text-xs text-on-surface-variant font-mono truncate">@pranavkavade20</span>
+                  </span>
+                </span>
+                <ArrowUpRight size={15} className="text-on-surface-variant shrink-0" aria-hidden="true" />
+              </a>
+
+              <a
                 href="https://www.linkedin.com/in/pranavkavade20"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="outlined"
-                icon={Linkedin}
+                className="state-layer flex items-center justify-between gap-2 px-3 min-h-[48px] -mx-3 rounded-md text-on-surface hover:bg-surface-variant/70 transition-colors"
               >
-                LinkedIn
-              </Chip>
+                <span className="flex items-center gap-3 min-w-0">
+                  <Linkedin size={17} className="text-on-surface-variant shrink-0" aria-hidden="true" />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium leading-tight">LinkedIn</span>
+                    <span className="block text-xs text-on-surface-variant font-mono truncate">in/pranavkavade20</span>
+                  </span>
+                </span>
+                <ArrowUpRight size={15} className="text-on-surface-variant shrink-0" aria-hidden="true" />
+              </a>
+
+              <div className="flex items-center gap-3 px-3 min-h-[44px] -mx-3 text-on-surface-variant">
+                <MapPin size={16} className="shrink-0" aria-hidden="true" />
+                <span className="text-xs font-mono">Maharashtra, India</span>
+              </div>
             </div>
-          </Card>
-        </motion.div>
+          </div>
 
-        {/* Meta-style Quick Note Composer */}
-        <Card className="p-4 tablet:p-6">
-          <button
-            type="button"
-            onClick={() => setComposerOpen((prev) => !prev)}
-            aria-expanded={composerOpen}
-            className="w-full min-h-[48px] flex items-center justify-between gap-3 text-left rounded-md px-2 state-layer cursor-pointer"
-          >
-            <span className="text-sm font-medium text-on-surface-variant">
-              {composerOpen ? 'Hide quick note composer' : 'Want to prepare a quick note before emailing?'}
-            </span>
-            <ChevronDown
-              size={18}
-              className={`text-on-surface-variant shrink-0 transition-transform duration-fast ${
-                composerOpen ? 'rotate-180' : ''
-              }`}
-              aria-hidden="true"
-            />
-          </button>
+          {/* Right Column: Quick Note Composer (visible and ready) */}
+          <div className="expanded:col-span-7 bg-surface border border-outline-variant rounded-lg p-5 tablet:p-6 shadow-elevation-1">
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold tracking-tight text-on-surface">
+                Prepare a note
+              </h2>
+              <p className="text-sm text-on-surface-variant mt-0.5">
+                Draft your message here and launch your email client pre-filled.
+              </p>
+            </div>
 
-          {composerOpen && (
-            <form onSubmit={handleDraftSubmit} className="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-4" noValidate>
+            {/* Quick Subject Pills */}
+            <div className="flex flex-wrap items-center gap-2 mb-5">
+              <span className="text-xs font-mono text-on-surface-variant mr-1">
+                Topic:
+              </span>
+              {QUICK_TOPICS.map((topic) => {
+                const selected = subject === topic;
+                return (
+                  <button
+                    key={topic}
+                    type="button"
+                    onClick={() => setSubject(selected ? '' : topic)}
+                    aria-pressed={selected}
+                    className={`px-3 min-h-[34px] rounded-full text-xs font-medium border transition-colors cursor-pointer ${
+                      selected
+                        ? 'bg-primary-container text-on-primary-container border-primary/40 font-semibold'
+                        : 'bg-surface-variant/70 text-on-surface-variant border-outline-variant hover:text-on-surface hover:border-outline'
+                    }`}
+                  >
+                    {topic}
+                  </button>
+                );
+              })}
+            </div>
+
+            <form onSubmit={handleDraftSubmit} className="flex flex-col gap-4" noValidate>
               <Input
                 label="Subject"
                 placeholder="Project collaboration or role inquiry"
@@ -191,7 +238,7 @@ function Contact() {
               <Input
                 label="Message"
                 multiline
-                rows={3}
+                rows={4}
                 placeholder="Write a brief note..."
                 value={message}
                 onChange={(e) => {
@@ -201,20 +248,21 @@ function Contact() {
                 error={messageError}
                 required
               />
-              <div className="flex justify-end">
+              <div className="flex justify-end pt-1">
                 <Button
                   type="submit"
                   variant="primary"
                   size="md"
                   icon={Send}
                   disabled={!message.trim()}
+                  className="w-full tablet:w-auto"
                 >
                   Open Email Draft
                 </Button>
               </div>
             </form>
-          )}
-        </Card>
+          </div>
+        </motion.div>
 
         <PageNav
           prev={{ name: 'Projects', path: '/projects' }}

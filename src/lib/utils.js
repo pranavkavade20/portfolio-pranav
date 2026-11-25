@@ -32,7 +32,7 @@ export function handleTabListKeyDown(e, currentIndex, count, onSelect) {
 }
 
 /**
- * Returns dark-mode inversion/backing classes for skill brand SVGs with dark ink.
+ * Returns theme-aware styling classes for skill brand SVGs so dark-ink marks remain legible.
  */
 export function getSkillLogoClass(name) {
   const key = String(name || '').toLowerCase().trim();
@@ -40,7 +40,7 @@ export function getSkillLogoClass(name) {
     return 'dark:brightness-0 dark:invert';
   }
   if (key === 'django rest framework' || key === 'drf') {
-    return 'dark:bg-on-surface dark:rounded-xs dark:p-[1px]';
+    return 'scale-[1.28] dark:bg-white/95 dark:rounded-xs dark:p-[2px]';
   }
   return '';
 }

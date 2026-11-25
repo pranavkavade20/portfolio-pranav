@@ -21,39 +21,49 @@ import './index.css'
 import { ThemeProvider } from './contexts/ThemeContext.jsx'
 import { SnackbarProvider } from './components/ui/Snackbar.jsx'
 
-function SidebarFooter() {
+function SidebarFooter({ onReplayIntro }) {
   return (
     <div className="flex flex-col gap-1">
-      <a
-        href="https://github.com/pranavkavade20"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="state-layer flex items-center gap-3 px-4 min-h-[48px] rounded-full text-sm font-medium text-on-surface-variant hover:text-on-surface"
-        aria-label="GitHub Profile"
+      <div className="flex flex-col gap-1 wide:hidden">
+        <a
+          href="https://github.com/pranavkavade20"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="state-layer flex items-center gap-3 px-4 min-h-[44px] rounded-full text-sm font-medium text-on-surface-variant hover:text-on-surface"
+          aria-label="GitHub Profile"
+        >
+          <Github size={17} aria-hidden="true" />
+          <span>GitHub</span>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/pranavkavade20"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="state-layer flex items-center gap-3 px-4 min-h-[44px] rounded-full text-sm font-medium text-on-surface-variant hover:text-on-surface"
+          aria-label="LinkedIn Profile"
+        >
+          <Linkedin size={17} aria-hidden="true" />
+          <span>LinkedIn</span>
+        </a>
+        <a
+          href={portfolioConfig.resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="state-layer flex items-center gap-3 px-4 min-h-[44px] rounded-full text-sm font-medium text-primary hover:bg-primary-container/50"
+          aria-label="View Résumé PDF"
+        >
+          <FileText size={17} aria-hidden="true" />
+          <span>Résumé</span>
+        </a>
+      </div>
+      <button
+        type="button"
+        onClick={onReplayIntro}
+        className="state-layer flex items-center gap-3 px-4 min-h-[44px] rounded-full text-xs font-mono text-on-surface-variant hover:text-on-surface text-left cursor-pointer"
+        aria-label="Replay intro animation"
       >
-        <Github size={18} aria-hidden="true" />
-        <span>GitHub</span>
-      </a>
-      <a
-        href="https://www.linkedin.com/in/pranavkavade20"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="state-layer flex items-center gap-3 px-4 min-h-[48px] rounded-full text-sm font-medium text-on-surface-variant hover:text-on-surface"
-        aria-label="LinkedIn Profile"
-      >
-        <Linkedin size={18} aria-hidden="true" />
-        <span>LinkedIn</span>
-      </a>
-      <a
-        href={portfolioConfig.resumeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="state-layer flex items-center gap-3 px-4 min-h-[48px] rounded-full text-sm font-medium text-primary hover:bg-primary-container/50"
-        aria-label="View Résumé PDF"
-      >
-        <FileText size={18} aria-hidden="true" />
-        <span>Résumé</span>
-      </a>
+        <span>Replay intro</span>
+      </button>
     </div>
   )
 }
@@ -186,7 +196,7 @@ function App() {
                 variant="sidebar"
                 items={navItems}
                 isActive={checkActive}
-                footer={<SidebarFooter />}
+                footer={<SidebarFooter onReplayIntro={() => setIsLoading(true)} />}
                 ariaLabel="Desktop Navigation Sidebar"
               />
 

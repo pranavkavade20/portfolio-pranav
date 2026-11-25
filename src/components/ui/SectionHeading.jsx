@@ -7,6 +7,7 @@ const SectionHeading = ({
   title,
   subtitle,
   description,
+  action,
   align = 'left',
   className = '',
 }) => {
@@ -19,25 +20,37 @@ const SectionHeading = ({
   };
 
   return (
-    <div className={cn('mb-6 tablet:mb-8 w-full', aligns[align] || aligns.left, className)}>
-      {subtitle && (
-        <motion.p
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.24, ease: [0.2, 0, 0, 1] }}
-          className="text-xs font-semibold tracking-wider uppercase text-secondary mb-2"
-        >
-          {subtitle}
-        </motion.p>
+    <div
+      className={cn(
+        'mb-6 tablet:mb-8 w-full flex flex-col tablet:flex-row tablet:items-end justify-between gap-4',
+        className
       )}
-      <h1 className="text-2xl tablet:text-3xl font-semibold tracking-tight text-on-surface">
-        <TextReveal text={title} type="word" />
-      </h1>
-      {description && (
-        <p className="text-base text-on-surface-variant mt-2 leading-relaxed w-full">
-          {description}
-        </p>
+    >
+      <div className={cn('min-w-0 flex-1', aligns[align] || aligns.left)}>
+        {subtitle && (
+          <motion.p
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.24, ease: [0.2, 0, 0, 1] }}
+            className="text-xs font-mono font-medium text-on-surface-variant mb-2"
+          >
+            {subtitle}
+          </motion.p>
+        )}
+        <h1 className="text-[clamp(1.75rem,1.35rem+1.1vw,2.25rem)] font-semibold tracking-[-0.025em] leading-[1.15] text-on-surface">
+          <TextReveal text={title} type="word" />
+        </h1>
+        {description && (
+          <p className="text-base text-on-surface-variant mt-2.5 leading-relaxed max-w-[65ch]">
+            {description}
+          </p>
+        )}
+      </div>
+
+      {action && (
+        <div className="shrink-0">
+          {action}
+        </div>
       )}
     </div>
   );
