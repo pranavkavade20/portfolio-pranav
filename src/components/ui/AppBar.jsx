@@ -23,7 +23,7 @@ const AppBar = ({
         className
       )}
     >
-      <div className="h-full w-full px-4 tablet:px-6 expanded:px-8 flex items-center justify-between gap-3">
+      <div className="h-full w-full px-4 tablet:px-6 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
           <Link
             to={brandHref}

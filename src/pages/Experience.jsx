@@ -81,7 +81,7 @@ const ExperienceCard = ({ job }) => {
       </Card.Header>
 
       <Card.Content className="pt-4 space-y-4">
-        <p className="text-base text-on-surface-variant leading-relaxed prose-measure">
+        <p className="text-base text-on-surface-variant leading-relaxed w-full">
           {job.description}
         </p>
 
@@ -109,7 +109,7 @@ function Experience() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="py-6 tablet:py-8"
+      className="py-6"
       aria-label="Professional Experience"
     >
       <div className="feed-container">

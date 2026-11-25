@@ -78,7 +78,7 @@ function Contact() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="py-6 tablet:py-8"
+      className="py-6"
       aria-label="Contact Information"
     >
       <div className="feed-container flex flex-col gap-5">
@@ -98,7 +98,7 @@ function Contact() {
               Start a Conversation
             </h2>
 
-            <p className="text-base text-on-surface-variant max-w-md mx-auto mb-6 leading-relaxed">
+            <p className="text-base text-on-surface-variant max-w-2xl mx-auto mb-6 leading-relaxed">
               Reach out directly via email at{' '}
               <span className="font-semibold text-on-surface">{EMAIL}</span> or connect on social platforms.
             </p>

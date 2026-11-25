@@ -43,7 +43,7 @@ const SocialSidebar = () => {
   return (
     <aside
       aria-label="Contextual Profile & Social Links"
-      className="hidden wide:flex flex-col gap-4 shrink-0 w-[var(--context-rail-width)] sticky top-[var(--appbar-height)] h-[calc(100dvh-var(--appbar-height))] py-6 pr-6 pl-2 overflow-y-auto"
+      className="hidden wide:flex flex-col gap-4 shrink-0 w-[var(--context-rail-width)] sticky top-[var(--appbar-height)] h-[calc(100dvh-var(--appbar-height))] py-6 pr-6 pl-0 overflow-y-auto"
     >
       <Card className="p-4 flex flex-col gap-3">
         <div className="flex items-center justify-between gap-2">

@@ -25,7 +25,7 @@ const EmptyState = ({
       </div>
       <h2 className="text-lg font-semibold text-on-surface mb-1">{title}</h2>
       {description && (
-        <p className="text-sm text-on-surface-variant mb-6 max-w-sm leading-relaxed">
+        <p className="text-sm text-on-surface-variant mb-6 max-w-md leading-relaxed">
           {description}
         </p>
       )}

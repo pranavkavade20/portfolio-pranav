@@ -125,7 +125,7 @@ function Skill() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="py-6 tablet:py-8"
+      className="py-6"
       aria-label="Technical Skills"
     >
       <div className="feed-container">
@@ -136,21 +136,9 @@ function Skill() {
         />
 
         {/* Filter Chips & Search Bar */}
-        <div className="flex flex-col gap-4 mb-6">
-          <div className="w-full tablet:max-w-xs">
-            <Input
-              shape="pill"
-              icon={Search}
-              placeholder="Filter technologies..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onClear={() => setSearchQuery('')}
-              aria-label="Filter technologies"
-            />
-          </div>
-
+        <div className="flex flex-col expanded:flex-row expanded:items-center expanded:justify-between gap-4 mb-6">
           <div
-            className="flex items-center gap-2 overflow-x-auto py-2 -my-2 scrollbar-none"
+            className="flex items-center gap-2 overflow-x-auto py-2 -my-2 scrollbar-none order-2 expanded:order-1"
             role="tablist"
             aria-label="Filter skills by category"
           >
@@ -175,6 +163,18 @@ function Skill() {
                 </Chip>
               );
             })}
+          </div>
+
+          <div className="w-full expanded:w-64 shrink-0 order-1 expanded:order-2">
+            <Input
+              shape="pill"
+              icon={Search}
+              placeholder="Filter technologies..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onClear={() => setSearchQuery('')}
+              aria-label="Filter technologies"
+            />
           </div>
         </div>
 

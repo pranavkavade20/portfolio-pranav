@@ -19,7 +19,7 @@ const SectionHeading = ({
   };
 
   return (
-    <div className={cn('mb-6 tablet:mb-8 max-w-2xl', aligns[align] || aligns.left, className)}>
+    <div className={cn('mb-6 tablet:mb-8 w-full', aligns[align] || aligns.left, className)}>
       {subtitle && (
         <motion.p
           initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
@@ -35,7 +35,7 @@ const SectionHeading = ({
         <TextReveal text={title} type="word" />
       </h1>
       {description && (
-        <p className="text-base text-on-surface-variant mt-2 leading-relaxed prose-measure">
+        <p className="text-base text-on-surface-variant mt-2 leading-relaxed w-full">
           {description}
         </p>
       )}

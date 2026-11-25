@@ -404,7 +404,7 @@ function Project() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="py-6 tablet:py-8"
+      className="py-6"
       aria-label="Selected Projects"
     >
       <div className="feed-container">
@@ -487,7 +487,7 @@ function Project() {
                   {activeProject.title}
                 </h2>
 
-                <p className="text-base text-on-surface-variant leading-relaxed prose-measure">
+                <p className="text-base text-on-surface-variant leading-relaxed w-full">
                   {activeProject.desc}
                 </p>
 
@@ -695,10 +695,10 @@ function Project() {
               </Card.Header>
 
               <Card.Content className="pt-4">
-                <div className="grid grid-cols-1 tablet:grid-cols-12 gap-5 items-start">
+                <div className="grid grid-cols-1 tablet:grid-cols-12 gap-6 items-start">
                   {/* Feature List */}
                   <div
-                    className="tablet:col-span-5 flex flex-col gap-1.5"
+                    className="tablet:col-span-5 expanded:col-span-4 flex flex-col gap-1.5"
                     role="tablist"
                     aria-label="Project capabilities"
                   >
@@ -747,7 +747,7 @@ function Project() {
                   </div>
 
                   {/* Active Feature Preview */}
-                  <div className="tablet:col-span-7 flex flex-col gap-3">
+                  <div className="tablet:col-span-7 expanded:col-span-8 flex flex-col gap-3">
                     <button
                       type="button"
                       onClick={() => openLightbox(activeDisplayImage)}

@@ -8,7 +8,6 @@ import TextReveal from '../components/ui/TextReveal';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
-import Chip from '../components/ui/Chip';
 import MediaImage from '../components/ui/MediaImage';
 import PageNav from '../components/layout/PageNav';
 import profileImg from '../assets/profile.jpg';
@@ -26,7 +25,7 @@ function Home() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="py-6 tablet:py-8"
+      className="py-6"
       aria-label="Home Overview"
     >
       <div className="feed-container flex flex-col gap-6">
@@ -35,7 +34,7 @@ function Home() {
           <Card className="p-4 tablet:p-6">
             <div className="flex flex-col tablet:flex-row items-center tablet:items-start gap-6">
               {/* Portrait Frame */}
-              <div className="relative w-full max-w-[220px] tablet:w-44 aspect-[4/5] rounded-lg overflow-hidden bg-surface-variant border border-outline-variant shrink-0">
+              <div className="relative w-full max-w-[220px] tablet:w-44 expanded:w-48 aspect-[4/5] rounded-lg overflow-hidden bg-surface-variant border border-outline-variant shrink-0">
                 <MediaImage
                   src={profileImg}
                   alt="Portrait of Pranav Kavade, Full Stack Engineer"
@@ -66,7 +65,7 @@ function Home() {
                   Pranav Kavade
                 </h1>
 
-                <p className="text-base text-on-surface-variant leading-relaxed prose-measure mb-5">
+                <p className="text-base text-on-surface-variant leading-relaxed w-full mb-5">
                   Building resilient backend APIs and clear, fast, accessible interfaces from concept to production.
                 </p>
 
@@ -122,7 +121,7 @@ function Home() {
               </h2>
             </Card.Header>
 
-            <Card.Content className="space-y-4 text-on-surface-variant text-base leading-relaxed prose-measure">
+            <Card.Content className="space-y-4 text-on-surface-variant text-base leading-relaxed w-full">
               <motion.p variants={fadeUp}>
                 My engineering journey began with C and Java, cultivating a disciplined foundation in algorithms, systems thinking, and object-oriented architecture.
               </motion.p>
@@ -135,11 +134,20 @@ function Home() {
             </Card.Content>
 
             <Card.Footer className="border-t border-outline-variant pt-4">
-              {highlights.map((item) => (
-                <Chip key={item.label} variant="default" icon={item.icon}>
-                  {item.label}
-                </Chip>
-              ))}
+              <div className="grid grid-cols-1 tablet:grid-cols-3 gap-2.5 w-full">
+                {highlights.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={item.label}
+                      className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-md bg-surface-variant/70 border border-outline-variant text-sm font-medium text-on-surface"
+                    >
+                      <Icon size={16} className="text-secondary shrink-0" aria-hidden="true" />
+                      <span className="truncate">{item.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </Card.Footer>
           </Card>
         </motion.div>

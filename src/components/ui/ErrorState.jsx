@@ -21,7 +21,7 @@ const ErrorState = ({
         <AlertCircle size={22} />
       </div>
       <h2 className="text-lg font-semibold text-on-surface mb-1">{title}</h2>
-      <p className="text-sm text-on-surface-variant mb-6 max-w-sm leading-relaxed">
+      <p className="text-sm text-on-surface-variant mb-6 max-w-md leading-relaxed">
         {message}
       </p>
       {onRetry && (
