@@ -59,7 +59,7 @@ const ExperienceCard = ({ job }) => {
       <Card.Header className="border-b border-outline-variant">
         <div className="flex flex-col tablet:flex-row tablet:items-start justify-between gap-3">
           <div className="flex items-start gap-3 min-w-0">
-            <span className="p-2.5 rounded-md bg-primary-container text-on-primary-container shrink-0" aria-hidden="true">
+            <span className="p-2.5 rounded-md bg-secondary-container text-on-secondary-container shrink-0" aria-hidden="true">
               <Briefcase size={18} />
             </span>
             <div className="min-w-0">
@@ -67,14 +67,14 @@ const ExperienceCard = ({ job }) => {
                 <Card.Title>{job.role}</Card.Title>
                 {job.current && <Badge variant="success">Current</Badge>}
               </div>
-              <p className="text-sm font-semibold text-primary mt-0.5">
+              <p className="text-sm font-semibold text-secondary mt-0.5">
                 {job.company}
               </p>
             </div>
           </div>
 
           <div className="inline-flex items-center gap-1.5 text-xs font-medium text-on-surface-variant self-start px-3 py-1.5 rounded-full bg-surface-variant shrink-0">
-            <Calendar size={13} className="text-primary shrink-0" aria-hidden="true" />
+            <Calendar size={13} className="text-on-surface-variant shrink-0" aria-hidden="true" />
             <span>{job.period}</span>
           </div>
         </div>

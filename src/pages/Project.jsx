@@ -107,7 +107,7 @@ const skillLogos = {
 };
 
 const RedisIcon = () => (
-  <svg className="w-3.5 h-3.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <svg className="w-3.5 h-3.5 text-accent shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M3 8.5L12 4L21 8.5L12 13L3 8.5Z" fill="currentColor" />
     <path d="M3 13L12 17.5L21 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     <path d="M3 17.5L12 22L21 17.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -133,9 +133,9 @@ const TechBadge = ({ tech }) => {
       ) : normalizedKey === 'redis' ? (
         <RedisIcon />
       ) : normalizedKey === 'ai & ml' ? (
-        <Sparkles size={12} className="text-primary shrink-0" aria-hidden="true" />
+        <Sparkles size={12} className="text-tertiary shrink-0" aria-hidden="true" />
       ) : normalizedKey === 'websockets' ? (
-        <Zap size={12} className="text-primary shrink-0" aria-hidden="true" />
+        <Zap size={12} className="text-info shrink-0" aria-hidden="true" />
       ) : null}
       <span>{tech}</span>
     </span>
@@ -436,7 +436,7 @@ function Project() {
                 return (
                   <Chip
                     key={project.id}
-                    variant={isActive ? 'primary' : 'outlined'}
+                    variant={isActive ? 'tonal' : 'outlined'}
                     selected={isActive}
                     icon={TabIcon}
                     onClick={() => handleProjectChange(index)}
@@ -455,7 +455,7 @@ function Project() {
             <Card className="mb-6 overflow-hidden">
               <Card.Header className="gap-3">
                 <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <Badge variant="tonal" icon={BadgeIcon}>
+                  <Badge variant="secondary" icon={BadgeIcon}>
                     {activeProject.badgeText}
                   </Badge>
                   <div className="flex items-center gap-1">
@@ -525,7 +525,7 @@ function Project() {
                       </span>
                       <ChevronDown
                         size={13}
-                        className={`text-primary transition-transform duration-fast ${
+                        className={`text-on-surface-variant transition-transform duration-fast ${
                           isExpandedTech ? 'rotate-180' : ''
                         }`}
                         aria-hidden="true"
@@ -589,7 +589,7 @@ function Project() {
                 <button
                   type="button"
                   onClick={() => openLightbox(activeProject.image)}
-                  className="block w-full text-left rounded-md border border-outline bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-primary hover:shadow-elevation-2"
+                  className="block w-full text-left rounded-md border border-outline-variant bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-primary hover:shadow-elevation-2"
                   aria-label={`Enlarge ${activeProject.title} overview screenshot`}
                 >
                   <div className="h-9 px-4 bg-surface-variant border-b border-outline-variant flex items-center justify-between">
@@ -601,7 +601,7 @@ function Project() {
                     <span className="text-xs font-mono text-on-surface-variant truncate max-w-[200px]">
                       {activeProject.title.toLowerCase()}.dev
                     </span>
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-primary">
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-on-surface-variant group-hover:text-primary transition-colors">
                       <Maximize2 size={13} aria-hidden="true" />
                       <span className="hidden tablet:inline">Enlarge</span>
                     </span>
@@ -622,7 +622,7 @@ function Project() {
                 {activeProject.problem && activeProject.solution && (
                   <div className="grid grid-cols-1 tablet:grid-cols-2 gap-4 pt-4 border-t border-outline-variant">
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary-container text-primary flex items-center justify-center shrink-0" aria-hidden="true">
+                      <div className="w-10 h-10 rounded-full bg-accent-container text-accent flex items-center justify-center shrink-0" aria-hidden="true">
                         <Target size={18} />
                       </div>
                       <div>
@@ -636,7 +636,7 @@ function Project() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary-container text-primary flex items-center justify-center shrink-0" aria-hidden="true">
+                      <div className="w-10 h-10 rounded-full bg-tertiary-container text-tertiary flex items-center justify-center shrink-0" aria-hidden="true">
                         <Lightbulb size={18} />
                       </div>
                       <div>
@@ -674,7 +674,7 @@ function Project() {
                       return (
                         <Chip
                           key={role}
-                          variant={selected ? 'primary' : 'outlined'}
+                          variant={selected ? 'tonal' : 'outlined'}
                           selected={selected}
                           onClick={() => handleRoleChange(role)}
                           onKeyDown={(e) =>
@@ -751,14 +751,14 @@ function Project() {
                     <button
                       type="button"
                       onClick={() => openLightbox(activeDisplayImage)}
-                      className="block w-full text-left rounded-md border border-outline bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-primary hover:shadow-elevation-2"
+                      className="block w-full text-left rounded-md border border-outline-variant bg-surface overflow-hidden cursor-zoom-in group transition-[border-color,box-shadow] hover:border-primary hover:shadow-elevation-2"
                       aria-label={`Enlarge ${activeFeature?.title || 'feature preview'} screenshot`}
                     >
                       <div className="h-9 px-3.5 bg-surface-variant border-b border-outline-variant flex items-center justify-between gap-2">
                         <span className="text-xs font-medium text-on-surface truncate">
                           {activeFeature?.title || 'Feature Preview'}
                         </span>
-                        <span className="inline-flex items-center gap-1 text-xs font-medium text-primary shrink-0">
+                        <span className="inline-flex items-center gap-1 text-xs font-medium text-on-surface-variant group-hover:text-primary transition-colors shrink-0">
                           <Maximize2 size={13} aria-hidden="true" />
                           <span>Enlarge</span>
                         </span>

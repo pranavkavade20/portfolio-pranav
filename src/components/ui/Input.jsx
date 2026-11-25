@@ -67,16 +67,16 @@ const Input = forwardRef(({
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : helperText ? helperId : undefined}
           className={cn(
-            'w-full min-h-[48px] px-4 py-2.5 text-base bg-surface text-on-surface border',
-            'placeholder:text-on-surface-variant/80',
+            'w-full min-h-[48px] px-4 py-2.5 text-base border',
+            'placeholder:text-on-surface-variant',
             'transition-[border-color,box-shadow] duration-fast ease-standard',
-            'border-outline hover:border-on-surface-variant',
-            'focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-0 focus:border-primary',
+            disabled
+              ? 'bg-disabled text-on-disabled border-outline-variant cursor-not-allowed'
+              : 'bg-surface text-on-surface border-outline hover:border-on-surface-variant focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-0 focus:border-primary',
             radiusClass,
             Icon && 'pl-11',
             showClear && 'pr-12',
-            error && 'border-error focus:border-error focus-visible:outline-error',
-            disabled && 'opacity-50 cursor-not-allowed bg-surface-variant',
+            error && !disabled && 'border-error focus:border-error focus-visible:outline-error',
             multiline && 'resize-y min-h-[96px]',
             className
           )}

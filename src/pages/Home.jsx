@@ -50,7 +50,7 @@ function Home() {
                 />
                 <div className="absolute bottom-3 left-3 right-3 text-on-media pointer-events-none">
                   <p className="text-xs font-medium text-on-media-muted flex items-center gap-1">
-                    <MapPin size={13} className="text-primary shrink-0" aria-hidden="true" />
+                    <MapPin size={13} className="text-on-media-muted shrink-0" aria-hidden="true" />
                     <span>Maharashtra, IN</span>
                   </p>
                 </div>
@@ -58,7 +58,7 @@ function Home() {
 
               {/* Identity, Headline & Single Primary Action */}
               <div className="flex-1 min-w-0 flex flex-col items-center tablet:items-start text-center tablet:text-left">
-                <Badge variant="tonal" className="mb-3">
+                <Badge variant="secondary" className="mb-3">
                   Full Stack Engineer
                 </Badge>
 
@@ -110,12 +110,12 @@ function Home() {
         >
           <Card>
             <Card.Header>
-              <p className="text-xs font-semibold tracking-wider uppercase text-primary">
+              <p className="text-xs font-semibold tracking-wider uppercase text-secondary">
                 Engineering Philosophy
               </p>
               <h2 className="text-2xl tablet:text-3xl font-semibold tracking-tight text-on-surface leading-tight">
                 <TextReveal text="Engineer." delay={0.04} />{' '}
-                <span className="text-primary">
+                <span className="text-accent">
                   <TextReveal text="Designer." delay={0.12} />
                 </span>{' '}
                 <TextReveal text="Problem Solver." delay={0.2} />

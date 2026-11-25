@@ -54,7 +54,7 @@ const SocialSidebar = () => {
             Pranav Kavade
           </h2>
           <p className="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
-            <MapPin size={13} className="text-primary shrink-0" aria-hidden="true" />
+            <MapPin size={13} className="text-on-surface-variant shrink-0" aria-hidden="true" />
             <span>Maharashtra, India</span>
           </p>
         </div>

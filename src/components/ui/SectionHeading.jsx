@@ -26,7 +26,7 @@ const SectionHeading = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.24, ease: [0.2, 0, 0, 1] }}
-          className="text-xs font-semibold tracking-wider uppercase text-primary mb-2"
+          className="text-xs font-semibold tracking-wider uppercase text-secondary mb-2"
         >
           {subtitle}
         </motion.p>

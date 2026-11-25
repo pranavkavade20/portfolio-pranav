@@ -159,7 +159,7 @@ function Skill() {
               return (
                 <Chip
                   key={tab.id}
-                  variant={selected ? 'primary' : 'outlined'}
+                  variant={selected ? 'tonal' : 'outlined'}
                   selected={selected}
                   onClick={() => setSelectedCategory(tab.id)}
                   onKeyDown={(e) =>
@@ -195,7 +195,7 @@ function Skill() {
                       <Card.Header className="border-b border-outline-variant">
                         <div className="flex items-center justify-between gap-3">
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <span className="p-2 rounded-md bg-primary-container text-on-primary-container shrink-0" aria-hidden="true">
+                            <span className="p-2 rounded-md bg-secondary-container text-on-secondary-container shrink-0" aria-hidden="true">
                               <CategoryIcon size={18} />
                             </span>
                             <Card.Title className="truncate">{category.title}</Card.Title>

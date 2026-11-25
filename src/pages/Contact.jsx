@@ -171,7 +171,7 @@ function Contact() {
             </span>
             <ChevronDown
               size={18}
-              className={`text-primary shrink-0 transition-transform duration-fast ${
+              className={`text-on-surface-variant shrink-0 transition-transform duration-fast ${
                 composerOpen ? 'rotate-180' : ''
               }`}
               aria-hidden="true"
@@ -204,7 +204,7 @@ function Contact() {
               <div className="flex justify-end">
                 <Button
                   type="submit"
-                  variant="tonal"
+                  variant="primary"
                   size="md"
                   icon={Send}
                   disabled={!message.trim()}

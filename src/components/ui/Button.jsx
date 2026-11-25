@@ -50,22 +50,27 @@ const Button = ({
   };
 
   const baseStyles = cn(
-    'state-layer relative inline-flex items-center justify-center font-semibold tracking-tight rounded-full select-none cursor-pointer',
+    'state-layer relative inline-flex items-center justify-center font-semibold tracking-tight rounded-full select-none',
     'transition-[transform,box-shadow,border-color,background-color] duration-fast ease-standard',
     'focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2',
-    (disabled || isLoading) && 'opacity-50 cursor-not-allowed pointer-events-none'
+    disabled || isLoading ? 'cursor-not-allowed pointer-events-none' : 'cursor-pointer',
+    isLoading && 'opacity-75'
   );
 
   const variants = {
     primary: 'bg-primary text-on-primary shadow-elevation-1',
     filled: 'bg-primary text-on-primary shadow-elevation-1',
-    secondary: 'bg-primary-container text-on-primary-container',
-    tonal: 'bg-primary-container text-on-primary-container',
+    secondary: 'bg-secondary-container text-on-secondary-container border border-outline-variant/60',
+    tonal: 'bg-secondary-container text-on-secondary-container border border-outline-variant/60',
+    primaryTonal: 'bg-primary-container text-on-primary-container',
+    accent: 'bg-accent text-on-accent shadow-elevation-1',
     outline: 'border border-outline bg-surface text-on-surface',
     outlined: 'border border-outline bg-surface text-on-surface',
     ghost: 'bg-transparent text-on-surface-variant hover:text-on-surface',
     text: 'bg-transparent text-on-surface-variant hover:text-on-surface',
   };
+
+  const disabledStyles = 'bg-disabled text-on-disabled border border-outline-variant/50 shadow-none';
 
   // Enforce >=48dp touch target on compact mobile screens; refined heights on tablet+
   const sizes = {
@@ -119,7 +124,7 @@ const Button = ({
   const tapMotion = shouldReduceMotion || disabled || isLoading ? undefined : { scale: 0.98 };
   const classes = cn(
     baseStyles,
-    variants[variant] || variants.primary,
+    disabled && !isLoading ? disabledStyles : variants[variant] || variants.primary,
     sizes[size] || sizes.md,
     className
   );
