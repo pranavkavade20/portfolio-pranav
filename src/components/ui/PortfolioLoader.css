@@ -349,11 +349,11 @@
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: 0.24em;
-  font-size: clamp(0.65rem, 2vw, 0.75rem);
+  font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--color-primary);
   margin-left: 0.24em;
-  line-height: 1.2;
+  line-height: 1.33;
   transition: color var(--motion-base) ease;
 }
 
@@ -424,9 +424,9 @@
 
 .pl-skip-kbd {
   font-family: var(--font-sans), monospace;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 2px var(--space-2, 8px);
   border-radius: var(--radius-xs, 4px);
   background-color: var(--color-surface-variant);
   color: var(--color-on-surface-variant);

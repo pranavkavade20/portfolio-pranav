@@ -1,115 +1,152 @@
-import React, { useRef } from 'react';
-import { MapPin } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { fadeUp, scaleIn, staggerContainer } from '../config/animations';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, FileText, MapPin, Layers, Server, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { fadeUp, pageVariants, scaleIn, staggerContainer } from '../config/animations';
+import { portfolioConfig } from '../config/portfolio';
 import TextReveal from '../components/ui/TextReveal';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+import Badge from '../components/ui/Badge';
+import Chip from '../components/ui/Chip';
+import MediaImage from '../components/ui/MediaImage';
 import PageNav from '../components/layout/PageNav';
 import profileImg from '../assets/profile.jpg';
 
-const pageVariants = {
-  initial: { opacity: 0, y: 12 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: [0.2, 0, 0, 1] }
-  },
-  exit: {
-    opacity: 0,
-    y: -12,
-    transition: { duration: 0.2, ease: [0.3, 0, 1, 1] }
-  }
-};
+const highlights = [
+  { label: 'Systems & OOP', icon: Layers },
+  { label: 'Python & JS APIs', icon: Server },
+  { label: 'Responsive UI', icon: Sparkles },
+];
 
 function Home() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const yPos = useTransform(scrollYProgress, [0, 1], [30, -30]);
-
   return (
-    <motion.main
-      ref={containerRef}
+    <motion.section
       variants={pageVariants}
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-[calc(100vh-4rem)] relative overflow-hidden flex flex-col justify-center pt-24 md:pt-28 pb-16 md:pb-20 transition-colors"
+      className="py-6 tablet:py-8"
+      aria-label="Home Overview"
     >
-      <div className="content-container relative z-10 w-full">
+      <div className="feed-container flex flex-col gap-6">
+        {/* Profile Feed Hero Card */}
+        <motion.div variants={scaleIn} initial="hidden" animate="visible">
+          <Card className="p-4 tablet:p-6">
+            <div className="flex flex-col tablet:flex-row items-center tablet:items-start gap-6">
+              {/* Portrait Frame */}
+              <div className="relative w-full max-w-[220px] tablet:w-44 aspect-[4/5] rounded-lg overflow-hidden bg-surface-variant border border-outline-variant shrink-0">
+                <MediaImage
+                  src={profileImg}
+                  alt="Portrait of Pranav Kavade, Full Stack Engineer"
+                  width={440}
+                  height={550}
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-scrim-strong via-scrim/40 to-transparent pointer-events-none"
+                  aria-hidden="true"
+                />
+                <div className="absolute bottom-3 left-3 right-3 text-on-media pointer-events-none">
+                  <p className="text-xs font-medium text-on-media-muted flex items-center gap-1">
+                    <MapPin size={13} className="text-primary shrink-0" aria-hidden="true" />
+                    <span>Maharashtra, IN</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Identity, Headline & Single Primary Action */}
+              <div className="flex-1 min-w-0 flex flex-col items-center tablet:items-start text-center tablet:text-left">
+                <Badge variant="tonal" className="mb-3">
+                  Full Stack Engineer
+                </Badge>
+
+                <h1 className="text-2xl tablet:text-3xl font-semibold tracking-tight text-on-surface leading-tight mb-2">
+                  Pranav Kavade
+                </h1>
+
+                <p className="text-base text-on-surface-variant leading-relaxed prose-measure mb-5">
+                  Building resilient backend APIs and clear, fast, accessible interfaces from concept to production.
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center tablet:justify-start gap-3 w-full">
+                  <Button
+                    as={Link}
+                    to="/projects"
+                    variant="primary"
+                    size="md"
+                    icon={ArrowRight}
+                    className="w-full tablet:w-auto"
+                  >
+                    Explore Projects
+                  </Button>
+
+                  <Button
+                    as="a"
+                    href={portfolioConfig.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="tonal"
+                    size="md"
+                    icon={FileText}
+                    className="w-full tablet:w-auto"
+                    aria-label="View Résumé PDF in new tab"
+                  >
+                    View Résumé
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+
+        {/* Engineering Narrative Card */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center"
+          viewport={{ once: true, margin: '-40px' }}
         >
-          {/* Profile Card Column */}
-          <motion.div
-            variants={scaleIn}
-            className="lg:col-span-5 relative flex justify-center order-1 mt-4 lg:mt-0"
-          >
-            <motion.div
-              style={{ y: yPos }}
-              className="relative w-full max-w-[320px] aspect-[4/5] rounded-2xl overflow-hidden bg-surface border border-outline-variant shadow-elevation-2 group"
-            >
-              <img
-                src={profileImg}
-                alt="Pranav Kavade - Full Stack Engineer"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-5 left-5 right-5 text-white pointer-events-none">
-                <h3 className="font-bold text-xl sm:text-2xl tracking-tight mb-1 drop-shadow-md">
-                  Pranav Kavade
-                </h3>
-                <p className="text-white/90 text-xs sm:text-sm font-medium flex items-center gap-1.5 drop-shadow-sm">
-                  <MapPin size={14} className="text-primary" />
-                  Maharashtra, IN
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Bio & Value Proposition Column */}
-          <div className="lg:col-span-7 order-2 flex flex-col gap-6 justify-center text-left">
-            <div>
-              <div className="mb-6 text-hero text-on-surface font-extrabold tracking-tight">
-                <TextReveal text="Engineer." delay={0.05} /> <br />
+          <Card>
+            <Card.Header>
+              <p className="text-xs font-semibold tracking-wider uppercase text-primary">
+                Engineering Philosophy
+              </p>
+              <h2 className="text-2xl tablet:text-3xl font-semibold tracking-tight text-on-surface leading-tight">
+                <TextReveal text="Engineer." delay={0.04} />{' '}
                 <span className="text-primary">
-                  <TextReveal text="Designer." delay={0.15} />
-                </span> <br />
-                <TextReveal text="Problem Solver." delay={0.25} />
-              </div>
+                  <TextReveal text="Designer." delay={0.12} />
+                </span>{' '}
+                <TextReveal text="Problem Solver." delay={0.2} />
+              </h2>
+            </Card.Header>
 
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                className="space-y-4 text-on-surface-variant text-base sm:text-lg leading-relaxed"
-              >
-                <motion.p variants={fadeUp}>
-                  My engineering journey began with C and Java, cultivating a disciplined foundation in algorithms, systems thinking, and object-oriented architecture.
-                </motion.p>
-                <motion.p variants={fadeUp}>
-                  Transitioning to <strong className="text-on-surface font-semibold">Python, and JavaScript </strong> ecosystem enabled me to engineer production web applications. I bridge robust backend APIs with polished, responsive interfaces.
-                </motion.p>
-                <motion.p variants={fadeUp}>
-                  Today, I focus on building resilient, scalable, and delightful software products that solve real-world problems for users and businesses.
-                </motion.p>
-              </motion.div>
-            </div>
-          </div>
+            <Card.Content className="space-y-4 text-on-surface-variant text-base leading-relaxed prose-measure">
+              <motion.p variants={fadeUp}>
+                My engineering journey began with C and Java, cultivating a disciplined foundation in algorithms, systems thinking, and object-oriented architecture.
+              </motion.p>
+              <motion.p variants={fadeUp}>
+                Transitioning to the <strong className="text-on-surface font-semibold">Python and JavaScript</strong> ecosystem enabled me to engineer production web applications, bridging robust backend APIs with polished, responsive interfaces.
+              </motion.p>
+              <motion.p variants={fadeUp}>
+                Today, I focus on building resilient, scalable, and thoughtful software products that solve real-world problems for users and businesses.
+              </motion.p>
+            </Card.Content>
+
+            <Card.Footer className="border-t border-outline-variant pt-4">
+              {highlights.map((item) => (
+                <Chip key={item.label} variant="default" icon={item.icon}>
+                  {item.label}
+                </Chip>
+              ))}
+            </Card.Footer>
+          </Card>
         </motion.div>
 
         <PageNav next={{ name: 'Experience', path: '/experience' }} />
       </div>
-    </motion.main>
+    </motion.section>
   );
 }
 

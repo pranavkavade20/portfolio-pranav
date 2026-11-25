@@ -1,41 +1,75 @@
 import React, { useState } from 'react';
-import { Mail, MessageSquare, Copy, Check, Github, Linkedin } from 'lucide-react';
+import { Mail, MessageSquare, Copy, Check, Github, Linkedin, Send, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { fadeUp } from '../config/animations';
+import { fadeUp, pageVariants } from '../config/animations';
 import SectionHeading from '../components/ui/SectionHeading';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Chip from '../components/ui/Chip';
+import Input from '../components/ui/Input';
 import PageNav from '../components/layout/PageNav';
 import { useSnackbar } from '../components/ui/Snackbar';
 
-const pageVariants = {
-  initial: { opacity: 0, y: 12 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: [0.2, 0, 0, 1] }
-  },
-  exit: {
-    opacity: 0,
-    y: -12,
-    transition: { duration: 0.2, ease: [0.3, 0, 1, 1] }
-  }
-};
+const EMAIL = 'pranavkavade9@gmail.com';
 
 function Contact() {
   const [copied, setCopied] = useState(false);
+  const [composerOpen, setComposerOpen] = useState(false);
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageError, setMessageError] = useState('');
   const { showSnackbar } = useSnackbar();
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('pranavkavade9@gmail.com');
+  const handleCopyEmail = async () => {
     setCopied(true);
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      showSnackbar({
+        message: `Email copied: ${EMAIL}`,
+        type: 'success',
+        duration: 4000,
+      });
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      setCopied(false);
+      showSnackbar({
+        message: 'Could not copy automatically. Try again or use Email.',
+        type: 'error',
+        actionLabel: 'Retry',
+        onAction: handleCopyEmail,
+        duration: 5000,
+      });
+    }
+  };
+
+  const handleDraftSubmit = (e) => {
+    e.preventDefault();
+    if (!message.trim()) {
+      setMessageError('Please enter a short message before opening your email draft.');
+      return;
+    }
+    setMessageError('');
+
+    const previousSubject = subject;
+    const previousMessage = message;
+    const mailtoUrl = `mailto:${EMAIL}?subject=${encodeURIComponent(
+      subject.trim() || 'Hello from your Portfolio'
+    )}&body=${encodeURIComponent(message.trim())}`;
+
+    window.location.href = mailtoUrl;
+
+    setSubject('');
+    setMessage('');
     showSnackbar({
-      message: 'Email copied to clipboard: pranavkavade9@gmail.com',
+      message: 'Opened email draft with your message.',
       type: 'success',
-      duration: 3500
+      actionLabel: 'Undo',
+      onAction: () => {
+        setComposerOpen(true);
+        setSubject(previousSubject);
+        setMessage(previousMessage);
+      },
     });
-    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
@@ -44,55 +78,51 @@ function Contact() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-[calc(100vh-4rem)] relative overflow-hidden flex flex-col justify-center pt-24 md:pt-28 pb-16 md:pb-20 transition-colors"
+      className="py-6 tablet:py-8"
+      aria-label="Contact Information"
     >
-      <div className="content-container relative z-10 w-full max-w-2xl mx-auto">
-        <SectionHeading 
-          title="Let's Connect" 
-          subtitle="Get In Touch" 
+      <div className="feed-container flex flex-col gap-5">
+        <SectionHeading
+          title="Let's Connect"
+          subtitle="Get In Touch"
+          description="Open to full-stack engineering roles, freelance collaborations, and technical discussions."
         />
 
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="w-full"
-        >
-          {/* Main Contact Card */}
-          <Card className="p-8 sm:p-12 text-center border-outline-variant bg-surface shadow-elevation-1">
-            <div className="w-14 h-14 bg-primary-container text-on-primary-container rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xs">
-              <MessageSquare size={28} className="text-primary" />
+        <motion.div variants={fadeUp} initial="hidden" animate="visible">
+          <Card className="p-6 tablet:p-8 text-center">
+            <div className="w-14 h-14 bg-primary-container text-primary rounded-lg flex items-center justify-center mx-auto mb-5" aria-hidden="true">
+              <MessageSquare size={26} />
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-on-surface mb-3">
+            <h2 className="text-xl tablet:text-2xl font-semibold tracking-tight text-on-surface mb-2">
               Start a Conversation
-            </h3>
+            </h2>
 
-            <p className="text-sm sm:text-base text-on-surface-variant max-w-lg mx-auto mb-8 leading-relaxed">
-              I am open to full-stack engineering roles, freelance collaborations, and technical discussions. Drop me a note!
+            <p className="text-base text-on-surface-variant max-w-md mx-auto mb-6 leading-relaxed">
+              Reach out directly via email at{' '}
+              <span className="font-semibold text-on-surface">{EMAIL}</span> or connect on social platforms.
             </p>
 
-            {/* Quick Actions Bar */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 mb-8">
-              <Button 
-                as="a" 
-                href="mailto:pranavkavade9@gmail.com" 
-                variant="primary" 
+            {/* Primary & Secondary Actions */}
+            <div className="flex flex-col tablet:flex-row justify-center items-center gap-3 mb-6">
+              <Button
+                as="a"
+                href={`mailto:${EMAIL}`}
+                variant="primary"
                 size="lg"
                 icon={Mail}
-                className="w-full sm:w-auto"
-                aria-label="Send direct email to pranavkavade9@gmail.com"
+                className="w-full tablet:w-auto"
+                aria-label={`Send email to ${EMAIL}`}
               >
                 Say Hello (Email)
               </Button>
-              
-              <Button 
-                variant="tonal" 
+
+              <Button
+                variant="tonal"
                 size="lg"
                 icon={copied ? Check : Copy}
                 onClick={handleCopyEmail}
-                className="w-full sm:w-auto min-w-[160px]"
+                className="w-full tablet:w-auto min-w-[160px]"
                 aria-label="Copy email address to clipboard"
               >
                 {copied ? 'Copied!' : 'Copy Email'}
@@ -100,8 +130,8 @@ function Contact() {
             </div>
 
             {/* Social Network Chips */}
-            <div className="pt-6 border-t border-outline-variant/60 flex flex-wrap items-center justify-center gap-3">
-              <span className="text-xs font-semibold text-on-surface-variant uppercase tracking-wider mr-1">
+            <div className="pt-5 border-t border-outline-variant flex flex-wrap items-center justify-center gap-3">
+              <span className="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">
                 Find me online:
               </span>
               <Chip
@@ -127,6 +157,64 @@ function Contact() {
             </div>
           </Card>
         </motion.div>
+
+        {/* Meta-style Quick Note Composer */}
+        <Card className="p-4 tablet:p-6">
+          <button
+            type="button"
+            onClick={() => setComposerOpen((prev) => !prev)}
+            aria-expanded={composerOpen}
+            className="w-full min-h-[48px] flex items-center justify-between gap-3 text-left rounded-md px-2 state-layer cursor-pointer"
+          >
+            <span className="text-sm font-medium text-on-surface-variant">
+              {composerOpen ? 'Hide quick note composer' : 'Want to prepare a quick note before emailing?'}
+            </span>
+            <ChevronDown
+              size={18}
+              className={`text-primary shrink-0 transition-transform duration-fast ${
+                composerOpen ? 'rotate-180' : ''
+              }`}
+              aria-hidden="true"
+            />
+          </button>
+
+          {composerOpen && (
+            <form onSubmit={handleDraftSubmit} className="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-4" noValidate>
+              <Input
+                label="Subject"
+                placeholder="Project collaboration or role inquiry"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                onClear={() => setSubject('')}
+                helperText="Optional subject line for your email client"
+              />
+              <Input
+                label="Message"
+                multiline
+                rows={3}
+                placeholder="Write a brief note..."
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                  if (messageError && e.target.value.trim()) setMessageError('');
+                }}
+                error={messageError}
+                required
+              />
+              <div className="flex justify-end">
+                <Button
+                  type="submit"
+                  variant="tonal"
+                  size="md"
+                  icon={Send}
+                  disabled={!message.trim()}
+                >
+                  Open Email Draft
+                </Button>
+              </div>
+            </form>
+          )}
+        </Card>
 
         <PageNav
           prev={{ name: 'Projects', path: '/projects' }}

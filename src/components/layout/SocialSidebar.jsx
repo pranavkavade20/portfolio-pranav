@@ -1,92 +1,137 @@
 import React from 'react';
-import { Github, Linkedin, Mail, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText, MapPin, ArrowUpRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { portfolioConfig } from '../../config/portfolio';
 import { cn } from '../../lib/utils';
+import Card from '../ui/Card';
+import Badge from '../ui/Badge';
+import Button from '../ui/Button';
 
+/**
+ * Large+ (>=1200px) Right Contextual Column.
+ * Surfaces quick profile context, availability status, and direct links alongside the centered feed.
+ */
 const SocialSidebar = () => {
   const location = useLocation();
   const isContactActive = location.pathname === '/contact';
 
-  const socialItems = [
+  const quickLinks = [
     {
       href: 'https://github.com/pranavkavade20',
-      aria: 'GitHub Profile',
-      icon: <Github size={20} />,
+      label: 'GitHub',
+      meta: '@pranavkavade20',
+      icon: Github,
       external: true,
     },
     {
       href: 'https://www.linkedin.com/in/pranavkavade20',
-      aria: 'LinkedIn Profile',
-      icon: <Linkedin size={20} />,
+      label: 'LinkedIn',
+      meta: 'Connect on LinkedIn',
+      icon: Linkedin,
       external: true,
     },
     {
       to: '/contact',
-      aria: 'Contact Page',
-      icon: <Mail size={20} />,
-      isInternal: true,
+      label: 'Contact',
+      meta: 'pranavkavade9@gmail.com',
+      icon: Mail,
+      external: false,
       active: isContactActive,
-    },
-    {
-      href: portfolioConfig.resumeUrl,
-      aria: 'View R&eacute;sum&eacute;',
-      icon: <FileText size={20} />,
-      external: true,
     },
   ];
 
-  const renderLink = (item) => {
-    const baseClasses = cn(
-      "touch-target p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-variant transition-all duration-200",
-      "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-      item.active && "text-primary bg-primary-container"
-    );
-
-    if (item.isInternal) {
-      return (
-        <Link
-          key={item.aria}
-          to={item.to}
-          className={baseClasses}
-          aria-label={item.aria}
-        >
-          {item.icon}
-        </Link>
-      );
-    }
-
-    return (
-      <a
-        key={item.aria}
-        href={item.href}
-        target={item.external ? '_blank' : undefined}
-        rel={item.external ? 'noopener noreferrer' : undefined}
-        className={baseClasses}
-        aria-label={item.aria}
-      >
-        {item.icon}
-      </a>
-    );
-  };
-
   return (
-    // Only displayed on large desktop viewports (lg: 1024px+), avoiding collisions on mobile/tablets
-    <aside 
-      aria-label="Social Links"
-      className="hidden lg:flex fixed left-6 top-0 h-full flex-col justify-center items-center z-30 pointer-events-none"
+    <aside
+      aria-label="Contextual Profile & Social Links"
+      className="hidden wide:flex flex-col gap-4 shrink-0 w-[var(--context-rail-width)] sticky top-[var(--appbar-height)] h-[calc(100dvh-var(--appbar-height))] py-6 pr-6 pl-2 overflow-y-auto"
     >
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.4, duration: 0.4 }}
-        className="pointer-events-auto flex flex-col items-center gap-3 p-2 rounded-full bg-surface/80 backdrop-blur-md border border-outline-variant shadow-elevation-1"
-      >
-        {socialItems.slice(0, 3).map(renderLink)}
-        <div className="w-5 h-px bg-outline-variant my-1" />
-        {renderLink(socialItems[3])}
-      </motion.div>
+      <Card className="p-4 flex flex-col gap-3">
+        <div className="flex items-center justify-between gap-2">
+          <Badge variant="success">Open to opportunities</Badge>
+        </div>
+        <div>
+          <h2 className="text-base font-semibold text-on-surface tracking-tight">
+            Pranav Kavade
+          </h2>
+          <p className="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+            <MapPin size={13} className="text-primary shrink-0" aria-hidden="true" />
+            <span>Maharashtra, India</span>
+          </p>
+        </div>
+        <p className="text-sm text-on-surface-variant leading-relaxed">
+          Full Stack Engineer building resilient APIs and clean, responsive UIs.
+        </p>
+        <Button
+          as="a"
+          href={portfolioConfig.resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="tonal"
+          size="sm"
+          icon={FileText}
+          className="w-full"
+          aria-label="View Résumé PDF"
+        >
+          View Résumé
+        </Button>
+      </Card>
+
+      <Card className="p-3 flex flex-col gap-1">
+        <p className="px-2 pt-1 pb-1.5 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+          Quick Links
+        </p>
+        <ul className="flex flex-col gap-1">
+          {quickLinks.map((item) => {
+            const Icon = item.icon;
+            const classes = cn(
+              'state-layer flex items-center justify-between gap-2 px-3 min-h-[48px] rounded-md',
+              'transition-colors text-left',
+              item.active
+                ? 'bg-primary-container text-on-primary-container font-semibold'
+                : 'text-on-surface hover:bg-surface-variant'
+            );
+
+            const content = (
+              <>
+                <span className="flex items-center gap-3 min-w-0">
+                  <Icon
+                    size={18}
+                    className={cn('shrink-0', item.active ? 'text-primary' : 'text-on-surface-variant')}
+                    aria-hidden="true"
+                  />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium truncate">{item.label}</span>
+                    <span className="block text-xs text-on-surface-variant truncate">{item.meta}</span>
+                  </span>
+                </span>
+                {item.external && (
+                  <ArrowUpRight size={14} className="shrink-0 text-on-surface-variant" aria-hidden="true" />
+                )}
+              </>
+            );
+
+            return (
+              <li key={item.label}>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classes}
+                    aria-label={`${item.label} profile`}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <Link to={item.to} className={classes} aria-label={item.label}>
+                    {content}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </Card>
     </aside>
   );
 };

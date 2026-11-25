@@ -1,8 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export default function TextReveal({ text, type = 'word', delay = 0, className = '' }) {
-  if (typeof text !== 'string') {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (typeof text !== 'string' || shouldReduceMotion) {
     return <span className={className}>{text}</span>;
   }
 
@@ -10,7 +12,7 @@ export default function TextReveal({ text, type = 'word', delay = 0, className =
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: type === 'char' ? 0.02 : 0.05,
+        staggerChildren: type === 'char' ? 0.02 : 0.04,
         delayChildren: delay,
       },
     },
@@ -20,17 +22,13 @@ export default function TextReveal({ text, type = 'word', delay = 0, className =
     hidden: {
       y: '100%',
       opacity: 0,
-      rotate: 2,
     },
     visible: {
       y: '0%',
       opacity: 1,
-      rotate: 0,
       transition: {
-        type: 'spring',
-        damping: 30,
-        stiffness: 300,
-        mass: 0.8,
+        duration: 0.28,
+        ease: [0.2, 0, 0, 1],
       },
     },
   };

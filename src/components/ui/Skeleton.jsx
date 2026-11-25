@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { cn } from '../../lib/utils';
 
 /**
  * Meta x Google Skeleton Component
- * Shimmering placeholder matching component dimensions
+ * Layout-matched placeholder with optional 150ms reveal delay to prevent flash on fast loads.
  */
 const Skeleton = ({
   className = '',
   variant = 'rectangular', // 'text' | 'circular' | 'rectangular' | 'card'
+  delayMs = 0,
   ...props
 }) => {
+  const [visible, setVisible] = useState(delayMs <= 0);
+
+  useEffect(() => {
+    if (delayMs <= 0) return;
+    const timer = setTimeout(() => setVisible(true), delayMs);
+    return () => clearTimeout(timer);
+  }, [delayMs]);
+
   const variants = {
-    text: "h-4 w-3/4 rounded-md",
-    circular: "rounded-full aspect-square",
-    rectangular: "rounded-xl",
-    card: "h-48 w-full rounded-2xl"
+    text: 'h-4 w-3/4 rounded-xs',
+    circular: 'rounded-full aspect-square',
+    rectangular: 'rounded-md',
+    card: 'h-48 w-full rounded-lg',
   };
 
   return (
     <div
       className={cn(
-        "animate-pulse bg-surface-variant/80 border border-outline-variant/30",
+        'bg-surface-variant border border-outline-variant/40 transition-opacity duration-fast',
+        visible ? 'opacity-100 motion-safe:animate-pulse' : 'opacity-0',
         variants[variant] || variants.rectangular,
         className
       )}

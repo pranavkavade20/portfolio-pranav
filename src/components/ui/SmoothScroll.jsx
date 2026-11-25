@@ -7,8 +7,11 @@ export default function SmoothScroll({ children }) {
   const location = useLocation();
 
   useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) return;
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
@@ -29,19 +32,29 @@ export default function SmoothScroll({ children }) {
 
     reqId = requestAnimationFrame(raf);
 
+    const handleMotionChange = (e) => {
+      if (e.matches && lenisRef.current) {
+        cancelAnimationFrame(reqId);
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
+    };
+    mq.addEventListener('change', handleMotionChange);
+
     return () => {
+      mq.removeEventListener('change', handleMotionChange);
       cancelAnimationFrame(reqId);
       lenis.destroy();
       lenisRef.current = null;
     };
   }, []);
 
-  // When navigating between pages in the SPA, immediately reset scroll to top
+  // Reset scroll to top immediately on route transition
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, [location.pathname]);
 
   return <>{children}</>;
